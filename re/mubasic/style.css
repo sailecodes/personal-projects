@@ -24,6 +24,8 @@ body {
   font-family: "Roboto", sans-serif;
   color: var(--text-color);
   background-color: var(--main-bg-color);
+
+  overflow: hidden;
 }
 
 /*                */
@@ -39,10 +41,20 @@ a:visited {
   color: var(--text-color);
 }
 
-svg {
-  width: 6rem;
-  height: 6rem;
+button:hover {
+  cursor: pointer;
+
+  border: none;
 }
+
+svg {
+  width: 6.2rem;
+  height: 6.2rem;
+}
+
+/*               */
+/* MEDIA QUERIES */
+/*               */
 
 /*              */
 /* LEFT SECTION */
@@ -52,6 +64,7 @@ svg {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10rem;
 
   height: 100vh;
   width: 50vw;
@@ -66,7 +79,7 @@ svg {
 }
 
 .left-section div:nth-child(1) div {
-  font-size: 4.8rem;
+  font-size: clamp(1rem, 12vw + 1rem, 5rem);
   font-weight: 900;
   letter-spacing: -0.24rem;
 }
@@ -97,22 +110,31 @@ svg {
 .right-section {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: flex-end;
-  gap: 0.8rem;
+  gap: 1.2rem;
 
   width: 50vw;
 
   background-color: var(--text-color);
+
+  padding: 12rem 0 12rem 0;
+}
+/*
+.right-section button {
+  position: relative;
+  left: 0rem;
+
+  width: 116.2rem;
+  height: 18.2rem;
+
   color: #fff;
 
-  padding-top: 12rem;
-}
+  padding-left: 4.2rem;
 
-.right-section button {
-  width: 116rem;
-  height: 14rem;
+  border-radius: 2rem 0 0 2rem;
 
-  border-radius: 1.6rem 0 0 1.6rem;
+  transition: left 0.3s ease;
 }
 
 .right-section button:nth-child(1) {
@@ -134,3 +156,21 @@ svg {
 .right-section button:nth-child(5) {
   background-color: #ba97d0;
 }
+
+.right-section button:hover {
+  left: 4rem;
+}
+
+.right-section button div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 9.8rem;
+  width: 9.8rem;
+
+  background-color: rgba(0, 0, 0, 0.08);
+  font-size: 2.8rem;
+  border-radius: 1rem;
+}
+*/
