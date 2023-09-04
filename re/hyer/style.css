@@ -1,0 +1,313 @@
+/* ===================== */
+/* HIGHEST-LEVEL STYLING */
+/* ===================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 1fr 1fr 0.9fr 0.1fr;
+
+  font-family: "Noto Sans", sans-serif;
+  background-color: #000d10;
+  color: #101010;
+}
+
+html {
+  font-size: 62.5%; /* 1rem == 10px */
+}
+
+/* =============== */
+/* GENERAL STYLING */
+/* =============== */
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ============ */
+/* LANDING PAGE */
+/* ============ */
+
+.landing-page {
+  display: grid;
+  grid-template-rows: 100rem 1fr;
+
+  height: 100vh;
+  background-image: url(imgs/clouds.jpg);
+  /* background-position-y: 30%; */
+  background-position-y: 100%;
+}
+
+.landing-page-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+
+  margin-top: 4.4rem;
+}
+
+.landing-page-top-left-half {
+  display: flex;
+  gap: 7rem;
+}
+
+.landing-page-top-left-half-logo {
+  font-size: 60rem;
+  font-weight: 600;
+  letter-spacing: -4rem;
+
+  position: relative;
+  bottom: 19rem;
+  left: 1rem;
+}
+
+.landing-page-top-left-half-trademark {
+  font-size: 14rem;
+
+  position: relative;
+  bottom: 3.5rem;
+}
+
+.landing-page-top-right-half {
+  margin-top: 2.8rem;
+  margin-right: 5rem;
+}
+
+.landing-page-top-right-half-top {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+}
+
+.landing-page-top-right-half-top div {
+  font-size: 3.6rem;
+}
+
+.landing-page-top-right-half-top div a:link {
+  color: #000;
+}
+
+.landing-page-top-right-half-top div a:visited {
+  color: #000;
+}
+
+.about-us {
+  min-width: max-content;
+}
+
+.contact {
+  margin-right: 8rem;
+}
+
+.landing-page-top-right-half-top-btn {
+  display: flex;
+  gap: 1.8rem;
+}
+
+.landing-page-top-right-half-top-btn button {
+  height: 8.6rem;
+  width: 8.6rem;
+
+  cursor: pointer;
+
+  border: none;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.svg-book,
+.svg-menu {
+  height: 2.4rem;
+  width: 2.4rem;
+
+  color: #fff;
+}
+
+.landing-page-top-right-half-one-hook {
+  font-size: 11.4rem;
+  font-weight: 600;
+  letter-spacing: -0.5rem;
+  line-height: 10rem;
+
+  margin-top: 14.5rem;
+}
+
+.landing-page-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 3.6rem;
+  font-weight: 600;
+
+  margin: 0 30rem 0 12rem;
+  padding-top: 10rem;
+}
+
+.landing-page-bottom button {
+  border: none;
+  border-radius: 5rem;
+
+  height: 8.6rem;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #000;
+
+  cursor: pointer;
+
+  padding: 2rem 4rem 2rem 4rem;
+}
+
+.landing-page-bottom-book-aircraft-btn {
+  margin-right: 2rem;
+}
+
+/* =============== */
+/* CHARACTERISTICS */
+/* =============== */
+
+.characteristics {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 12rem;
+  /* background-color: #f0ffff; */
+  background: linear-gradient(#fff5eb, #f0ffff);
+}
+
+.characteristics-headline {
+  width: 130rem;
+  font-size: 11.4rem;
+  font-weight: 600;
+  letter-spacing: -0.5rem;
+  line-height: 12rem;
+
+  margin-left: 10rem;
+}
+
+.characteristics-features {
+  display: grid;
+  grid-template-columns: 30rem 30rem;
+  gap: 10rem;
+
+  margin-right: 10rem;
+}
+
+.characteristics-features-item div:first-of-type {
+  font-size: 3.6rem;
+  font-weight: 600;
+
+  margin-bottom: 1.4rem;
+}
+
+.characteristics-features-item :nth-child(2) {
+  font-size: 2.4rem;
+}
+
+/* ====== */
+/* FOOTER */
+/* ====== */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+
+  color: #fff;
+}
+
+.footer-left-section {
+  font-size: 8rem;
+  font-weight: 600;
+
+  padding-top: 6rem;
+  padding-left: 8.1rem;
+}
+
+.footer-left-section span:nth-child(2) {
+  font-size: 2rem;
+
+  position: relative;
+  bottom: 5rem;
+  right: 2rem;
+}
+
+.footer-right-section {
+  align-self: center;
+
+  display: grid;
+  grid-template-columns: 37rem 37rem 37rem;
+  grid-template-rows: 14rem 14rem;
+  row-gap: 6rem;
+
+  margin-bottom: 24rem;
+  margin-right: 24rem;
+}
+
+.footer-right-section-item {
+  margin-bottom: 10rem;
+}
+
+.footer-right-section-item div {
+  font-size: 3rem;
+  font-weight: 500;
+
+  margin-bottom: 1.2rem;
+}
+
+.footer-right-section-item ul {
+  font-size: 2.4rem;
+  list-style: none;
+}
+
+.footer-right-section-item a:link {
+  color: #8e8e95;
+}
+
+.footer-right-section-item a:visited {
+  color: #8e8e95;
+}
+
+.footer-right-section-item ul li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+/* ============== */
+/* CLOSING FOOTER */
+/* ============== */
+
+.closing-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  width: 130rem;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.closing-footer a {
+  color: #8e8e95;
+  font-size: 2rem;
+}
+
+.closing-footer a:not(:last-child) {
+  margin-right: 3rem;
+}
+
+.closing-footer p {
+  color: #fff;
+  font-size: 1.4rem;
+}
