@@ -2,11 +2,6 @@
 /* OVERALL STYLES */
 /*                */
 
-:root {
-  --text-color: #1b1a19;
-  --main-bg-color: #fac670;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -26,6 +21,18 @@ body {
   background-color: var(--main-bg-color);
 
   overflow: hidden;
+}
+
+:root {
+  --text-color: #1b1a19;
+  --main-bg-color: #fac670;
+
+  --fs-s: 2.8rem;
+  /* --fs-sb: ; */
+  --fs-m: clamp(1rem, 2vw + 1rem, 5rem);
+  --fs-mb: clamp(1rem, 3vw + 1rem, 7rem);
+  --fs-lb: 12.8rem;
+  /* --fs-lb: clamp(1rem, 7vw + 1rem, 12.8rem); */
 }
 
 /*                */
@@ -48,13 +55,9 @@ button:hover {
 }
 
 svg {
-  width: 6.2rem;
-  height: 6.2rem;
+  width: var(--fs-mb);
+  height: var(--fs-mb);
 }
-
-/*               */
-/* MEDIA QUERIES */
-/*               */
 
 /*              */
 /* LEFT SECTION */
@@ -68,6 +71,7 @@ svg {
 
   height: 100vh;
   width: 50vw;
+  min-width: 75.4rem; /* Temprorary until dynamic support is added */
 
   padding: 5rem;
 }
@@ -79,7 +83,7 @@ svg {
 }
 
 .left-section div:nth-child(1) div {
-  font-size: clamp(1rem, 12vw + 1rem, 5rem);
+  font-size: var(--fs-m);
   font-weight: 900;
   letter-spacing: -0.24rem;
 }
@@ -87,11 +91,20 @@ svg {
 .left-section div:nth-child(2) {
   width: 72rem;
 
-  font-size: 12.8rem;
+  font-size: var(--fs-lb);
   font-weight: 900;
   letter-spacing: -0.5rem;
   line-height: 10.6rem;
 }
+
+/* @media (max-width: 991px) {
+  .left-section div:nth-child(2) {
+    width: 30rem;
+
+    letter-spacing: -0.1rem;
+    line-height: 4rem;
+  }
+} */
 
 .left-section div:nth-child(2) span {
   color: #f37925;
@@ -100,7 +113,7 @@ svg {
 .left-section div:nth-child(3) {
   width: 40rem;
 
-  font-size: 2.8rem;
+  font-size: var(--fs-s);
 }
 
 /*               */
@@ -115,12 +128,13 @@ svg {
   gap: 1.2rem;
 
   width: 50vw;
+  min-width: 75.4rem;
 
   background-color: var(--text-color);
 
   padding: 12rem 0 12rem 0;
 }
-/*
+
 .right-section button {
   position: relative;
   left: 0rem;
@@ -173,4 +187,3 @@ svg {
   font-size: 2.8rem;
   border-radius: 1rem;
 }
-*/
