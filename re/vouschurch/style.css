@@ -1,0 +1,21 @@
+:root {
+  --font-color: #191617;
+
+  --main-bg-color: #191617;
+  --sec-bg-color: #f9f5f4;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-family: "Noto Sans", sans-serif;
+}
