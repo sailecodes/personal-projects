@@ -1,0 +1,100 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 8rem;
+
+  height: 90.6rem;
+
+  background-color: var(--bg-color-secondary);
+
+  padding-top: 4rem;
+}
+
+.hero > div:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+
+  width: 8rem;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  margin-bottom: 8rem;
+  margin-left: 10rem;
+}
+
+.small-line {
+  height: 2rem;
+  width: 0.2rem;
+
+  background-color: var(--bg-color-dark);
+}
+
+.hero > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 204.8rem;
+}
+
+.hero > div:nth-child(2) > div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+
+  margin-bottom: 4rem;
+}
+
+.hero > div:nth-child(2) > div:nth-child(1) div:nth-child(1) {
+  padding-left: 5rem;
+}
+
+.long-line {
+  height: 0.1rem;
+  width: 13rem;
+
+  background-color: var(--bg-color-dark);
+}
+
+.hero > div:nth-child(2) > div:nth-child(1) div:nth-child(3) {
+  width: 17.036rem;
+}
+
+.hero h1 {
+  font-size: 11rem;
+  text-align: center;
+  line-height: 10rem;
+  letter-spacing: -0.4rem;
+
+  margin-bottom: 7.2rem;
+}
+
+.hero-featured-video iframe {
+  height: 108.6rem;
+  width: 192rem;
+}
+
+.hero > div:nth-child(3) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+
+  width: 8rem;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  margin-bottom: 8rem;
+  margin-right: 10rem;
+}

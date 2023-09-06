@@ -5,6 +5,9 @@
   --bg-color-dark: #191617;
   --bg-color-white: #fff;
   --bg-color-secondary: #f9f5f4;
+
+  --line-short: 1rem;
+  --line-med: 2rem;
 }
 
 * {
