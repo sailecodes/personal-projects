@@ -1,0 +1,38 @@
+:root {
+  --font-color-dark: #191617;
+  --font-color-white: #fff;
+
+  --bg-color-dark: #191617;
+  --bg-color-white: #fff;
+  --bg-color-secondary: #f9f5f4;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-family: "Noto Sans", sans-serif;
+
+  color: var(--main-bg-color);
+  background-color: var(--font-color-dark);
+}
+
+a:link,
+a:visited {
+  color: var(--font-color-white);
+
+  text-decoration: none;
+}
+
+svg {
+  height: 2.4rem;
+  width: 2.4rem;
+}
