@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      div {
+        color: white;
+        background-color: gray;
+
+        font-size: clamp(3rem, 6.67vw - 1rem, 5rem);
+        padding: clamp(1rem, 6.67vw - 3rem, 3rem);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- font-size: hold 3rem until 600px, grow to 5rem until 900px, hold past -->
+    <!-- padding: hold 1rem until 600px, grow to 2rem until 900px, hold past -->
+    <div>Text</div>
+  </body>
+</html>
