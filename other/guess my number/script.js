@@ -9,21 +9,32 @@ document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess);
 
+  // CASE 1: No input
   if (!guess) {
     document.querySelector('.message').textContent = '⛔ No number!';
-  } else if (guess === secretNumber) {
+  }
+  // CASE 2: Correct guess
+  else if (guess === secretNumber) {
+    document.querySelector('body').style.backgroundColor = '#60b347';
+    document.querySelector('.number').style.width = '30rem';
     document.querySelector('.message').textContent = '🎉 Correct Number!';
   } else {
+    // CASE 3: Player has more turns
     if (score > 1) {
       score--;
       document.querySelector('.score').textContent = score;
 
+      // CASE 3a: High guess
       if (guess > secretNumber) {
         document.querySelector('.message').textContent = '📈 Too high';
-      } else {
+      }
+      // CASE 3b: Low guess
+      else {
         document.querySelector('.message').textContent = '📉 Too low';
       }
-    } else if (score == 1) {
+    }
+    // CASE 4: Player has no more turns -- LOSE
+    else if (score == 1) {
       score--;
       document.querySelector('.score').textContent = score;
       document.querySelector('.message').textContent = '🫠 You lost the game!';
