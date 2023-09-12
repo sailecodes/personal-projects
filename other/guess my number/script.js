@@ -46,16 +46,11 @@ document.querySelector('.check').addEventListener('click', function () {
     // CASE 3: Player has more turns
     if (score > 1) {
       score--;
-      document.querySelector('.score').textContent = score;
 
-      // CASE 3a: High guess
-      if (guess > secretNumber) {
-        document.querySelector('.message').textContent = HIGH_GUESS;
-      }
-      // CASE 3b: Low guess
-      else {
-        document.querySelector('.message').textContent = LOW_GUESS;
-      }
+      document.querySelector('.score').textContent = score;
+      // CASE 3a, 3b: High guess, low guess
+      document.querySelector('.message').textContent =
+        guess > secretNumber ? HIGH_GUESS : LOW_GUESS;
     }
     // CASE 4: Player has no more turns -- LOSE
     else if (score == 1) {
