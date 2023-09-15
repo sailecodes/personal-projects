@@ -203,9 +203,11 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Number(inputLoanAmount.value);
 
   if (amount > 0 && currAccount.movements.some(mov => mov >= amount * 0.1)) {
-    currAccount.movements.push(amount);
+    setTimeout(function () {
+      currAccount.movements.push(amount);
 
-    updateUI(currAccount);
+      updateUI(currAccount);
+    }, 2500);
   }
 
   inputLoanAmount.value = '';
@@ -217,17 +219,3 @@ btnSort.addEventListener('click', function (e) {
 
   sorted = !sorted;
 });
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
