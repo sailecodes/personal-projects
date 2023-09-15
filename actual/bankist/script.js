@@ -64,10 +64,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /* ================================================================ */
 /* FUNCTIONS */
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
-  movements.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
     <div class="movements__row">
@@ -127,11 +128,14 @@ const updateUI = function (acc) {
 /* EVENT LISTENERS */
 
 let currAccount;
+let sorted = false;
 
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
 
+  sorted = false;
   currAccount = accounts.find(acc => acc.username == inputLoginUsername.value);
+
   if (currAccount?.pin === Number(inputLoginPin.value)) {
     labelWelcome.text = `Welcome back, ${currAccount.owner.split(' ')[0]}`;
     containerApp.style.opacity = 100;
@@ -207,6 +211,13 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.value = '';
 });
 
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currAccount.movements, !sorted);
+
+  sorted = !sorted;
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -220,26 +231,3 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-
-/*const eurToUSD = 1.1;
-const movementsUSD = movements.map(mov => mov * eurToUSD);
-
-const movementsDescriptions = movements.map((mov, i) => {
-  return `Movement ${i + 1}: You ${
-    mov > 0 ? 'deposited' : 'withdrew'
-  } ${Math.abs(mov)}`;
-});
-
-console.log(movementsDescriptions);*/
-
-/*const deposits = movements.filter(function (mov) {
-  return mov > 0;
-});
-
-console.log(deposits);*/
-
-/*const balance = movements.reduce(function (acc, cur, i, arr) {
-  return acc + cur;
-}, 0);
-
-console.log(balance);*/
