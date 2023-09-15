@@ -1,10 +1,8 @@
 'use strict';
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// BANKIST APP
+/* ================================================================ */
+/* STATIC DATA */
 
-// Data
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -35,7 +33,9 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-// Elements
+/* ================================================================ */
+/* DOM ELEMENTS*/
+
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
 const labelBalance = document.querySelector('.balance__value');
@@ -60,6 +60,9 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+
+/* ================================================================ */
+/* FUNCTIONS */
 
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
@@ -90,9 +93,9 @@ const createUsernames = function (accs) {
 
 createUsernames(accounts);
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance} EUR`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -114,12 +117,20 @@ const calcDisplaySummary = function (acc) {
   labelSumInterest.textContent = `${interest} EUR`;
 };
 
-// EVENT LISTENERS
+const updateUI = function (acc) {
+  displayMovements(acc.movements);
+  calcDisplayBalance(acc);
+  calcDisplaySummary(acc);
+};
+
+/* ================================================================ */
+/* EVENT LISTENERS */
 
 let currAccount;
 
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
+
   currAccount = accounts.find(acc => acc.username == inputLoginUsername.value);
   if (currAccount?.pin === Number(inputLoginPin.value)) {
     labelWelcome.text = `Welcome back, ${currAccount.owner.split(' ')[0]}`;
@@ -127,11 +138,36 @@ btnLogin.addEventListener('click', function (e) {
 
     inputLoginUsername.value = '';
     inputLoginPin.value = '';
-    inputLoginPin.blur();
 
-    displayMovements(currAccount.movements);
-    calcDisplayBalance(currAccount.movements);
-    calcDisplaySummary(currAccount);
+    inputLoginPin.blur();
+    inputLoginUsername.blur();
+
+    updateUI(currAccount);
+  }
+});
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const receiverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  const amount = Number(inputTransferAmount.value);
+  inputTransferAmount.value = '';
+  inputTransferTo.value = '';
+
+  inputTransferAmount.blur();
+  inputTransferTo.blur();
+
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    receiverAcc.username !== currAccount.username &&
+    currAccount.balance >= amount
+  ) {
+    currAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+    updateUI(currAccount);
   }
 });
 
