@@ -193,6 +193,20 @@ btnClose.addEventListener('click', function (e) {
   inputClosePin.blur();
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currAccount.movements.some(mov => mov >= amount * 0.1)) {
+    currAccount.movements.push(amount);
+
+    updateUI(currAccount);
+  }
+
+  inputLoanAmount.value = '';
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
