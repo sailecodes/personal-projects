@@ -2,8 +2,18 @@
 
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
+
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
+const nav = document.querySelector('.nav');
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContent = document.querySelectorAll('.operations__content');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -27,10 +37,8 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-// ===============================
-
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
+/* ============================================================================================= */
+/* Smooth scrolling from Learn more */
 
 btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
@@ -46,9 +54,8 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabs = document.querySelectorAll('.operations__tab');
-const tabsContent = document.querySelectorAll('.operations__content');
+/* ============================================================================================= */
+/* Tab functionality in Operations section */
 
 // Worse method if the number of tabs is large
 /*tabs.forEach(t => t.addEventListener('click', () => console.log('TAB')));*/
@@ -62,12 +69,49 @@ tabsContainer.addEventListener('click', function (e) {
   if (!clicked) return;
 
   tabs.forEach(t => t.classList.remove('operations__tab--active'));
-  clicked.classList.add('operations__tab--active');
   tabsContent.forEach(tc => tc.classList.remove('operations__content--active'));
 
+  clicked.classList.add('operations__tab--active');
   document
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
+});
+
+/* ============================================================================================= */
+/* Nav fade functionality */
+
+const handleHover = function (e, opacity) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(sibling => {
+      if (sibling !== link) {
+        sibling.style.opacity = opacity;
+      }
+    });
+
+    logo.style.opacity = opacity;
+  }
+};
+
+nav.addEventListener('mouseover', function (e) {
+  handleHover(e, 0.5);
+});
+
+nav.addEventListener('mouseout', function (e) {
+  handleHover(e, 1);
+});
+
+/* ============================================================================================= */
+/* Sticky nav functionality */
+
+const initCoords = section1.getBoundingClientRect();
+
+window.addEventListener('scroll', function () {
+  if (window.scrollY > initCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
 });
 
 // ===============================
