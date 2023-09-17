@@ -105,14 +105,47 @@ nav.addEventListener('mouseout', function (e) {
 });
 
 /* ============================================================================================= */
-/* Sticky nav functionality */
+/* Bad sticky nav functionality */
 
-const initCoords = section1.getBoundingClientRect();
+/*const initCoords = section1.getBoundingClientRect();
 
 window.addEventListener('scroll', function () {
   if (window.scrollY > initCoords.top) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
+});*/
+
+/* ============================================================================================= */
+/* Better sticky nav functionality */
+
+/*const obsCallback = function (entries, observer) {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+};
+
+const obsOptions = {
+  root: null,
+  threshold: [0, 0.2],
+};
+const observer = new IntersectionObserver(obsCallback, obsOptions);
+
+observer.observe(section1);*/
+
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  rootMargin: `-${navHeight}px`,
+  threshold: 0,
 });
+headerObserver.observe(header);
 
 // ===============================
 
