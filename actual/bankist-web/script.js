@@ -158,7 +158,6 @@ const allSections = document.querySelectorAll('.section');
 
 const revealSection = function (entries, observer) {
   const [entry] = entries; // only one threshold
-  console.log(entry);
 
   if (!entry.isIntersecting) return;
 
@@ -178,6 +177,30 @@ allSections.forEach(function (section) {
 
 /* ============================================================================================= */
 /* Lazy loading functionality */
+
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  rootMargin: '200px',
+  threshold: 0,
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
 
 // ===============================
 
