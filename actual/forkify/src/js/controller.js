@@ -18,6 +18,7 @@ const controlRecipes = async function () {
 
     if (!id) return;
 
+    // Renders spinner while waiting for UI
     recipeView.renderSpinner();
 
     // Fetches recipe information
@@ -63,10 +64,19 @@ const controlPagination = function (goToPage) {
   paginationView.render(model.state.search);
 };
 
-const init = function () {
+const controlServings = function (newServings) {
+  // Updates the serving size
+  model.updateServings(newServings);
+
+  // Renders the recipe with the new serving size
+  recipeView.render(model.state.recipe);
+};
+
+const initHandlers = function () {
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };
 
-init();
+initHandlers();
