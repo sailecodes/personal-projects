@@ -24,5 +24,6 @@ export const loadRecipe = async function (id) {
     console.log(state.recipe);
   } catch (err) {
     console.error(`{IN model.js} ${err}`);
+    throw err;
   }
 };
