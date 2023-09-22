@@ -19,6 +19,7 @@ export const getJSON = async function (url) {
 
     return data;
   } catch (err) {
+    console.error(`{IN helpers.js} ${err}`);
     throw err;
   }
 };
