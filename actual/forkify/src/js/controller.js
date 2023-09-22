@@ -2,6 +2,7 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
+import paginationView from './views/paginationView.js';
 
 import 'core-js/stable'; // for polyfilling everything besides async/await
 import 'regenerator-runtime/runtime'; // for polyfilling async/await
@@ -33,6 +34,7 @@ const controlRecipes = async function () {
 
 const controlSearchResults = async function () {
   try {
+    // Renders spinner while waiting for results
     resultsView.renderSpinner();
 
     // Gets search query from model
@@ -43,16 +45,28 @@ const controlSearchResults = async function () {
     // Fetches recipes about the query
     await model.loadSearchResults(`${query}`);
 
-    // Renders recipes
-    resultsView.render(model.state.search.results);
+    // Renders search results
+    resultsView.render(model.getSearchResultsPage());
+
+    // Renders pagination buttons
+    paginationView.render(model.state.search);
   } catch (err) {
     console.error(`{IN controller.js} ${err}`);
   }
 };
 
+const controlPagination = function (goToPage) {
+  // Renders new search results
+  resultsView.render(model.getSearchResultsPage(goToPage));
+
+  // Renders new pagination buttons
+  paginationView.render(model.state.search);
+};
+
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 };
 
 init();
