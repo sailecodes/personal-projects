@@ -5,6 +5,36 @@ import icons from 'url:../../img/icons.svg';
 export default class View {
   _data;
 
+  update(data) {
+    if (!data || (Array.isArray(data) && data.length == 0)) {
+      this.renderError();
+      return;
+    }
+
+    this._data = data;
+    const newMarkup = this._generateMarkup();
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    const newElements = Array.from(newDOM.querySelectorAll('*'));
+    const currElements = Array.from(this._parentElement.querySelectorAll('*'));
+
+    newElements.forEach((newElement, i) => {
+      const currElement = currElements[i];
+      if (
+        !newElement.isEqualNode(currElement) &&
+        newElement.firstChild?.nodeValue.trim() !== ''
+      ) {
+        // currElement has a reference to the actual element in the DOM
+        currElement.textContent = newElement.textContent;
+      }
+
+      if (!newElement.isEqualNode(currElement)) {
+        Array.from(newElement.attributes).forEach(attr =>
+          currElement.setAttribute(attr.name, attr.value)
+        );
+      }
+    });
+  }
+
   render(data) {
     if (!data || (Array.isArray(data) && data.length == 0)) {
       this.renderError();

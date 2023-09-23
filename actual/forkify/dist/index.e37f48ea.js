@@ -632,7 +632,10 @@ const controlServings = function(newServings) {
     // Updates the serving size
     _modelJs.updateServings(newServings);
     // Renders the recipe with the new serving size
-    (0, _recipeViewJsDefault.default).render(_modelJs.state.recipe);
+    // BEFORE: recipeView.render(model.state.recipe);
+    // Note: Different from recipeView.render() in that it only renders
+    // certain parts of the DOM
+    (0, _recipeViewJsDefault.default).update(_modelJs.state.recipe);
 };
 const initHandlers = function() {
     (0, _recipeViewJsDefault.default).addHandlerRender(controlRecipes);
@@ -2766,6 +2769,23 @@ var _iconsSvg = require("url:../../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class View {
     _data;
+    update(data) {
+        if (!data || Array.isArray(data) && data.length == 0) {
+            this.renderError();
+            return;
+        }
+        this._data = data;
+        const newMarkup = this._generateMarkup();
+        const newDOM = document.createRange().createContextualFragment(newMarkup);
+        const newElements = Array.from(newDOM.querySelectorAll("*"));
+        const currElements = Array.from(this._parentElement.querySelectorAll("*"));
+        newElements.forEach((newElement, i)=>{
+            const currElement = currElements[i];
+            if (!newElement.isEqualNode(currElement) && newElement.firstChild?.nodeValue.trim() !== "") // currElement has a reference to the actual element in the DOM
+            currElement.textContent = newElement.textContent;
+            if (!newElement.isEqualNode(currElement)) Array.from(newElement.attributes).forEach((attr)=>currElement.setAttribute(attr.name, attr.value));
+        });
+    }
     render(data) {
         if (!data || Array.isArray(data) && data.length == 0) {
             this.renderError();

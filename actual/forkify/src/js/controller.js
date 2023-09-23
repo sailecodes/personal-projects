@@ -69,7 +69,10 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Renders the recipe with the new serving size
-  recipeView.render(model.state.recipe);
+  // BEFORE: recipeView.render(model.state.recipe);
+  // Note: Different from recipeView.render() in that it only renders
+  // certain parts of the DOM
+  recipeView.update(model.state.recipe);
 };
 
 const initHandlers = function () {
