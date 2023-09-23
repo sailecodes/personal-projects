@@ -6,11 +6,6 @@ export default class View {
   _data;
 
   update(data) {
-    if (!data || (Array.isArray(data) && data.length == 0)) {
-      this.renderError();
-      return;
-    }
-
     this._data = data;
     const newMarkup = this._generateMarkup();
     const newDOM = document.createRange().createContextualFragment(newMarkup);
