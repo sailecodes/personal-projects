@@ -3,6 +3,7 @@ import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
 
 import 'core-js/stable'; // for polyfilling everything besides async/await
 import 'regenerator-runtime/runtime'; // for polyfilling async/await
@@ -20,6 +21,7 @@ const controlRecipes = async function () {
 
     // Marks selected search result
     resultsView.update(model.getSearchResultsPage());
+    bookmarksView.update(model.state.bookmarks);
 
     // Renders spinner while waiting for UI
     recipeView.renderSpinner();
@@ -72,6 +74,7 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Renders the recipe with the new serving size
+  //
   // BEFORE: recipeView.render(model.state.recipe);
   // Note: Different from recipeView.render() in that it only renders
   // certain parts of the DOM
@@ -79,12 +82,18 @@ const controlServings = function (newServings) {
 };
 
 const controlAddBookmark = function () {
+  // Adds or removes bookmark property
   if (!model.state.recipe.bookmarked) {
     model.addBookmark(model.state.recipe);
   } else {
     model.removeBookmark(model.state.recipe.id);
   }
+
+  // Updates bookmark icon
   recipeView.update(model.state.recipe);
+
+  // Renders bookmarks
+  bookmarksView.render(model.state.bookmarks);
 };
 
 const initHandlers = function () {
