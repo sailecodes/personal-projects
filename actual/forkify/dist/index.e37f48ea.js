@@ -2693,7 +2693,7 @@ parcelHelpers.export(exports, "MODAL_CLOSE_SEC", ()=>MODAL_CLOSE_SEC);
 const API_URL = "https://forkify-api.herokuapp.com/api/v2/recipes/";
 const TIMEOUT_SEC = 10;
 const RES_PER_PAGE = 10;
-const KEY = "fdb73955-cd74-4728-b9e3-9f287ae3fb44";
+const KEY = "50f44cfa-ec6b-47b6-b601-73380e7fc2ee";
 const MODAL_CLOSE_SEC = 1;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hGI1E":[function(require,module,exports) {
