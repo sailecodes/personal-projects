@@ -1,0 +1,23 @@
+/* ---- VARIABLES ---- */
+
+:root {
+  --general-fs: 62.5%;
+
+  --main-c-darkest: #0c0032;
+  --main-c-dark: #190061;
+  --main-c-light: #240090;
+  --main-c-lightest: #3500d3;
+  --c-white: #fff;
+}
+
+/* ---- HIGHEST LEVEL ---- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--general-fs);
+}
