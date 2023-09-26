@@ -2,6 +2,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12rem;
 
   background-color: var(--main-c-darkest);
   color: var(--c-white);
@@ -58,6 +59,7 @@ nav {
   background-color: var(--main-c-darkest);
   color: var(--c-white);
 
+  min-width: max-content;
   font-size: var(--fs-med);
   text-transform: uppercase;
   border: none;
@@ -81,10 +83,10 @@ nav {
 .nav-bar--sign-up-btn {
   background-color: var(--main-c-lightest);
 
-  padding: 1.4rem 2.8rem 1.4rem 2.8rem;
+  padding: 1.3rem 2.6rem 1.3rem 2.6rem;
   border-radius: 12px;
 
-  transition: all 0.3s ease-in;
+  transition: all 0.3s ease-out;
 }
 
 .nav-bar--sign-up-btn:hover {
