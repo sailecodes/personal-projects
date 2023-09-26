@@ -1,0 +1,85 @@
+nav {
+  background-color: var(--main-c-darkest);
+  color: var(--c-white);
+  justify-content: space-between;
+  align-items: center;
+  gap: 12rem;
+  height: 6rem;
+  padding: 0 3.6rem;
+  display: flex;
+}
+
+.nav-bar--logo {
+  font-size: var(--fs-large);
+  letter-spacing: -.2rem;
+  font-weight: 600;
+}
+
+.nav-bar--main-content {
+  align-items: center;
+  gap: 2.4rem;
+  display: flex;
+}
+
+.nav-bar--search {
+  gap: 1.2rem;
+  display: flex;
+}
+
+.nav-bar--search-bar {
+  border: none;
+  border-radius: 8px;
+  width: 0;
+  height: 3.6rem;
+  transition: all .3s ease-out;
+  overflow: hidden;
+}
+
+.nav-bar--search-bar-btn {
+  background: none;
+  border: none;
+}
+
+.nav-bar--search-bar-btn:hover {
+  cursor: pointer;
+}
+
+.nav-bar--search-bar-icon {
+  color: var(--c-white);
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.nav-bar--btn {
+  background-color: var(--main-c-darkest);
+  color: var(--c-white);
+  font-size: var(--fs-med);
+  text-transform: uppercase;
+  border: none;
+  min-width: max-content;
+}
+
+.nav-bar--btn:hover {
+  cursor: pointer;
+}
+
+.nav-bar--movies:hover, .nav-bar--shows:hover, .nav-bar--sign-in-btn:hover {
+  text-decoration: underline;
+}
+
+.nav-bar--sign-in-btn, .nav-bar--sign-up-btn {
+  font-weight: 700;
+}
+
+.nav-bar--sign-up-btn {
+  background-color: var(--main-c-lightest);
+  border-radius: 12px;
+  padding: 1.3rem 2.6rem;
+  transition: all .3s ease-out;
+}
+
+.nav-bar--sign-up-btn:hover {
+  background-color: var(--main-c-light);
+}
+
+/*# sourceMappingURL=index.6b541db7.css.map */

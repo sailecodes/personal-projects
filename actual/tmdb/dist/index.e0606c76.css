@@ -1,0 +1,27 @@
+:root {
+  --general-fs: 62.5%;
+  --fs-large: 3.6rem;
+  --fs-med: 1.4rem;
+  --main-c-darkest: #0c0032;
+  --main-c-dark: #190061;
+  --main-c-light: #240090;
+  --main-c-lightest: #3500d3;
+  --c-white: #fff;
+  --c-black: #000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--general-fs);
+}
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
+/*# sourceMappingURL=index.e0606c76.css.map */

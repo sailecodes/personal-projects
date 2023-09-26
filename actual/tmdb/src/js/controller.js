@@ -5,6 +5,7 @@
 
 import * as model from "./model.js";
 import searchBar from "./views/searchBar.js";
+import contentSpotlight from "./views/contentSpotlight.js";
 
 /////////////////////////////////////////////////
 ///////// Nav Handlers Initialization
