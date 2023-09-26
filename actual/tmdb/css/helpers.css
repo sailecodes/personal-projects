@@ -1,0 +1,5 @@
+.vertical-line {
+  height: 2.4rem;
+  margin: 0 1rem 0 1rem;
+  border-left: 1px solid var(--c-white);
+}
