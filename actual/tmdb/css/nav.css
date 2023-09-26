@@ -1,0 +1,5 @@
+nav {
+  display: flex;
+
+  background-color: var(--main-c-darkest);
+}

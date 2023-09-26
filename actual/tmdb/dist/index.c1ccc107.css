@@ -1,8 +1,5 @@
-/* ---- VARIABLES ---- */
-
 :root {
   --general-fs: 62.5%;
-
   --main-c-darkest: #0c0032;
   --main-c-dark: #190061;
   --main-c-light: #240090;
@@ -11,12 +8,10 @@
   --c-black: #000;
 }
 
-/* ---- HIGHEST LEVEL ---- */
-
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {
@@ -24,7 +19,7 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  font-family: "Noto Sans", sans-serif;
-  font-family: "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
 }
+
+/*# sourceMappingURL=index.c1ccc107.css.map */

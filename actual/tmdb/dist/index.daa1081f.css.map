@@ -1,0 +1,1 @@
+{"mappings":"AAAA","sources":["css/nav.css"],"sourcesContent":["nav {\r\n  display: flex;\r\n\r\n  background-color: var(--main-c-darkest);\r\n}\r\n"],"names":[],"version":3,"file":"index.daa1081f.css.map","sourceRoot":"/__parcel_source_root/"}
