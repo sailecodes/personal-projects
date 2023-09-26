@@ -1,8 +1,11 @@
 /* ---- VARIABLES ---- */
 
 :root {
+  /* Font size */
   --general-fs: 62.5%;
+  --fs-large: 3.6rem;
 
+  /* Colors */
   --main-c-darkest: #0c0032;
   --main-c-dark: #190061;
   --main-c-light: #240090;

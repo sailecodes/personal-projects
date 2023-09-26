@@ -1,5 +1,95 @@
 nav {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   background-color: var(--main-c-darkest);
+  color: var(--c-white);
+
+  height: 6rem;
+  padding: 0 3.6rem 0 3.6rem;
+}
+
+.nav-bar--logo {
+  font-size: var(--fs-large);
+  font-weight: 600;
+  letter-spacing: -0.2rem;
+}
+
+.nav-bar--main-content {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.vertical-line {
+  height: 2.4rem;
+  margin: 0 1rem 0 1rem;
+  border-left: 1px solid var(--c-white);
+}
+
+.nav-bar--search {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.nav-bar--search-field {
+  height: 3.6rem;
+  width: 36rem;
+  padding: 0 1rem 0 1rem;
+  border: none;
+  border-radius: 8px;
+}
+
+.nav-bar--search-field-btn {
+  background: none;
+  border: none;
+}
+
+.nav-bar--search-field-btn:hover {
+  cursor: pointer;
+}
+
+.nav-bar--search-field-icon {
+  color: var(--c-white);
+
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.nav-bar--btn {
+  background-color: var(--main-c-darkest);
+  color: var(--c-white);
+
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  border: none;
+}
+
+.nav-bar--btn:hover {
+  cursor: pointer;
+}
+
+.nav-bar--movies:hover,
+.nav-bar--shows:hover,
+.nav-bar--sign-in-btn:hover {
+  text-decoration: underline;
+}
+
+.nav-bar--sign-in-btn,
+.nav-bar--sign-up-btn {
+  font-weight: 700;
+}
+
+.nav-bar--sign-up-btn {
+  background-color: var(--main-c-lightest);
+
+  padding: 1.4rem 2.8rem 1.4rem 2.8rem;
+  border-radius: 12px;
+
+  transition: all 0.3s ease-in;
+}
+
+.nav-bar--sign-up-btn:hover {
+  background-color: var(--main-c-light);
 }

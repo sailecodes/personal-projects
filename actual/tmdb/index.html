@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/general.css" />
     <link rel="stylesheet" href="css/nav.css" />
     <script type="module" src="js/controller.js"></script>
-    <title>Elias TMDB</title>
+    <title>TMDBiv</title>
   </head>
 
   <body>
@@ -19,21 +19,31 @@
     <!-- Navigation Bar -->
     <!--                -->
     <nav>
-      <div class="nav-bar--logo">EliasTMDB</div>
+      <div class="nav-bar--logo">TMDBiv</div>
 
-      <div>
-        <div class="nav-bar--selections">
-          <div class="nav-bar--movies-btn">Movies</div>
-          <div class="nav-bar--shows-btn">Shows</div>
-        </div>
-
-        <div class="vertical-bar"></div>
-
-        <div>
-          <form action=""><button class="nav-bar--sign-in-btn">Sign In</button></form>
-
-          <form action=""><button class="nav-bar--sign-up-btn">Sign Up Now</button></form>
-        </div>
+      <div class="nav-bar--main-content">
+        <form class="nav-bar--search" action="">
+          <input type="text" class="nav-bar--search-field" placeholder="Search a movie or show..." />
+          <button class="nav-bar--search-field-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="nav-bar--search-field-icon">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </button>
+        </form>
+        <button class="nav-bar--btn nav-bar--movies">Movies</button>
+        <button class="nav-bar--btn nav-bar--shows">Shows</button>
+        <div class="vertical-line"></div>
+        <form action=""><button class="nav-bar--btn nav-bar--sign-in-btn">Sign In</button></form>
+        <form action=""><button class="nav-bar--btn nav-bar--sign-up-btn">Sign Up Now</button></form>
       </div>
     </nav>
 
