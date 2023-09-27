@@ -52,15 +52,22 @@
   position: absolute;
   bottom: 0px;
 
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.74);
   color: var(--c-white);
 
   height: 24rem;
   max-width: 55rem;
   padding: 1rem var(--padding-browser-side) 1rem var(--padding-browser-side);
+  border-radius: 0 4px 4px 0;
 }
 
 .content-spotlight--overview > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content-spotlight--overview > div > div {
   display: flex;
   align-items: center;
   gap: 1.2rem;
@@ -79,6 +86,24 @@
   font-size: var(--fs-med-m);
   font-weight: 600;
   border-radius: 3px;
+}
+
+.content-spotlight--overview-back-btn {
+  color: var(--c-white);
+
+  width: 3.2rem;
+  height: 3.2rem;
+  border: none;
+  background: none;
+}
+
+.content-spotlight--overview-back-btn:hover {
+  cursor: pointer;
+}
+
+.content-spotlight--overview-back-btn-icon {
+  width: 2.8rem;
+  height: 2.8rem;
 }
 
 .content-spotlight--overview-title {
@@ -105,20 +130,17 @@
 }
 
 .content-spotlight--overview-description {
+  display: -webkit-box;
+
   height: 11rem;
   width: 48rem;
   font-size: var(--fs-med-m);
 
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 5; /* number of lines to show */
   line-clamp: 5;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
-
-/*  */
-/*  */
-/*  */
 
 .content-spotlight--btn {
   position: absolute;
