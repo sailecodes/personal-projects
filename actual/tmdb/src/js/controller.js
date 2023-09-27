@@ -1,13 +1,15 @@
-// Controller of the MVC architecture
+/////////////////////////////////////////////////
+// CONTROLLER of the MVC architecture
 //
 // Description:
 //  Controls information flow between the model and different views
+/////////////////////////////////////////////////
 
 import * as model from "./model.js";
 import searchBar from "./views/searchBar.js";
-import contentSpotlight from "./views/contentSpotlight.js";
+import spotlight from "./views/spotlight.js";
 
 /////////////////////////////////////////////////
-///////// Nav Handlers Initialization
+///////// Search Bar Handlers Initialization
 
 searchBar.initHandlers();

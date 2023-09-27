@@ -8,11 +8,11 @@ nav {
   color: var(--c-white);
 
   height: 6rem;
-  padding: 0 3.6rem 0 3.6rem;
+  padding: 0 var(--padding-browser-side) 0 var(--padding-browser-side);
 }
 
 .nav-bar--logo {
-  font-size: var(--fs-large);
+  font-size: var(--fs-large-s);
   font-weight: 600;
   letter-spacing: -0.2rem;
 }
@@ -60,7 +60,7 @@ nav {
   color: var(--c-white);
 
   min-width: max-content;
-  font-size: var(--fs-med);
+  font-size: var(--fs-med-m);
   text-transform: uppercase;
   border: none;
 }

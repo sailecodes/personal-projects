@@ -12,9 +12,11 @@
 
     <link rel="stylesheet" href="src/css/general.css" />
     <link rel="stylesheet" href="src/css/helpers.css" />
-    <link rel="stylesheet" href="src/css/nav.css" />
+    <link rel="stylesheet" href="src/css/navbar.css" />
+    <link rel="stylesheet" href="src/css/spotlight.css" />
 
     <script type="module" src="src/js/controller.js"></script>
+
     <title>TMDBiv</title>
   </head>
 
@@ -51,10 +53,42 @@
       </div>
     </nav>
 
-    <!--                -->
-    <!-- Movie Showcase -->
-    <!--                -->
-    <section></section>
+    <!--                   -->
+    <!-- Content Spotlight -->
+    <!--                   -->
+    <section class="content-spotlight">
+      <div class="content-spotlight--main-content">
+        <img class="content-spotlight--backdrop" src="src/img/temp-backdrop.jpg" />
+        <p class="content-spotlight--text content-spotlight--title">Blue Beetle</p>
+        <p class="content-spotlight--text content-spotlight--more">Read description &rarr;</p>
+        <div class="content-spotlight--overview">
+          <div>
+            <p class="content-spotlight--overview-title">Blue Beetle</p>
+            <p class="content-spotlight--overview-rating">7.1</p>
+          </div>
+          <p class="content-spotlight--overview-date">Release Date: August 16, 2023</p>
+          <div class="content-spotlight--overview-genres">
+            <p>Genres: &nbsp;</p>
+            <p class="content-spotlight--overview-genre">Action, &nbsp;</p>
+            <p class="content-spotlight--overview-genre">Adventure, &nbsp;</p>
+            <p class="content-spotlight--overview-genre">Science Fiction</p>
+          </div>
+          <p class="content-spotlight--overview-description">
+            Recent college grad Jaime Reyes returns home full of aspirations for his future, only to find that home is
+            not quite as he left it. As he searches to find his purpose in the world, fate intervenes when Jaime
+            unexpectedly finds himself in possession of an ancient relic of alien biotechnology: the Scarab.
+          </p>
+        </div>
+      </div>
+
+      <button class="content-spotlight--btn content-spotlight--left-btn"></button>
+      <button class="content-spotlight--btn content-spotlight--right-btn"></button>
+      <div class="content-spotlight--markers">
+        <div class="content-spotlight--marker"></div>
+        <div class="content-spotlight--marker"></div>
+        <div class="content-spotlight--marker"></div>
+      </div>
+    </section>
 
     <!--            -->
     <!-- Footer Bar -->

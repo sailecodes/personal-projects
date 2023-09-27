@@ -1,0 +1,131 @@
+.content-spotlight {
+  position: relative;
+
+  background-color: #000;
+
+  height: 48rem;
+}
+
+.content-spotlight--main-content {
+  position: relative;
+
+  height: 48rem;
+}
+
+.content-spotlight--backdrop {
+  height: 48rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.content-spotlight--text {
+  position: absolute;
+
+  color: var(--c-white);
+
+  margin-left: var(--padding-browser-side-extra);
+}
+
+.content-spotlight--title {
+  bottom: 7rem;
+
+  font-size: var(--fs-large-l);
+  font-weight: 600;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 4px var(--c-black);
+}
+
+.content-spotlight--more {
+  bottom: 6rem;
+
+  font-size: var(--fs-med-m);
+  text-shadow: 0px 0px 4px var(--c-black);
+  padding-left: 0.18rem;
+}
+
+.content-spotlight--more:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.content-spotlight--overview {
+  position: absolute;
+  bottom: 0px;
+
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--c-white);
+
+  height: 24rem;
+  max-width: 55rem;
+  padding: 1rem var(--padding-browser-side) 1rem var(--padding-browser-side);
+}
+
+.content-spotlight--overview > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.content-spotlight--overview-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--c-rating-okay);
+  color: var(--c-black);
+
+  width: 3rem;
+  height: 2rem;
+  font-size: var(--fs-med-m);
+  font-weight: 600;
+  border-radius: 3px;
+}
+
+.content-spotlight--overview-title {
+  font-size: var(--fs-large-m);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.content-spotlight--overview-date {
+  position: relative;
+  bottom: 0.8rem;
+
+  margin-left: 0.1rem;
+}
+
+.content-spotlight--overview-genres {
+  position: relative;
+  bottom: 0.8rem;
+
+  display: flex;
+
+  margin-left: 0.04rem;
+  margin-bottom: 1rem;
+}
+
+.content-spotlight--overview-description {
+  height: 11rem;
+  width: 48rem;
+  font-size: var(--fs-med-m);
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* number of lines to show */
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+/*  */
+/*  */
+/*  */
+
+.content-spotlight--btn {
+  position: absolute;
+}
+
+.content-spotlight--left-btn {
+}
+
+.content-spotlight--right-btn {
+}
