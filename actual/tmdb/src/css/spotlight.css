@@ -144,10 +144,52 @@
 
 .content-spotlight--btn {
   position: absolute;
+  z-index: 50;
+
+  width: max-content;
+  height: max-content;
+  border: none;
+  background: none;
+}
+
+.content-spotlight--btn:hover {
+  cursor: pointer;
 }
 
 .content-spotlight--left-btn {
+  bottom: 50%;
+
+  padding-left: 3.2rem;
 }
 
 .content-spotlight--right-btn {
+  bottom: 50%;
+  right: 0;
+
+  padding-right: 3.2rem;
+}
+
+.content-spotlight--btn-icon {
+  color: var(--c-white);
+
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+.content-spotlight--markers {
+  position: absolute;
+  bottom: 1rem;
+  right: 50%;
+
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.content-spotlight--marker {
+  /* background-color: var(--main-c-lightest); */
+  background-color: var(--c-white);
+
+  width: 1.2rem;
+  height: 1.2rem;
 }

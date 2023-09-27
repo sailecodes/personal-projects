@@ -3,6 +3,7 @@
 :root {
   /* Font size */
   --fs-general: 62.5%;
+
   --fs-large-l: 5.4rem;
   --fs-large-m: 4rem;
   --fs-large-s: 3.6rem;
@@ -18,8 +19,10 @@
   --main-c-dark: #190061;
   --main-c-light: #240090;
   --main-c-lightest: #3500d3;
+
   --c-white: #fffdfa;
   --c-black: #000;
+
   --c-rating-best: #57e32c;
   --c-rating-good: #b7dd29;
   --c-rating-okay: #ffe234;
@@ -43,4 +46,6 @@ body {
   font-family: "Inter", sans-serif;
   font-family: "Noto Sans", sans-serif;
   font-family: "Poppins", sans-serif;
+
+  background-color: var(--main-c-darkest);
 }
