@@ -6,16 +6,16 @@
 /////////////////////////////////////////////////
 
 import * as model from "./model.js";
-import searchBar from "./views/searchBar.js";
-import spotlight from "./views/spotlight.js";
+import searchBarView from "./views/searchBarView.js";
+import spotlightView from "./views/spotlightView.js";
 
 /////////////////////////////////////////////////
 ///////// Search bar functionality
 
-searchBar.initHandlers();
+searchBarView.initHandlers();
 
 /////////////////////////////////////////////////
-///////// Spotlight functionality
+///////// Movie spotlight functionality
 
 const controlPopularMovies = async function () {
   await model.fetchPopularMovies(1); // Default page number is 1
