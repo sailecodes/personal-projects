@@ -1,9 +1,16 @@
 class SpotlightSliderView {
-  #spotlightBtn = document.querySelectorAll(".content-spotlight--btn");
-  #sliderElements = document.querySelectorAll(".content-spotlight--main-content");
-  #sliderMaxElements = this.#sliderElements.length;
+  #spotlightBtn;
+  #sliderElements;
+  #sliderMaxElements;
   #currentSlide = 0;
-  #markerContainer = document.querySelector(".content-spotlight--markers");
+  #markerContainer;
+
+  initVars() {
+    this.#spotlightBtn = document.querySelectorAll(".content-spotlight--btn");
+    this.#sliderElements = document.querySelectorAll(".content-spotlight--main-content");
+    this.#sliderMaxElements = this.#sliderElements.length;
+    this.#markerContainer = document.querySelector(".content-spotlight--markers");
+  }
 
   initHandlers() {
     this.#addTransitionByBtnHandler();

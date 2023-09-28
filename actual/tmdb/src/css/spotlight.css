@@ -27,34 +27,43 @@
   object-fit: cover;
 }
 
-.content-spotlight--text {
+.content-spotlight--title {
   position: absolute;
+  bottom: 7rem;
+  bottom: 14.4%;
 
   color: var(--c-white);
-
-  margin-left: var(--padding-browser-side-extra);
-}
-
-.content-spotlight--title {
-  bottom: 7rem;
 
   font-size: var(--fs-large-l);
   font-weight: 600;
   text-transform: uppercase;
   text-shadow: 0 0 0.4rem var(--c-black);
+  margin-left: var(--padding-browser-side-extra);
 }
 
-.content-spotlight--more {
-  bottom: 6rem;
+.content-spotlight--more-container {
+  position: absolute;
+  bottom: 6.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  color: var(--c-white);
 
   font-size: var(--fs-med-m);
   text-shadow: 0 0 0.4rem var(--c-black);
-  padding-left: 0.18rem;
+  margin-left: 7.4rem;
 }
 
-.content-spotlight--more:hover {
+.content-spotlight--more-container:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.content-spotlight--more-icon {
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 .content-spotlight--overview {
@@ -68,6 +77,10 @@
   max-width: 55rem;
   padding: 1rem var(--padding-browser-side) 1rem var(--padding-browser-side);
   border-radius: 0 0.6rem 0 0;
+
+  transform: translateX(-100%);
+
+  transition: transform 0.2s ease-in;
 }
 
 .content-spotlight--overview > div:first-child {
@@ -166,7 +179,7 @@
 .content-spotlight--btn:hover {
   cursor: pointer;
 
-  transform: scale(125%);
+  transform: scale(127%);
 }
 
 /* FIXME: Accessibility turned off */

@@ -5,7 +5,7 @@
 //  Fetches and posts information to the API
 /////////////////////////////////////////////////
 
-import { BASE_URL } from "./config.js";
+import { BASE_URL, BASE_URL_IMAGE, IMG_SIZE, MOVIE_SKIP_NUM } from "./config.js";
 import { options } from "./helpers.js";
 
 /////////////////////////////////////////////////
@@ -70,7 +70,8 @@ export const determineMovieSpotlight = async function () {
 
   const mostPopularMovies = state.popularMoviesInfo[0].popularMovies;
 
-  for (let i = 0; i < 3; i++) {
+  // FIXME: Magic numbers
+  for (let i = 0; i < 3 * MOVIE_SKIP_NUM; i += MOVIE_SKIP_NUM) {
     let entry = {};
 
     entry.title = mostPopularMovies[i].title;
@@ -85,7 +86,7 @@ export const determineMovieSpotlight = async function () {
 
     entry.description = mostPopularMovies[i].overview;
     entry.rating = mostPopularMovies[i].vote_average;
-    entry.backdropPath = mostPopularMovies[i].backdrop_path;
+    entry.backdropPath = `${BASE_URL_IMAGE}/${IMG_SIZE}${mostPopularMovies[i].backdrop_path}`;
 
     state.movieSpotlightInfo.push(entry);
   }
