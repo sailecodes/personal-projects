@@ -4,9 +4,12 @@
   background-color: #000;
 
   height: 48rem;
+
+  overflow: hidden;
 }
 
 .content-spotlight--slider {
+  overflow: hidden;
 }
 
 .content-spotlight--main-content {
@@ -198,6 +201,10 @@
   border-radius: 0.2rem;
 
   transition: all 0.3s ease-in;
+}
+
+.content-spotlight--marker:hover {
+  cursor: pointer;
 }
 
 .content-spotlight--marker-active {
