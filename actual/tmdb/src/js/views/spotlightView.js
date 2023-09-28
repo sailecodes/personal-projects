@@ -10,6 +10,7 @@ class SpotlightView {
 
   initDefaultState() {
     this.#initMarkers();
+    this.#activateMarker();
   }
 
   #addSliderMoveHandler() {
@@ -32,7 +33,11 @@ class SpotlightView {
     this.#markerContainer.insertAdjacentHTML("beforeend", `<div class="content-spotlight--marker"></div>`);
   }
 
-  #activateMarker(slide) {}
+  #activateMarker(slide) {
+    let firstMarker = document.querySelector(".content-spotlight--marker");
+
+    firstMarker.classList.add("content-spotlight--marker-active");
+  }
 
   #transitionNextSlide() {}
 }

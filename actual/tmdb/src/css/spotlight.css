@@ -193,7 +193,16 @@
   /* background-color: var(--main-c-lightest); */
   background-color: var(--c-white);
 
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 0.2rem;
+
+  transition: all 0.3s ease-in;
+}
+
+.content-spotlight--marker-active {
+  background-color: var(--main-c-lightest);
+
   width: 1.2rem;
   height: 1.2rem;
-  border-radius: 0.2rem;
 }
