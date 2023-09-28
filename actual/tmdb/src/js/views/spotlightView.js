@@ -74,6 +74,8 @@ class SpotlightView {
   }
 
   #transitionNextSlide(slide) {
+    this.#currentSlide = Number(slide);
+
     this.#sliderElements.forEach((value, index) => (value.style.transform = `translateX(${(index - slide) * 100}%)`));
   }
 
