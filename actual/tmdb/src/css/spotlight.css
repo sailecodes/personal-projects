@@ -159,10 +159,19 @@
   height: max-content;
   border: none;
   background: none;
+
+  transition: transform 0.25s;
 }
 
 .content-spotlight--btn:hover {
   cursor: pointer;
+
+  transform: scale(125%);
+}
+
+/* FIXME: Accessibility turned off */
+.content-spotlight--btn:focus {
+  outline: none;
 }
 
 .content-spotlight--left-btn {
@@ -180,6 +189,33 @@
 
   width: 3.6rem;
   height: 3.6rem;
+}
+
+.slider-shadow-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 49;
+
+  background-color: rgba(0, 0, 0, 0.2);
+
+  height: 48rem;
+  width: 0rem;
+
+  transition: all 0.3s ease-out;
+}
+
+.slider-shadow-left {
+  position: absolute;
+  bottom: 0;
+  z-index: 49;
+
+  background-color: rgba(0, 0, 0, 0.2);
+
+  height: 48rem;
+  width: 0rem;
+
+  transition: all 0.3s ease-out;
 }
 
 .content-spotlight--markers {

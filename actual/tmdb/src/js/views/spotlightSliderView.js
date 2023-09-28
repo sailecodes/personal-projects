@@ -1,4 +1,4 @@
-class SpotlightView {
+class SpotlightSliderView {
   #spotlightBtn = document.querySelectorAll(".content-spotlight--btn");
   #sliderElements = document.querySelectorAll(".content-spotlight--main-content");
   #sliderMaxElements = this.#sliderElements.length;
@@ -9,6 +9,7 @@ class SpotlightView {
     this.#addTransitionByBtnHandler();
     this.#addTransitionByKeyHandler();
     this.#addTransitionByMarkerHandler();
+    this.#addBtnHoverShadowHandler();
   }
 
   #addTransitionByBtnHandler() {
@@ -43,6 +44,24 @@ class SpotlightView {
 
       this.#activateMarker(slide);
       this.#transitionNextSlide(slide);
+    }
+  }
+
+  #addBtnHoverShadowHandler() {
+    this.#spotlightBtn.forEach((button) => {
+      button.addEventListener("mouseover", (e) => this.#addBtnHoverShadow(e, true));
+    });
+
+    this.#spotlightBtn.forEach((button) => {
+      button.addEventListener("mouseout", (e) => this.#addBtnHoverShadow(e, false));
+    });
+  }
+
+  #addBtnHoverShadow(e, flag) {
+    if (e.currentTarget.classList.contains("content-spotlight--left-btn")) {
+      document.querySelector(".slider-shadow-left").style.width = flag ? "7rem" : "0rem";
+    } else if (e.currentTarget.classList.contains("content-spotlight--right-btn")) {
+      document.querySelector(".slider-shadow-right").style.width = flag ? "7rem" : "0rem";
     }
   }
 
@@ -96,4 +115,4 @@ class SpotlightView {
   }
 }
 
-export default new SpotlightView();
+export default new SpotlightSliderView();

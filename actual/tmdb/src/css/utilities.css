@@ -3,38 +3,3 @@
   margin: 0 1rem 0 1rem;
   border-left: 1px solid var(--c-white);
 }
-
-.slider-shadow {
-  position: absolute;
-  z-index: 49;
-
-  background-color: rgba(0, 0, 0, 0.25);
-
-  height: 48rem;
-  width: 8rem;
-}
-
-/* TODO: DELETE */
-.slider-shadow-right {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 49;
-
-  background-color: rgba(0, 0, 0, 0.25);
-
-  height: 48rem;
-  width: 7rem;
-}
-
-/* TODO: DELETE */
-.slider-shadow-left {
-  position: absolute;
-  bottom: 0;
-  z-index: 49;
-
-  background-color: rgba(0, 0, 0, 0.25);
-
-  height: 48rem;
-  width: 7rem;
-}

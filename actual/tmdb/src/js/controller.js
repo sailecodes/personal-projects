@@ -7,7 +7,7 @@
 
 import * as model from "./model.js";
 import searchBarView from "./views/searchBarView.js";
-import spotlightView from "./views/spotlightView.js";
+import spotlightSliderView from "./views/spotlightSliderView.js";
 
 /////////////////////////////////////////////////
 ///////// Search bar functionality
@@ -15,10 +15,10 @@ import spotlightView from "./views/spotlightView.js";
 searchBarView.initHandlers();
 
 /////////////////////////////////////////////////
-///////// Movie spotlight functionality
+///////// Spotlight functionality
 
-spotlightView.initDefaultState();
-spotlightView.initHandlers();
+spotlightSliderView.initDefaultState();
+spotlightSliderView.initHandlers();
 
 const controlSpotlight = async function () {
   // Fetches the first page of popular movies
