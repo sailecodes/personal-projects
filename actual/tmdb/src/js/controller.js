@@ -28,9 +28,11 @@ const controlSpotlightMovieData = async function () {
     if (model.state.movieSpotlightInfo.length === 0) await model.determineMovieSpotlight();
 
     // Displays the top 3 most popular movies in the spotlight
+    // Note: Must wait for above code
     spotlightContentView.initSpotlightContent(model.state.movieSpotlightInfo);
 
     // Readies the slider functionality
+    // Note: Must wait for above code
     spotlightSliderView.initVars();
     spotlightSliderView.initDefaultState();
     spotlightSliderView.initHandlers();
