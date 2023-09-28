@@ -17,11 +17,15 @@ searchBarView.initHandlers();
 /////////////////////////////////////////////////
 ///////// Movie spotlight functionality
 
-const controlPopularMovies = async function () {
-  await model.fetchPopularMovies(1); // Default page number is 1
-  await model.determineMovieSpotlight();
+spotlightView.initDefaultState();
+spotlightView.initHandlers();
 
-  console.log(model.state);
+const controlSpotlight = async function () {
+  // Fetches the first page of popular movies
+  await model.fetchPopularMovies(1);
+
+  // Determines the top 3 most popular movies
+  await model.determineMovieSpotlight();
 };
 
-controlPopularMovies();
+controlSpotlight();

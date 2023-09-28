@@ -1,4 +1,4 @@
-class SearchBar {
+class SearchBarView {
   #searchContainer = document.querySelector(".nav-bar--search");
   #searchBar = document.querySelector(".nav-bar--search-bar");
   #searchBarBtn = document.querySelector(".nav-bar--search-bar-btn");
@@ -42,4 +42,4 @@ class SearchBar {
   }
 }
 
-export default new SearchBar();
+export default new SearchBarView();
