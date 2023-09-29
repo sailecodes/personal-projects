@@ -1,5 +1,8 @@
+import { calcTextWidthPx } from "../helpers.js";
+
 class SpotlightOverviewView {
   #spotlightOverview;
+  #spotlightOverviewTitleClip;
   #spotlightOverviewTitle;
   #spotlightOverviewRating;
   #spotlightOverviewReleaseDate;
@@ -8,6 +11,7 @@ class SpotlightOverviewView {
 
   initVars() {
     this.#spotlightOverview = document.querySelector(".content-spotlight--overview");
+    this.#spotlightOverviewTitleClip = document.querySelector(".content-spotlight--overview-title-clip");
     this.#spotlightOverviewTitle = this.#spotlightOverview.querySelector(".content-spotlight--overview-title");
     this.#spotlightOverviewRating = this.#spotlightOverview.querySelector(".content-spotlight--overview-rating");
     this.#spotlightOverviewReleaseDate = this.#spotlightOverview.querySelector(".content-spotlight--overview-date");
@@ -21,24 +25,24 @@ class SpotlightOverviewView {
       `
         <div class="content-spotlight--overview">
           <div>
-            <div>
+            <div class="content-spotlight--overview-title-clip">
               <p class="content-spotlight--overview-title">${initialContent.title}</p>
-              <p class="content-spotlight--overview-rating" style="background-color: ${this.#changeRatingColor(
-                initialContent.rating
-              )};">${initialContent.rating}</p>
             </div>
-            <button class="content-spotlight--overview-back-btn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="content-spotlight--overview-back-btn-icon">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-              </svg>
-            </button>
+            <p class="content-spotlight--overview-rating" style="background-color: ${this.#getNewRatingColor(
+              initialContent.rating
+            )};">${initialContent.rating}</p>
           </div>
+          <button class="content-spotlight--overview-back-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="content-spotlight--overview-back-btn-icon">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+            </svg>
+          </button>
           <p class="content-spotlight--overview-date">Release Date: ${initialContent.releaseDate}</p>
           <div class="content-spotlight--overview-genres">
             <p>Genres: &nbsp;</p>
@@ -90,10 +94,23 @@ class SpotlightOverviewView {
     mainContent.querySelector(".content-spotlight--more-container").style.opacity = toggleFlag ? "0" : "";
   }
 
+  addAnimateClippedTitleHandler() {
+    this.#spotlightOverviewTitleClip.addEventListener("mouseover", () => {
+      if (this.#spotlightOverviewTitleClip.offsetWidth < this.#spotlightOverviewTitleClip.scrollWidth) {
+        const textWidth = calcTextWidthPx(this.#spotlightOverviewTitle.textContent);
+        const leftOver = (textWidth / 445) * 100; // FIXME: Magic number
+        this.#spotlightOverviewTitle.style.left = `-${leftOver}%`;
+      }
+    });
+
+    this.#spotlightOverviewTitleClip.addEventListener("mouseout", () => {
+      this.#spotlightOverviewTitle.style.left = ``;
+    });
+  }
+
   addChangeOverviewFromBtnHandler(spotlightInfo) {
     document.querySelectorAll(".content-spotlight--btn").forEach((button) => {
       button.addEventListener("click", (e) => {
-        console.log("clicked");
         if (e.currentTarget.classList.contains("content-spotlight--left-btn")) {
           this.#changeOverview(spotlightInfo);
         } else if (e.currentTarget.classList.contains("content-spotlight--right-btn")) {
@@ -108,12 +125,12 @@ class SpotlightOverviewView {
     const currentContent = spotlightInfo[currentSlide];
 
     this.#changeOverviewElements(currentContent);
-    this.#spotlightOverviewRating.style.backgroundColor = this.#changeRatingColor(
+    this.#spotlightOverviewRating.style.backgroundColor = this.#getNewRatingColor(
       Number(this.#spotlightOverviewRating.textContent)
     );
   }
 
-  #changeRatingColor(rating) {
+  #getNewRatingColor(rating) {
     if (rating >= 9.0) return "var(--c-rating-best)";
     else if (rating >= 8.0) return "var(--c-rating-good)";
     else if (rating >= 7.0) return "var(--c-rating-okay)";

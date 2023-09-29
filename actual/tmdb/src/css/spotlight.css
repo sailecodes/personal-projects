@@ -27,6 +27,11 @@
   object-fit: cover;
 }
 
+/* TODO: Must play around with position: absolute and flexbox */
+.content-spotlight--main-content > div {
+  background-color: red;
+}
+
 .content-spotlight--title {
   position: absolute;
   bottom: 7rem;
@@ -79,10 +84,13 @@
 
   height: 24rem;
   max-width: 55rem;
-  padding: 1rem var(--padding-browser-side) 1rem var(--padding-browser-side);
+  padding: 1rem var(--padding-browser-side) 2rem var(--padding-browser-side);
   border-radius: 0 0.6rem 0 0;
 
   transform: translateX(-100%);
+
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   transition: transform 0.27s ease-out;
 }
@@ -90,13 +98,17 @@
 .content-spotlight--overview > div:first-child {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.2rem;
 }
 
-.content-spotlight--overview > div > div {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
+.content-spotlight--overview::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+.content-spotlight--overview::-webkit-scrollbar-thumb {
+  background-color: var(--c-white);
+  border-radius: 10px;
+  border: 1.2px solid rgba(0, 0, 0, 0.9);
 }
 
 .content-spotlight--overview-rating {
@@ -115,6 +127,10 @@
 }
 
 .content-spotlight--overview-back-btn {
+  position: absolute;
+  right: 4.8%;
+  top: 10%;
+
   color: var(--c-white);
 
   width: 3.2rem;
@@ -132,10 +148,25 @@
   height: 2.8rem;
 }
 
+.content-spotlight--overview-title-clip {
+  position: relative;
+
+  text-overflow: clip clip;
+  white-space: nowrap;
+
+  overflow: hidden;
+}
+
 .content-spotlight--overview-title {
+  position: relative;
+  left: 0;
+
+  max-width: 30.5rem;
   font-size: var(--fs-large-m);
   font-weight: 600;
   text-transform: uppercase;
+
+  transition: left 12s cubic-bezier(1, 1, 1, 1) 0.8s;
 }
 
 .content-spotlight--overview-date {
@@ -151,21 +182,15 @@
 
   display: flex;
 
-  margin-left: 0.04rem;
+  margin-left: 0.15rem;
   margin-bottom: 1rem;
 }
 
 .content-spotlight--overview-description {
-  display: -webkit-box;
-
-  height: 11rem;
   width: 48rem;
   font-size: var(--fs-med-m);
 
-  overflow: hidden;
-  line-clamp: 5;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
+  margin-left: 0.15rem;
 }
 
 .content-spotlight--btn {
