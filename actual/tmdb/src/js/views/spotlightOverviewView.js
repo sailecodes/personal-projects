@@ -36,6 +36,34 @@ class SpotlightOverviewView {
     );
   }
 
+  addOverviewVisibleHandler() {
+    document.querySelectorAll(".content-spotlight--more-container").forEach((container) => {
+      container.addEventListener("click", () => {
+        this.#makeBackgroundTextInvisible(container);
+        document.querySelector(".content-spotlight--overview").style.transform = "translateX(0%)";
+      });
+    });
+  }
+
+  #makeBackgroundTextInvisible(container) {
+    container.previousElementSibling.style.opacity = "0";
+    container.style.opacity = "0";
+  }
+
+  addOverviewInvisibleHandler() {
+    document.querySelector(".content-spotlight--overview-back-btn").addEventListener("click", () => {
+      this.#makeBackgroundTextVisible();
+      document.querySelector(".content-spotlight--overview").style.transform = "translateX(-100%)";
+    });
+  }
+
+  #makeBackgroundTextVisible() {
+    const mainContent = document.querySelector(`.content-spotlight--main-content[style="transform: translateX(0%);"]`);
+
+    mainContent.querySelector(".content-spotlight--title").style.opacity = "";
+    mainContent.querySelector(".content-spotlight--more-container").style.opacity = "";
+  }
+
   addChangeOverviewFromBtnHandler(movieSpotlightInfo) {
     document.querySelectorAll(".content-spotlight--btn").forEach((button) => {
       button.addEventListener("click", (e) => {
@@ -52,14 +80,14 @@ class SpotlightOverviewView {
     let currentSlide = this.#getCurrentSlide(buttonFlag);
     const currentContent = movieSpotlightInfo[currentSlide];
 
+    // TODO:
     console.log(currentContent);
   }
 
   #getCurrentSlide(buttonFlag) {
-    const markers = document.querySelectorAll(".content-spotlight--marker");
     let ret = 0;
 
-    markers.forEach((marker) => {
+    document.querySelectorAll(".content-spotlight--marker").forEach((marker) => {
       if (marker.classList.contains("content-spotlight--marker-active")) {
         if (!buttonFlag) ret = Number(marker.dataset.slide) === 0 ? 2 : Number(marker.dataset.slide) - 1;
         else ret = Number(marker.dataset.slide) === 2 ? 0 : Number(marker.dataset.slide) + 1;

@@ -31,15 +31,17 @@ const controlInitMovieSpotlight = async function () {
     // Note: Dependent on above code
     spotlightContentView.initContent(model.state.movieSpotlightInfo);
 
-    // Readies the initial overview and overview handler
-    spotlightOverviewView.initOverview(model.state.movieSpotlightInfo[0]); // Assumes movieSpotlightInfo is non-empty
-    spotlightOverviewView.addChangeOverviewFromBtnHandler(model.state.movieSpotlightInfo);
-
     // Readies the slider functionality
     // Note: Dependent on above code
     spotlightSliderView.initVars();
     spotlightSliderView.initDefaultState();
     spotlightSliderView.initHandlers();
+
+    // Readies the initial overview and overview handlers
+    spotlightOverviewView.initOverview(model.state.movieSpotlightInfo[0]); // Assumes movieSpotlightInfo is non-empty
+    spotlightOverviewView.addChangeOverviewFromBtnHandler(model.state.movieSpotlightInfo);
+    spotlightOverviewView.addOverviewVisibleHandler();
+    spotlightOverviewView.addOverviewInvisibleHandler();
   } catch (err) {
     console.error(`(controller.js::controlSpotlightMovieData()) ${err})`);
     throw err;
@@ -47,15 +49,3 @@ const controlInitMovieSpotlight = async function () {
 };
 
 controlInitMovieSpotlight();
-
-// const controlSpotlightMovieOverviewVisible = async function () {
-//   try {
-//     // Waits for spotlight movie data to become available
-//     const movieSpotlightInfo = await controlSpotlightMovieData();
-
-//     spotlightOverviewView.addOverviewVisibleHandler(movieSpotlightInfo);
-//   } catch (err) {
-//     console.error(`(controller.js::controlSpotlightMovieOverviewVisible()) ${err})`);
-//     throw err;
-//   }
-// };
