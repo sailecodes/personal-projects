@@ -5,8 +5,18 @@
 //  Fetches and posts information to the API
 /////////////////////////////////////////////////
 
-import { BASE_URL, BASE_URL_IMAGE, IMG_SIZE, MOVIE_SKIP_NUM } from "./config.js";
-import { options } from "./helpers.js";
+import { API_RAT, BASE_URL, BASE_URL_IMAGE, IMG_SIZE } from "./config.js";
+
+/////////////////////////////////////////////////
+///////// Relevant helpers
+
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${API_RAT}`,
+  },
+};
 
 /////////////////////////////////////////////////
 ///////// Represents the state of the system
@@ -71,7 +81,7 @@ export const determineMovieSpotlight = async function () {
   const mostPopularMovies = state.popularMoviesInfo[0].popularMovies;
 
   // FIXME: Magic numbers
-  for (let i = 0; i < 3 * MOVIE_SKIP_NUM; i += MOVIE_SKIP_NUM) {
+  for (let i = 0; i < 3 * 9; i += 9) {
     let entry = {};
 
     entry.title = mostPopularMovies[i].title;

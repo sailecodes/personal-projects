@@ -2,7 +2,7 @@ class SpotlightContentView {
   #slider = document.querySelector(".content-spotlight--slider");
 
   initContent(movieSpotlightInfo) {
-    movieSpotlightInfo.forEach((content, index) => {
+    movieSpotlightInfo.forEach((content) => {
       this.#slider.insertAdjacentHTML(
         "beforeend",
         `<div class="content-spotlight--main-content">

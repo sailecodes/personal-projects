@@ -7,4 +7,4 @@ export const BASE_URL_IMAGE = "https://image.tmdb.org/t/p";
 
 export const IMG_SIZE = "original";
 
-export const MOVIE_SKIP_NUM = 9;
+export const SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH = 305;

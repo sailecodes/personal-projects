@@ -40,10 +40,9 @@ const controlInitMovieSpotlight = async function () {
     // Readies the initial overview and overview handlers
     spotlightOverviewView.initDefaultState(model.state.movieSpotlightInfo[0]); // Assumes movieSpotlightInfo is non-empty
     spotlightOverviewView.initVars();
-    spotlightOverviewView.addOverviewVisibleHandler();
-    spotlightOverviewView.addOverviewInvisibleHandler();
-    spotlightOverviewView.addChangeOverviewFromBtnHandler(model.state.movieSpotlightInfo);
-    spotlightOverviewView.addResetOverviewOnBtnClickedHandler();
+    spotlightOverviewView.addVisibleOnReadBtnClickedHandler();
+    spotlightOverviewView.addInvisibleOnOverviewBackBtnClickedHandler();
+    spotlightOverviewView.addResetOnSpotlightBtnClickedHandler(model.state.movieSpotlightInfo);
     spotlightOverviewView.addAnimateClippedTitleHandler();
   } catch (err) {
     console.error(`(controller.js::controlSpotlightMovieData()) ${err})`);

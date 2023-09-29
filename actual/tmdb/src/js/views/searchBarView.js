@@ -8,32 +8,24 @@ class SearchBarView {
     this.#addSearchBarHandler();
   }
 
+  // TODO: Use input for search functionality
   #addSearchHandler() {
-    this.#searchContainer.addEventListener("submit", this.#searchHandler.bind(this));
-  }
+    this.#searchContainer.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-  #searchHandler(e) {
-    e.preventDefault();
+      console.log(this.#searchBar.value);
 
-    // TODO: Use later to get user search input
-    console.log(this.#searchBar.value);
+      if (this.#searchBar.value === "") return;
 
-    if (this.#searchBar.value === "") {
-      return;
-    }
-
-    // ...
-
-    this.#searchBar.value = "";
+      this.#searchBar.value = "";
+    });
   }
 
   #addSearchBarHandler() {
-    this.#searchBarBtn.addEventListener("mouseenter", this.#searchBarHandler.bind(this));
-  }
-
-  #searchBarHandler() {
-    this.#changeSearchBarStyle(true);
-    this.#searchContainer.addEventListener("mouseleave", this.#changeSearchBarStyle.bind(this, false));
+    this.#searchBarBtn.addEventListener("mouseenter", () => {
+      this.#changeSearchBarStyle(true);
+      this.#searchContainer.addEventListener("mouseleave", this.#changeSearchBarStyle.bind(this, false));
+    });
   }
 
   #changeSearchBarStyle(flag) {
