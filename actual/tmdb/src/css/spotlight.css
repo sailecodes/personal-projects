@@ -37,7 +37,7 @@
   font-size: var(--fs-large-l);
   font-weight: 600;
   text-transform: uppercase;
-  text-shadow: 0 0 0.4rem var(--c-black);
+  text-shadow: 0 0 0.6rem var(--c-black);
   margin-left: var(--padding-browser-side-extra);
 }
 
@@ -52,7 +52,7 @@
   color: var(--c-white);
 
   font-size: var(--fs-med-m);
-  text-shadow: 0 0 0.4rem var(--c-black);
+  text-shadow: 0 0 0.6rem var(--c-black);
   margin-left: 7.4rem;
 }
 
@@ -78,7 +78,7 @@
   padding: 1rem var(--padding-browser-side) 1rem var(--padding-browser-side);
   border-radius: 0 0.6rem 0 0;
 
-  transform: translateX(-100%);
+  /* transform: translateX(-100%); */
 
   transition: transform 0.2s ease-in;
 }

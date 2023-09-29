@@ -20,38 +20,30 @@ class SpotlightSliderView {
   }
 
   #addTransitionByBtnHandler() {
-    this.#spotlightBtn.forEach(this.#addTransitionByBtnCallerHelper.bind(this));
-  }
-
-  #addTransitionByBtnCallerHelper(element) {
-    element.addEventListener("click", this.#addTransitionByBtn.bind(this));
-  }
-
-  #addTransitionByBtn(e) {
-    if (e.currentTarget.classList.contains("content-spotlight--left-btn")) this.#prevSlide();
-    else if (e.currentTarget.classList.contains("content-spotlight--right-btn")) this.#nextSlide();
+    this.#spotlightBtn.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        if (e.currentTarget.classList.contains("content-spotlight--left-btn")) this.#prevSlide();
+        else if (e.currentTarget.classList.contains("content-spotlight--right-btn")) this.#nextSlide();
+      });
+    });
   }
 
   #addTransitionByKeyHandler() {
-    document.addEventListener("keydown", this.#addTransitionByKey.bind(this));
-  }
-
-  #addTransitionByKey(e) {
-    if (e.key === "ArrowLeft") this.#prevSlide();
-    else if (e.key === "ArrowRight") this.#nextSlide();
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") this.#prevSlide();
+      else if (e.key === "ArrowRight") this.#nextSlide();
+    });
   }
 
   #addTransitionByMarkerHandler() {
-    this.#markerContainer.addEventListener("click", this.#addTransitionByMarker.bind(this));
-  }
+    this.#markerContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("content-spotlight--marker")) {
+        const slide = e.target.dataset.slide;
 
-  #addTransitionByMarker(e) {
-    if (e.target.classList.contains("content-spotlight--marker")) {
-      const slide = e.target.dataset.slide;
-
-      this.#activateMarker(slide);
-      this.#transitionNextSlide(slide);
-    }
+        this.#activateMarkers(slide);
+        this.#transitionNextSlide(slide);
+      }
+    });
   }
 
   #addBtnHoverShadowHandler() {
@@ -74,7 +66,7 @@ class SpotlightSliderView {
 
   initDefaultState() {
     this.#initMarkers();
-    this.#activateMarker(0);
+    this.#activateMarkers(0);
     this.#transitionNextSlide(0);
   }
 
@@ -89,7 +81,7 @@ class SpotlightSliderView {
     );
   }
 
-  #activateMarker(slide) {
+  #activateMarkers(slide) {
     document
       .querySelectorAll(".content-spotlight--marker")
       .forEach((value) => value.classList.remove("content-spotlight--marker-active"));
@@ -109,7 +101,7 @@ class SpotlightSliderView {
     if (this.#currentSlide === this.#sliderMaxElements - 1) this.#currentSlide = 0;
     else this.#currentSlide++;
 
-    this.#activateMarker(this.#currentSlide);
+    this.#activateMarkers(this.#currentSlide);
     this.#transitionNextSlide(this.#currentSlide);
   }
 
@@ -117,7 +109,7 @@ class SpotlightSliderView {
     if (this.#currentSlide === 0) this.#currentSlide = this.#sliderMaxElements - 1;
     else this.#currentSlide--;
 
-    this.#activateMarker(this.#currentSlide);
+    this.#activateMarkers(this.#currentSlide);
     this.#transitionNextSlide(this.#currentSlide);
   }
 }

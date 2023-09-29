@@ -19,7 +19,7 @@ searchBarView.initHandlers();
 /////////////////////////////////////////////////
 ///////// Spotlight functionality
 
-const controlSpotlightMovieData = async function () {
+const controlInitMovieSpotlight = async function () {
   try {
     // Fetches the first page of popular movies
     if (model.state.popularMoviesInfo.length === 0) await model.fetchPopularMovies(1);
@@ -28,11 +28,14 @@ const controlSpotlightMovieData = async function () {
     if (model.state.movieSpotlightInfo.length === 0) await model.determineMovieSpotlight();
 
     // Displays the top 3 most popular movies in the spotlight
-    // Note: Must wait for above code
-    spotlightContentView.initSpotlightContent(model.state.movieSpotlightInfo);
+    // Note: Dependent on above code
+    spotlightContentView.initContent(model.state.movieSpotlightInfo);
+
+    spotlightOverviewView.initOverview();
+    spotlightOverviewView.initHandlers();
 
     // Readies the slider functionality
-    // Note: Must wait for above code
+    // Note: Dependent on above code
     spotlightSliderView.initVars();
     spotlightSliderView.initDefaultState();
     spotlightSliderView.initHandlers();
@@ -44,7 +47,7 @@ const controlSpotlightMovieData = async function () {
   }
 };
 
-controlSpotlightMovieData();
+controlInitMovieSpotlight();
 
 // const controlSpotlightMovieOverviewVisible = async function () {
 //   try {
