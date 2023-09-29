@@ -104,7 +104,7 @@
   align-items: center;
   justify-content: center;
 
-  background-color: var(--c-rating-okay);
+  /* background-color: var(--c-rating-okay); */
   color: var(--c-black);
 
   width: 3rem;
