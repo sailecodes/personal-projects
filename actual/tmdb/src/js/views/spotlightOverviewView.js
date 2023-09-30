@@ -5,14 +5,14 @@ import { SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH } from "../config.js";
  */
 class SpotlightOverviewView {
   #spotlightOverview;
-  #spotlightOverviewTitleClip;
+  #spotlightOverviewTitleClipCntr;
   #spotlightOverviewTitle;
   #spotlightOverviewRating;
   #spotlightOverviewReleaseDate;
   #spotlightOverviewGenres;
   #spotlightOverviewDesc;
 
-  #ceClippedTitleDoneAnim;
+  #CustomEventClippedTitleAnimDone;
   #clippedTitleAnimId;
 
   /**
@@ -20,13 +20,13 @@ class SpotlightOverviewView {
    */
   initVars() {
     this.#spotlightOverview = document.querySelector(".content-spotlight--overview");
-    this.#spotlightOverviewTitleClip = document.querySelector(".content-spotlight--overview-title-clip");
+    this.#spotlightOverviewTitleClipCntr = document.querySelector(".content-spotlight--overview-title-clip");
     this.#spotlightOverviewTitle = this.#spotlightOverview.querySelector(".content-spotlight--overview-title");
     this.#spotlightOverviewRating = this.#spotlightOverview.querySelector(".content-spotlight--overview-rating");
     this.#spotlightOverviewReleaseDate = this.#spotlightOverview.querySelector(".content-spotlight--overview-date");
     this.#spotlightOverviewGenres = this.#spotlightOverview.querySelector(".content-spotlight--overview-genres");
     this.#spotlightOverviewDesc = this.#spotlightOverview.querySelector(".content-spotlight--overview-description");
-    this.#ceClippedTitleDoneAnim = new Event("clippedTitleDoneAnim");
+    this.#CustomEventClippedTitleAnimDone = new Event("clippedTitleAnimDone");
   }
 
   /**
@@ -78,9 +78,9 @@ class SpotlightOverviewView {
   /**
    * Resets the position of the overview title after animation
    */
-  addResetClippedTitleHandler() {
-    this.#spotlightOverviewTitle.addEventListener("clippedTitleDoneAnim", function () {
-      this.style.left = "";
+  addOnClippedTitleAnimDoneHandler() {
+    this.#spotlightOverviewTitle.addEventListener("clippedTitleAnimDone", function () {
+      this.style.left = "-0.5%";
     });
   }
 
@@ -103,15 +103,14 @@ class SpotlightOverviewView {
   }
 
   #animateClippedTitle() {
-    if (this.#spotlightOverviewTitleClip.offsetWidth >= this.#spotlightOverviewTitleClip.scrollWidth) return;
+    if (this.#spotlightOverviewTitleClipCntr.offsetWidth >= this.#spotlightOverviewTitleClipCntr.scrollWidth) return;
 
     const textWidth = this.#calcTitleWidth();
     const leftOver = ((textWidth - SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) / SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) * 100;
 
     this.#spotlightOverviewTitle.style.left = `-${leftOver}%`;
-
     this.#clippedTitleAnimId = setTimeout(
-      () => this.#spotlightOverviewTitle.dispatchEvent(this.#ceClippedTitleDoneAnim),
+      () => this.#spotlightOverviewTitle.dispatchEvent(this.#CustomEventClippedTitleAnimDone),
       6000
     );
   }
@@ -131,28 +130,20 @@ class SpotlightOverviewView {
   addOnOverviewBackBtnClickedHandler() {
     document.querySelector(".content-spotlight--overview-back-btn").addEventListener("click", () => {
       this.#toggleBackgroundText(false);
+
       this.#spotlightOverview.style.transform = "translateX(-100%)";
 
-      clearTimeout(this.#clippedTitleAnimId);
-
-      setTimeout(() => {
-        this.#spotlightOverviewTitle.style.transition = "0s";
-        this.#spotlightOverviewTitle.style.left = "";
-
-        setTimeout(() => {
-          this.#spotlightOverviewTitle.style.transition = "left 4s cubic-bezier(1, 1, 1, 1) 1.5s";
-        }, 100);
-      }, 300);
+      this.#resetTitle();
     });
   }
 
   /**
-   * Makes the title and text in the spotlight visible, moves the overview out of the window, and changes the
-   * overview content upon clicking any spotlight transition button
+   * Makes the title and text in the spotlight visible, moves the overview out of the window, changes the
+   * overview content, and resets the position of the title (for the case of clipped title animation) upon clicking
+   * any spotlight transition button
    *
-   * FIXME: Buggy --> TODO: Background title doesn't appear during transition
-   *
-   * TODO: --> Add the same functionality from the spotlight btns to arrow keys and markers
+   * TODO: --> (BUG) Background title doesn't appear during transition
+   * TODO: --> (FUNCTIONALITY) Add the same functionality in the spotlight btns to arrow keys and markers
    *
    * @param {*} spotlightInfo Contains information about the spotlight content
    */
@@ -162,6 +153,8 @@ class SpotlightOverviewView {
         this.#toggleBackgroundText(false);
 
         this.#spotlightOverview.style.transform = "translateX(-100%)";
+
+        this.#resetTitle();
 
         // Changes overview content after 0.5 seconds to avoid visible changes during transition
         // Note: Must be < ~1 second to avoid not triggering the animation for clipped titles since the overview
@@ -175,9 +168,23 @@ class SpotlightOverviewView {
 
   #toggleBackgroundText(toggleFlag) {
     const mainContent = document.querySelector(`.content-spotlight--main-content[style="transform: translateX(0%);"]`);
+    // mainContent.querySelector(".content-spotlight--title").style.opacity = toggleFlag ? "0" : "";
+    mainContent.querySelector(".content-spotlight--text-container").style.opacity = toggleFlag ? "0" : "";
+  }
 
-    mainContent.querySelector(".content-spotlight--title").style.opacity = toggleFlag ? "0" : "";
-    mainContent.querySelector(".content-spotlight--more-container").style.opacity = toggleFlag ? "0" : "";
+  #resetTitle() {
+    // Note: Must execute to avoid animating the title to default position while already at the default position,
+    //       which causes either a slight jitter or a clipped title to not animate (since it's stuck at the
+    //       default position)
+    clearTimeout(this.#clippedTitleAnimId);
+
+    this.#spotlightOverviewTitle.style.transition = "none";
+    this.#spotlightOverviewTitle.style.left = "-0.5%";
+
+    // Note: Must execute after some time to avoid conflict between transition = 'none' and transition = '...'
+    setTimeout(() => {
+      this.#spotlightOverviewTitle.style.transition = "left 4s cubic-bezier(1, 1, 1, 1) 1.5s";
+    }, 100);
   }
 
   #changeOverview(spotlightInfo) {
@@ -190,18 +197,9 @@ class SpotlightOverviewView {
     );
   }
 
-  #getNewRatingColor(rating) {
-    if (rating >= 9.0) return "var(--c-rating-best)";
-    else if (rating >= 8.0) return "var(--c-rating-good)";
-    else if (rating >= 7.0) return "var(--c-rating-okay)";
-    else if (rating >= 6.0) return "var(--c-rating-bad)";
-    else return "var(--c-rating-worst)";
-  }
-
   #getCurrentSlide() {
     let ret = 0;
 
-    // Finds which marker is active and determines the current slide based on data-slide
     document.querySelectorAll(".content-spotlight--marker").forEach((marker) => {
       if (marker.classList.contains("content-spotlight--marker-active")) ret = marker.dataset.slide;
     });
@@ -212,7 +210,7 @@ class SpotlightOverviewView {
   #changeOverviewElements(currentContent) {
     this.#spotlightOverviewTitle.textContent = currentContent.title;
     this.#spotlightOverviewRating.textContent = currentContent.rating;
-    this.#spotlightOverviewReleaseDate.textContent = currentContent.date;
+    this.#spotlightOverviewReleaseDate.textContent = `Release Date: ${currentContent.releaseDate}`;
     this.#spotlightOverviewGenres.innerHTML = "";
     this.#spotlightOverviewGenres.innerHTML = `
       <p>Genres: &nbsp;</p>
@@ -225,6 +223,14 @@ class SpotlightOverviewView {
         .join("")}
     `;
     this.#spotlightOverviewDesc.textContent = currentContent.description;
+  }
+
+  #getNewRatingColor(rating) {
+    if (rating >= 9.0) return "var(--c-rating-best)";
+    else if (rating >= 8.0) return "var(--c-rating-good)";
+    else if (rating >= 7.0) return "var(--c-rating-okay)";
+    else if (rating >= 6.0) return "var(--c-rating-bad)";
+    else return "var(--c-rating-worst)";
   }
 }
 

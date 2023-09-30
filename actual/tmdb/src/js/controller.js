@@ -43,7 +43,7 @@ const controlInitMovieSpotlight = async function () {
     spotlightOverviewView.addOnReadBtnClickedHandler();
     spotlightOverviewView.addOnOverviewBackBtnClickedHandler();
     spotlightOverviewView.addOnSpotlightBtnClickedHandler(model.state.movieSpotlightInfo);
-    spotlightOverviewView.addResetClippedTitleHandler();
+    spotlightOverviewView.addOnClippedTitleAnimDoneHandler();
   } catch (err) {
     console.error(`(controller.js::controlSpotlightMovieData()) ${err})`);
     throw err;

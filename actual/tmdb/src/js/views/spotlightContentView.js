@@ -7,7 +7,7 @@ class SpotlightContentView {
         "beforeend",
         `<div class="content-spotlight--main-content">
           <img class="content-spotlight--backdrop" src="${content.backdropPath}" />
-          <div>  
+          <div class="content-spotlight--text-container">  
             <p class="content-spotlight--title">${content.title}</p>
             <div class="content-spotlight--more-container">
               <p class="content-spotlight--more">Read description</p>
