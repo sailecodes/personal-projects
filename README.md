@@ -1,1 +1,1 @@
-# A repository fpr web design and application practice based on different websites.
+# A repository for creating web applications as a form of practice (and fun, of course).
