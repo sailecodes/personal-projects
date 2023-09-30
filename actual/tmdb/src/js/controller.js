@@ -30,17 +30,17 @@ const controlMovieSpotlight = async function () {
     // Displays the top 3 most popular movies in the spotlight
     // Note: Dependent on above code
     spotlightContentView.initVars(model.state.movieSpotlightInfo);
-    spotlightContentView.initContent();
+    spotlightContentView.initDefaultState();
 
     // Readies the slider functionality
     // Note: Dependent on above code
     spotlightSliderView.initVars();
-    spotlightSliderView.initDefaultState();
+    spotlightSliderView.initDefaultState(); // ^
     spotlightSliderView.initHandlers();
 
     // Readies the overview functionality
     spotlightOverviewView.initDefaultState(model.state.movieSpotlightInfo[0]);
-    spotlightOverviewView.initVars(model.state.movieSpotlightInfo);
+    spotlightOverviewView.initVars(model.state.movieSpotlightInfo); // ^
     spotlightOverviewView.initHandlers();
   } catch (err) {
     console.error(`(controller.js::controlSpotlightMovieData()) ${err})`);

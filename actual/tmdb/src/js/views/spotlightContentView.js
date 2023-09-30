@@ -7,7 +7,7 @@ class SpotlightContentView {
     this.#slider = document.querySelector(".content-spotlight--slider");
   }
 
-  initContent() {
+  initDefaultState() {
     this.#spotlightContent.forEach((content) => {
       this.#slider.insertAdjacentHTML(
         "beforeend",
