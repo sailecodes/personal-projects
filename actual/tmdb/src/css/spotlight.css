@@ -29,13 +29,16 @@
   object-position: top;
 }
 
-/* TODO: Must play around with position: absolute and flexbox */
 .content-spotlight--text-container {
   position: absolute;
   left: 0;
-  bottom: 10%;
+  bottom: 13%;
+
+  /* display: flex;
+  flex-direction: column; */
 
   margin-left: var(--padding-browser-side-extra);
+  border-radius: 5px;
 
   transition: opacity 0.3s;
 }
@@ -47,11 +50,12 @@
   font-weight: 600;
   text-transform: uppercase;
   text-shadow: 0 0 0.6rem var(--c-black);
+  line-height: 5rem;
 }
 
 .content-spotlight--more-container {
-  position: relative;
-  bottom: 1.6rem;
+  /* position: relative;
+  bottom: 1.6rem; */
 
   display: flex;
   align-items: center;

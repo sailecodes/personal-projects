@@ -85,8 +85,8 @@ class SpotlightOverviewView {
   }
 
   /**
-   * Makes the title and the text in the spotlight invisible and moves the overview into the window upon clicking
-   * the 'read description' container, and animates the overview title if clipped
+   * Makes the title and text in the spotlight invisible, moves the overview into the window upon clicking the 'read
+   * description' container, and animates the overview title if clipped
    */
   addOnReadBtnClickedHandler() {
     document.querySelectorAll(".content-spotlight--more-container").forEach((container) => {
@@ -150,26 +150,42 @@ class SpotlightOverviewView {
   addOnSpotlightBtnClickedHandler(spotlightInfo) {
     document.querySelectorAll(".content-spotlight--btn").forEach((button) => {
       button.addEventListener("click", () => {
-        this.#toggleBackgroundText(false);
-
-        this.#spotlightOverview.style.transform = "translateX(-100%)";
-
-        this.#resetTitle();
-
-        // Changes overview content after 0.5 seconds to avoid visible changes during transition
-        // Note: Must be < ~1 second to avoid not triggering the animation for clipped titles since the overview
-        //       since the trigger is dependent on the new slide content
-        setTimeout(() => {
-          this.#changeOverview(spotlightInfo);
-        }, 500);
+        this.#resetSpotlightAndOverview(spotlightInfo);
       });
     });
   }
 
+  addOnArrowKeyClickedHandler(spotlightInfo) {
+    document.addEventListener("keydown", () => {
+      this.#resetSpotlightAndOverview(spotlightInfo);
+    });
+  }
+
+  addOnMarkerClickedHandler(spotlightInfo) {
+    document.querySelector(".content-spotlight--markers").addEventListener("click", (e) => {
+      this.#resetSpotlightAndOverview(spotlightInfo);
+    });
+  }
+
+  #resetSpotlightAndOverview(spotlightInfo) {
+    this.#toggleBackgroundText(false);
+
+    this.#spotlightOverview.style.transform = "translateX(-100%)";
+
+    this.#resetTitle();
+
+    // Changes overview content after 0.5 seconds to avoid visible changes during transition
+    // Note: Must be < ~1 second to avoid not triggering the animation for clipped titles since the overview
+    //       since the trigger is dependent on the new slide content
+    setTimeout(() => {
+      this.#changeOverview(spotlightInfo);
+    }, 500);
+  }
+
   #toggleBackgroundText(toggleFlag) {
-    const mainContent = document.querySelector(`.content-spotlight--main-content[style="transform: translateX(0%);"]`);
-    // mainContent.querySelector(".content-spotlight--title").style.opacity = toggleFlag ? "0" : "";
-    mainContent.querySelector(".content-spotlight--text-container").style.opacity = toggleFlag ? "0" : "";
+    document.querySelector(
+      `.content-spotlight--main-content[style="transform: translateX(0%);"] .content-spotlight--text-container`
+    ).style.opacity = toggleFlag ? "0" : "";
   }
 
   #resetTitle() {
