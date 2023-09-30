@@ -12,14 +12,29 @@ class SpotlightSliderView {
     this.#markerContainer = document.querySelector(".content-spotlight--markers");
   }
 
-  initHandlers() {
-    this.#addTransitionByBtnHandler();
-    this.#addTransitionByKeyHandler();
-    this.#addTransitionByMarkerHandler();
-    this.#addBtnHoverShadowHandler();
+  initDefaultState() {
+    this.#initMarkers();
+    this.#activateMarkers(0);
+    this.#transitionNextSlide(0);
   }
 
-  #addTransitionByBtnHandler() {
+  #initMarkers() {
+    this.#sliderElements.forEach((_, index) => {
+      this.#markerContainer.insertAdjacentHTML(
+        "beforeend",
+        `<div class="content-spotlight--marker" data-slide=${index}></div>`
+      );
+    });
+  }
+
+  initHandlers() {
+    this.addTransitionByBtnHandler();
+    this.addTransitionByKeyHandler();
+    this.addTransitionByMarkerHandler();
+    this.addBtnHoverShadowHandler();
+  }
+
+  addTransitionByBtnHandler() {
     this.#spotlightBtn.forEach((button) => {
       button.addEventListener("click", (e) => {
         if (e.currentTarget.classList.contains("content-spotlight--left-btn")) this.#prevSlide();
@@ -28,14 +43,14 @@ class SpotlightSliderView {
     });
   }
 
-  #addTransitionByKeyHandler() {
+  addTransitionByKeyHandler() {
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") this.#prevSlide();
       else if (e.key === "ArrowRight") this.#nextSlide();
     });
   }
 
-  #addTransitionByMarkerHandler() {
+  addTransitionByMarkerHandler() {
     this.#markerContainer.addEventListener("click", (e) => {
       if (e.target.classList.contains("content-spotlight--marker")) {
         const slide = e.target.dataset.slide;
@@ -44,41 +59,6 @@ class SpotlightSliderView {
         this.#transitionNextSlide(slide);
       }
     });
-  }
-
-  #addBtnHoverShadowHandler() {
-    this.#spotlightBtn.forEach((button) => {
-      button.addEventListener("mouseover", (e) => this.#addBtnHoverShadow(e, true));
-    });
-
-    this.#spotlightBtn.forEach((button) => {
-      button.addEventListener("mouseout", (e) => this.#addBtnHoverShadow(e, false));
-    });
-  }
-
-  #addBtnHoverShadow(e, flag) {
-    if (e.currentTarget.classList.contains("content-spotlight--left-btn")) {
-      document.querySelector(".slider-shadow-left").style.width = flag ? "7rem" : "0rem";
-    } else if (e.currentTarget.classList.contains("content-spotlight--right-btn")) {
-      document.querySelector(".slider-shadow-right").style.width = flag ? "7rem" : "0rem";
-    }
-  }
-
-  initDefaultState() {
-    this.#initMarkers();
-    this.#activateMarkers(0);
-    this.#transitionNextSlide(0);
-  }
-
-  #initMarkers() {
-    this.#sliderElements.forEach(this.#initMarkersHelper.bind(this));
-  }
-
-  #initMarkersHelper(_, index) {
-    this.#markerContainer.insertAdjacentHTML(
-      "beforeend",
-      `<div class="content-spotlight--marker" data-slide=${index}></div>`
-    );
   }
 
   #activateMarkers(slide) {
@@ -111,6 +91,24 @@ class SpotlightSliderView {
 
     this.#activateMarkers(this.#currentSlide);
     this.#transitionNextSlide(this.#currentSlide);
+  }
+
+  addBtnHoverShadowHandler() {
+    this.#spotlightBtn.forEach((button) => {
+      button.addEventListener("mouseover", (e) => this.#addBtnHoverShadow(e, true));
+    });
+
+    this.#spotlightBtn.forEach((button) => {
+      button.addEventListener("mouseout", (e) => this.#addBtnHoverShadow(e, false));
+    });
+  }
+
+  #addBtnHoverShadow(e, flag) {
+    if (e.currentTarget.classList.contains("content-spotlight--left-btn")) {
+      document.querySelector(".slider-shadow-left").style.width = flag ? "7rem" : "0rem";
+    } else if (e.currentTarget.classList.contains("content-spotlight--right-btn")) {
+      document.querySelector(".slider-shadow-right").style.width = flag ? "7rem" : "0rem";
+    }
   }
 }
 

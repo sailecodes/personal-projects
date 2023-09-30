@@ -46,7 +46,7 @@
   text-shadow: 0 0 0.6rem var(--c-black);
   margin-left: var(--padding-browser-side-extra);
 
-  transition: all 0.3s;
+  transition: opacity 0.3s;
 }
 
 .content-spotlight--more-container {
@@ -63,7 +63,7 @@
   text-shadow: 0 0 0.6rem var(--c-black);
   margin-left: 7.4rem;
 
-  transition: all 0.3s;
+  transition: opacity 0.3s;
 }
 
 .content-spotlight--more-container:hover {
@@ -170,7 +170,7 @@
   font-weight: 600;
   text-transform: uppercase;
 
-  transition: left 4s cubic-bezier(1, 1, 1, 1) 0.8s;
+  transition: left 4s cubic-bezier(1, 1, 1, 1) 1.5s;
 }
 
 .content-spotlight--overview-date {
@@ -248,7 +248,7 @@
   height: 48rem;
   width: 0rem;
 
-  transition: all 0.3s ease-out;
+  transition: width 0.3s ease-out;
 }
 
 .slider-shadow-left {
@@ -261,7 +261,7 @@
   height: 48rem;
   width: 0rem;
 
-  transition: all 0.3s ease-out;
+  transition: width 0.3s ease-out;
 }
 
 .content-spotlight--markers {
@@ -282,6 +282,7 @@
   border-radius: 0.2rem;
 
   transition: all 0.3s ease-in;
+  /* transition: background-color 0.3s ease-in, width 0.3s ease-in, height 0.3s ease-in; */
 }
 
 .content-spotlight--marker:hover {

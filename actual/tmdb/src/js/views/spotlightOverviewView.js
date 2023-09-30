@@ -1,5 +1,8 @@
 import { SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH } from "../config.js";
 
+/**
+ * Handles the view of the spotlight overview
+ */
 class SpotlightOverviewView {
   #spotlightOverview;
   #spotlightOverviewTitleClip;
@@ -8,6 +11,9 @@ class SpotlightOverviewView {
   #spotlightOverviewReleaseDate;
   #spotlightOverviewGenres;
   #spotlightOverviewDesc;
+
+  #ceClippedTitleDoneAnim;
+  #clippedTitleAnimId;
 
   /**
    * Initializes class fields
@@ -20,6 +26,7 @@ class SpotlightOverviewView {
     this.#spotlightOverviewReleaseDate = this.#spotlightOverview.querySelector(".content-spotlight--overview-date");
     this.#spotlightOverviewGenres = this.#spotlightOverview.querySelector(".content-spotlight--overview-genres");
     this.#spotlightOverviewDesc = this.#spotlightOverview.querySelector(".content-spotlight--overview-description");
+    this.#ceClippedTitleDoneAnim = new Event("clippedTitleDoneAnim");
   }
 
   /**
@@ -69,41 +76,99 @@ class SpotlightOverviewView {
   }
 
   /**
-   * Makes the title and the text in the spotlight invisible and moves the overview into the window upon clicking
-   * 'Read description -->'
+   * Resets the position of the overview title after animation
    */
-  addVisibleOnReadBtnClickedHandler() {
-    document.querySelectorAll(".content-spotlight--more-container").forEach((container) => {
-      container.addEventListener("click", () => {
-        this.#toggleBackgroundText(true);
-        this.#spotlightOverview.style.transform = "translateX(0%)";
-      });
+  addResetClippedTitleHandler() {
+    this.#spotlightOverviewTitle.addEventListener("clippedTitleDoneAnim", function () {
+      this.style.left = "";
     });
   }
 
   /**
-   * Makes the title and text in the spotlight visible and moves the overview out of the window upon clicking the
-   * back button in the overview
+   * Makes the title and the text in the spotlight invisible and moves the overview into the window upon clicking
+   * the 'read description' container, and animates the overview title if clipped
    */
-  addInvisibleOnOverviewBackBtnClickedHandler() {
-    document.querySelector(".content-spotlight--overview-back-btn").addEventListener("click", () => {
-      this.#toggleBackgroundText(false);
-      this.#spotlightOverview.style.transform = "translateX(-100%)";
+  addOnReadBtnClickedHandler() {
+    document.querySelectorAll(".content-spotlight--more-container").forEach((container) => {
+      container.addEventListener("click", () => {
+        this.#toggleBackgroundText(true);
+
+        this.#spotlightOverview.style.transform = "translateX(0%)";
+
+        // Animates the overview title if clipped and dispatches a custom event after the animation to trigger the
+        // event handler defined above
+        this.#animateClippedTitle();
+      });
     });
   }
 
-  // FIXME: Buggy --> TODO: Background title doesn't appear during transition
-  addResetOnSpotlightBtnClickedHandler(spotlightInfo) {
+  #animateClippedTitle() {
+    if (this.#spotlightOverviewTitleClip.offsetWidth >= this.#spotlightOverviewTitleClip.scrollWidth) return;
+
+    const textWidth = this.#calcTitleWidth();
+    const leftOver = ((textWidth - SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) / SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) * 100;
+
+    this.#spotlightOverviewTitle.style.left = `-${leftOver}%`;
+
+    this.#clippedTitleAnimId = setTimeout(
+      () => this.#spotlightOverviewTitle.dispatchEvent(this.#ceClippedTitleDoneAnim),
+      6000
+    );
+  }
+
+  #calcTitleWidth() {
+    this.#spotlightOverviewTitle.style.minWidth = "max-content";
+    const width = this.#spotlightOverviewTitle.offsetWidth;
+    this.#spotlightOverviewTitle.style.minWidth = "";
+
+    return width;
+  }
+
+  /**
+   * Makes the spotlight title and text visible, moves the overview out of the window upon clicking the back button
+   * in the overview, and resets the position of the title (for the case of clipped title animation)
+   */
+  addOnOverviewBackBtnClickedHandler() {
+    document.querySelector(".content-spotlight--overview-back-btn").addEventListener("click", () => {
+      this.#toggleBackgroundText(false);
+      this.#spotlightOverview.style.transform = "translateX(-100%)";
+
+      clearTimeout(this.#clippedTitleAnimId);
+
+      setTimeout(() => {
+        this.#spotlightOverviewTitle.style.transition = "0s";
+        this.#spotlightOverviewTitle.style.left = "";
+
+        setTimeout(() => {
+          this.#spotlightOverviewTitle.style.transition = "left 4s cubic-bezier(1, 1, 1, 1) 1.5s";
+        }, 100);
+      }, 300);
+    });
+  }
+
+  /**
+   * Makes the title and text in the spotlight visible, moves the overview out of the window, and changes the
+   * overview content upon clicking any spotlight transition button
+   *
+   * FIXME: Buggy --> TODO: Background title doesn't appear during transition
+   *
+   * TODO: --> Add the same functionality from the spotlight btns to arrow keys and markers
+   *
+   * @param {*} spotlightInfo Contains information about the spotlight content
+   */
+  addOnSpotlightBtnClickedHandler(spotlightInfo) {
     document.querySelectorAll(".content-spotlight--btn").forEach((button) => {
       button.addEventListener("click", () => {
         this.#toggleBackgroundText(false);
 
         this.#spotlightOverview.style.transform = "translateX(-100%)";
 
-        // Changes overview content after 1 second to avoid visible changes during transition
+        // Changes overview content after 0.5 seconds to avoid visible changes during transition
+        // Note: Must be < ~1 second to avoid not triggering the animation for clipped titles since the overview
+        //       since the trigger is dependent on the new slide content
         setTimeout(() => {
           this.#changeOverview(spotlightInfo);
-        }, 1000);
+        }, 500);
       });
     });
   }
@@ -136,6 +201,7 @@ class SpotlightOverviewView {
   #getCurrentSlide() {
     let ret = 0;
 
+    // Finds which marker is active and determines the current slide based on data-slide
     document.querySelectorAll(".content-spotlight--marker").forEach((marker) => {
       if (marker.classList.contains("content-spotlight--marker-active")) ret = marker.dataset.slide;
     });
@@ -159,29 +225,6 @@ class SpotlightOverviewView {
         .join("")}
     `;
     this.#spotlightOverviewDesc.textContent = currentContent.description;
-  }
-
-  addAnimateClippedTitleHandler() {
-    this.#spotlightOverviewTitleClip.addEventListener("mouseover", () => {
-      if (this.#spotlightOverviewTitleClip.offsetWidth >= this.#spotlightOverviewTitleClip.scrollWidth) return;
-
-      const textWidth = this.#calcTitleWidth();
-      const leftOver = ((textWidth - SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) / SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) * 100;
-
-      this.#spotlightOverviewTitle.style.left = `-${leftOver}%`;
-    });
-
-    this.#spotlightOverviewTitleClip.addEventListener("mouseout", () => {
-      this.#spotlightOverviewTitle.style.left = ``;
-    });
-  }
-
-  #calcTitleWidth() {
-    this.#spotlightOverviewTitle.style.minWidth = "max-content";
-    const width = this.#spotlightOverviewTitle.offsetWidth;
-    this.#spotlightOverviewTitle.style.minWidth = "";
-
-    return width;
   }
 }
 
