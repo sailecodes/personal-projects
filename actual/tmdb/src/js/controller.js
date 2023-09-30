@@ -19,7 +19,7 @@ searchBarView.initHandlers();
 /////////////////////////////////////////////////
 ///////// Spotlight functionality
 
-const controlInitMovieSpotlight = async function () {
+const controlMovieSpotlight = async function () {
   try {
     // Fetches the first page of popular movies
     if (model.state.popularMoviesInfo.length === 0) await model.fetchPopularMovies(1);
@@ -29,7 +29,8 @@ const controlInitMovieSpotlight = async function () {
 
     // Displays the top 3 most popular movies in the spotlight
     // Note: Dependent on above code
-    spotlightContentView.initContent(model.state.movieSpotlightInfo);
+    spotlightContentView.initVars(model.state.movieSpotlightInfo);
+    spotlightContentView.initContent();
 
     // Readies the slider functionality
     // Note: Dependent on above code
@@ -37,19 +38,14 @@ const controlInitMovieSpotlight = async function () {
     spotlightSliderView.initDefaultState();
     spotlightSliderView.initHandlers();
 
-    // Readies the initial overview and overview handlers
-    spotlightOverviewView.initDefaultState(model.state.movieSpotlightInfo[0]); // Assumes movieSpotlightInfo is non-empty
-    spotlightOverviewView.initVars();
-    spotlightOverviewView.addOnReadBtnClickedHandler();
-    spotlightOverviewView.addOnOverviewBackBtnClickedHandler();
-    spotlightOverviewView.addOnClippedTitleAnimDoneHandler();
-    spotlightOverviewView.addOnSpotlightBtnClickedHandler(model.state.movieSpotlightInfo);
-    spotlightOverviewView.addOnArrowKeyClickedHandler(model.state.movieSpotlightInfo);
-    spotlightOverviewView.addOnMarkerClickedHandler(model.state.movieSpotlightInfo);
+    // Readies the overview functionality
+    spotlightOverviewView.initDefaultState(model.state.movieSpotlightInfo[0]);
+    spotlightOverviewView.initVars(model.state.movieSpotlightInfo);
+    spotlightOverviewView.initHandlers();
   } catch (err) {
     console.error(`(controller.js::controlSpotlightMovieData()) ${err})`);
     throw err;
   }
 };
 
-controlInitMovieSpotlight();
+controlMovieSpotlight();

@@ -4,6 +4,8 @@ import { SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH } from "../config.js";
  * Handles the view of the spotlight overview
  */
 class SpotlightOverviewView {
+  #spotlightContent;
+
   #spotlightOverview;
   #spotlightOverviewTitleClipCntr;
   #spotlightOverviewTitle;
@@ -18,7 +20,8 @@ class SpotlightOverviewView {
   /**
    * Initializes class fields
    */
-  initVars() {
+  initVars(spotlightContent) {
+    this.#spotlightContent = spotlightContent;
     this.#spotlightOverview = document.querySelector(".content-spotlight--overview");
     this.#spotlightOverviewTitleClipCntr = document.querySelector(".content-spotlight--overview-title-clip");
     this.#spotlightOverviewTitle = this.#spotlightOverview.querySelector(".content-spotlight--overview-title");
@@ -74,6 +77,20 @@ class SpotlightOverviewView {
       `
     );
   }
+
+  initHandlers() {
+    this.addOnReadBtnClickedHandler();
+    this.addOnOverviewBackBtnClickedHandler();
+    this.addOnClippedTitleAnimDoneHandler();
+    this.addOnSpotlightBtnClickedHandler();
+    this.addOnArrowKeyClickedHandler();
+    this.addOnMarkerClickedHandler();
+  }
+
+  // TODO: Maybe needed in the future if the spotlight is dynamically changed while on the website
+  //       and spotlightContent needs to be updated so the handlers can use the right data. Maybe
+  //       should be a handler, waiting for the signal that the spotlight content has been updated
+  reassignSpotlightContent() {}
 
   /**
    * Resets the position of the overview title after animation
@@ -144,30 +161,28 @@ class SpotlightOverviewView {
    *
    * TODO: --> (BUG) Background title doesn't appear during transition
    * TODO: --> (FUNCTIONALITY) Add the same functionality in the spotlight btns to arrow keys and markers
-   *
-   * @param {*} spotlightInfo Contains information about the spotlight content
    */
-  addOnSpotlightBtnClickedHandler(spotlightInfo) {
+  addOnSpotlightBtnClickedHandler() {
     document.querySelectorAll(".content-spotlight--btn").forEach((button) => {
       button.addEventListener("click", () => {
-        this.#resetSpotlightAndOverview(spotlightInfo);
+        this.#resetSpotlightAndOverview();
       });
     });
   }
 
-  addOnArrowKeyClickedHandler(spotlightInfo) {
+  addOnArrowKeyClickedHandler() {
     document.addEventListener("keydown", () => {
-      this.#resetSpotlightAndOverview(spotlightInfo);
+      this.#resetSpotlightAndOverview();
     });
   }
 
-  addOnMarkerClickedHandler(spotlightInfo) {
+  addOnMarkerClickedHandler() {
     document.querySelector(".content-spotlight--markers").addEventListener("click", (e) => {
-      this.#resetSpotlightAndOverview(spotlightInfo);
+      this.#resetSpotlightAndOverview();
     });
   }
 
-  #resetSpotlightAndOverview(spotlightInfo) {
+  #resetSpotlightAndOverview() {
     this.#toggleBackgroundText(false);
 
     this.#spotlightOverview.style.transform = "translateX(-100%)";
@@ -175,10 +190,10 @@ class SpotlightOverviewView {
     this.#resetTitle();
 
     // Changes overview content after 0.5 seconds to avoid visible changes during transition
-    // Note: Must be < ~1 second to avoid not triggering the animation for clipped titles since the overview
-    //       since the trigger is dependent on the new slide content
+    // Note: Must be < ~1 second to avoid not triggering the animation for clipped titles in the overview since the
+    //       trigger is dependent on the new slide content
     setTimeout(() => {
-      this.#changeOverview(spotlightInfo);
+      this.#changeOverview();
     }, 500);
   }
 
@@ -203,9 +218,9 @@ class SpotlightOverviewView {
     }, 100);
   }
 
-  #changeOverview(spotlightInfo) {
+  #changeOverview() {
     let currentSlide = this.#getCurrentSlide();
-    const currentContent = spotlightInfo[currentSlide];
+    const currentContent = this.#spotlightContent[currentSlide];
 
     this.#changeOverviewElements(currentContent);
     this.#spotlightOverviewRating.style.backgroundColor = this.#getNewRatingColor(
