@@ -1,8 +1,7 @@
 /////////////////////////////////////////////////
 // CONTROLLER of the MVC architecture
 //
-// Description:
-//  Controls information flow between the model and different views
+// Description: Controls information flow between the model and different views
 /////////////////////////////////////////////////
 
 import * as model from "./model.js";

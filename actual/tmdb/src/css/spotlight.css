@@ -173,11 +173,14 @@
   left: -0.5%;
 
   max-width: 30.5rem;
+
   font-size: var(--fs-large-m);
   font-weight: 600;
   text-transform: uppercase;
 
-  transition: left 4s cubic-bezier(1, 1, 1, 1) 1.5s;
+  transition-property: left;
+  transition-delay: 1.5s;
+  transition-timing-function: cubic-bezier(1, 1, 1, 1);
 }
 
 .content-spotlight--overview-date {
@@ -198,7 +201,7 @@
 }
 
 .content-spotlight--overview-description {
-  width: 48rem;
+  width: 46.4rem;
   font-size: var(--fs-med-m);
 
   /* margin-left: 0.15rem; */

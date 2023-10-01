@@ -1,8 +1,7 @@
 /////////////////////////////////////////////////
 // MODEL of the MVC architecture
 //
-// Description:
-//  Fetches and posts information to the API
+// Description: Fetches and posts information to the API
 /////////////////////////////////////////////////
 
 import { API_RAT, BASE_URL, BASE_URL_IMAGE, IMG_SIZE } from "./config.js";

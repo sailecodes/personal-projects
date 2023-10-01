@@ -122,6 +122,10 @@ class SpotlightOverviewView {
   #animateClippedTitle() {
     if (this.#spotlightOverviewTitleClipCntr.offsetWidth >= this.#spotlightOverviewTitleClipCntr.scrollWidth) return;
 
+    this.#spotlightOverviewTitle.style.transitionDuration = `${Math.ceil(
+      this.#spotlightOverviewTitleClipCntr.scrollWidth / 112 // FIXME: number
+    )}s`;
+
     const textWidth = this.#calcTitleWidth();
     const leftOver = ((textWidth - SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) / SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) * 100;
 
@@ -209,13 +213,13 @@ class SpotlightOverviewView {
     //       default position)
     clearTimeout(this.#clippedTitleAnimId);
 
-    this.#spotlightOverviewTitle.style.transition = "none";
+    // this.#spotlightOverviewTitle.style.transition = "none";
     this.#spotlightOverviewTitle.style.left = "-0.5%";
 
     // Note: Must execute after some time to avoid conflict between transition = 'none' and transition = '...'
-    setTimeout(() => {
-      this.#spotlightOverviewTitle.style.transition = "left 4s cubic-bezier(1, 1, 1, 1) 1.5s";
-    }, 100);
+    // setTimeout(() => {
+    //   this.#spotlightOverviewTitle.style.transition = "left 4s cubic-bezier(1, 1, 1, 1) 1.5s";
+    // }, 100);
   }
 
   #changeOverview() {
