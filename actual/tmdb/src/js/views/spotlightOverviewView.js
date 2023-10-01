@@ -122,12 +122,16 @@ class SpotlightOverviewView {
   #animateClippedTitle() {
     if (this.#spotlightOverviewTitleClipCntr.offsetWidth >= this.#spotlightOverviewTitleClipCntr.scrollWidth) return;
 
+    console.log(this.#spotlightOverviewTitleClipCntr.offsetWidth, this.#spotlightOverviewTitleClipCntr.scrollWidth);
+
     this.#spotlightOverviewTitle.style.transitionDuration = `${Math.ceil(
-      this.#spotlightOverviewTitleClipCntr.scrollWidth / 112 // FIXME: number
+      this.#spotlightOverviewTitleClipCntr.scrollWidth / 112 // FIXME: magic number
     )}s`;
 
     const textWidth = this.#calcTitleWidth();
     const leftOver = ((textWidth - SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) / SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) * 100;
+
+    console.log(textWidth, leftOver);
 
     this.#spotlightOverviewTitle.style.left = `-${leftOver}%`;
     this.#clippedTitleAnimId = setTimeout(

@@ -14,7 +14,6 @@ class SpotlightContentView {
         `<div class="content-spotlight--main-content">
           <img class="content-spotlight--backdrop" src="${content.backdropPath}" />
           <div class="content-spotlight--text-container">  
-            <div class="vertical-line--bg"></div>
             <p class="content-spotlight--title">${content.title}</p>
             <div class="content-spotlight--more-container">
               <p class="content-spotlight--more">Read description</p>
