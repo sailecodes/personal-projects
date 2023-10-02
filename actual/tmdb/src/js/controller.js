@@ -39,7 +39,7 @@ const controlMovieSpotlight = async function () {
 
     // Readies the overview functionality
     spotlightOverviewView.initDefaultState(model.state.movieSpotlightInfo[0]);
-    spotlightOverviewView.initVars(model.state.movieSpotlightInfo); // ^
+    spotlightOverviewView.initVars(model.state.movieSpotlightInfo);
     spotlightOverviewView.initHandlers();
   } catch (err) {
     console.error(`(controller.js::controlSpotlightMovieData()) ${err})`);

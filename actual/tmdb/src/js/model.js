@@ -4,18 +4,7 @@
 // Description: Fetches and posts information to the API
 /////////////////////////////////////////////////
 
-import { API_RAT, BASE_URL, BASE_URL_IMAGE, IMG_SIZE } from "./config.js";
-
-/////////////////////////////////////////////////
-///////// Relevant helpers
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${API_RAT}`,
-  },
-};
+import { OPTIONS, BASE_URL, BASE_URL_IMAGE, IMG_SIZE } from "./config.js";
 
 /////////////////////////////////////////////////
 ///////// Represents the state of the system
@@ -30,7 +19,7 @@ export const state = {
 
 export const fetchPopularMovies = async function (page) {
   try {
-    const response = await fetch(`${BASE_URL}/movie/popular/?language=en-US&page=${page}`, options);
+    const response = await fetch(`${BASE_URL}/movie/popular/?language=en-US&page=${page}`, OPTIONS);
     const popularMovies = await response.json();
 
     state.popularMoviesInfo.push({
@@ -51,7 +40,7 @@ export const fetchPopularMovies = async function (page) {
 
 export const getMovieGenres = async function (movieGenreIDs) {
   try {
-    const response = await fetch(`${BASE_URL}/genre/movie/list?language=en`, options);
+    const response = await fetch(`${BASE_URL}/genre/movie/list?language=en`, OPTIONS);
     const { genres } = await response.json();
     const movieGenres = [];
     let counter = 0;

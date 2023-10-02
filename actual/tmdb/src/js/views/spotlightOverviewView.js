@@ -1,4 +1,4 @@
-import { SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH } from "../config.js";
+import { SO_TITLE_MAX_WIDTH, SO_CTITLE_TRANS_DURATION_RATIO, SO_CTITLE_TRANS_DELAY_OFFSET } from "../config.js";
 
 /**
  * Handles the view of the spotlight overview
@@ -122,21 +122,19 @@ class SpotlightOverviewView {
   #animateClippedTitle() {
     if (this.#spotlightOverviewTitleClipCntr.offsetWidth >= this.#spotlightOverviewTitleClipCntr.scrollWidth) return;
 
-    console.log(this.#spotlightOverviewTitleClipCntr.offsetWidth, this.#spotlightOverviewTitleClipCntr.scrollWidth);
+    const transitionDuration = Math.ceil(
+      this.#spotlightOverviewTitleClipCntr.scrollWidth / SO_CTITLE_TRANS_DURATION_RATIO
+    );
 
-    this.#spotlightOverviewTitle.style.transitionDuration = `${Math.ceil(
-      this.#spotlightOverviewTitleClipCntr.scrollWidth / 112 // FIXME: magic number
-    )}s`;
+    this.#spotlightOverviewTitle.style.transitionDuration = `${transitionDuration}s`;
 
     const textWidth = this.#calcTitleWidth();
-    const leftOver = ((textWidth - SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) / SPOTLIGHT_OVERVIEW_TITLE_MAX_WIDTH) * 100;
-
-    console.log(textWidth, leftOver);
+    const leftOver = ((textWidth - SO_TITLE_MAX_WIDTH) / SO_TITLE_MAX_WIDTH) * 100;
 
     this.#spotlightOverviewTitle.style.left = `-${leftOver}%`;
     this.#clippedTitleAnimId = setTimeout(
       () => this.#spotlightOverviewTitle.dispatchEvent(this.#CustomEventClippedTitleAnimDone),
-      6000
+      `${transitionDuration * 1000 + SO_CTITLE_TRANS_DELAY_OFFSET}`
     );
   }
 
@@ -154,6 +152,8 @@ class SpotlightOverviewView {
    */
   addOnOverviewBackBtnClickedHandler() {
     document.querySelector(".content-spotlight--overview-back-btn").addEventListener("click", () => {
+      console.log("clicked");
+
       this.#toggleBackgroundText(false);
 
       this.#spotlightOverview.style.transform = "translateX(-100%)";
@@ -168,7 +168,6 @@ class SpotlightOverviewView {
    * any spotlight transition button
    *
    * TODO: --> (BUG) Background title doesn't appear during transition
-   * TODO: --> (FUNCTIONALITY) Add the same functionality in the spotlight btns to arrow keys and markers
    */
   addOnSpotlightBtnClickedHandler() {
     document.querySelectorAll(".content-spotlight--btn").forEach((button) => {
@@ -217,13 +216,17 @@ class SpotlightOverviewView {
     //       default position)
     clearTimeout(this.#clippedTitleAnimId);
 
-    // this.#spotlightOverviewTitle.style.transition = "none";
+    // Note: Must execute code below (i.e. transition = 'none') to avoid not moving clipped titles immediately to
+    //       the default position because the duration property is always set for clipped titles
+    this.#spotlightOverviewTitle.style.transition = "none";
     this.#spotlightOverviewTitle.style.left = "-0.5%";
 
     // Note: Must execute after some time to avoid conflict between transition = 'none' and transition = '...'
-    // setTimeout(() => {
-    //   this.#spotlightOverviewTitle.style.transition = "left 4s cubic-bezier(1, 1, 1, 1) 1.5s";
-    // }, 100);
+    setTimeout(() => {
+      this.#spotlightOverviewTitle.style.transitionProperty = "left";
+      this.#spotlightOverviewTitle.style.transitionDelay = "1.5s";
+      this.#spotlightOverviewTitle.style.transitionTimingFunction = "cubic-bezier(1, 1, 1, 1)";
+    }, 100);
   }
 
   #changeOverview() {
@@ -231,6 +234,7 @@ class SpotlightOverviewView {
     const currentContent = this.#spotlightContent[currentSlide];
 
     this.#changeOverviewElements(currentContent);
+
     this.#spotlightOverviewRating.style.backgroundColor = this.#getNewRatingColor(
       Number(this.#spotlightOverviewRating.textContent)
     );
