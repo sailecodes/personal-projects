@@ -20,7 +20,7 @@ searchBarView.initHandlers();
 
 const controlMovieDefaultState = async function () {
   await Promise.all([model.fetchMovieGenres(), model.fetchMostPopularMovies(1), model.fetchTopRatedMovies(1)]);
-  await model.fetchMoviesByGenre();
+  await model.fetchMoviesByGenre(); // Note: Dependent on fetchMovieGenres()
 };
 
 /////////////////////////////////////////////////
@@ -52,6 +52,7 @@ const controlMovieSpotlight = function () {
 ///////// Movie tracks functionality
 
 const controlMovieTracks = function () {
+  // Determines the top rated movies and most popular movies by genre
   model.determineMovieTracksContent();
 };
 
@@ -62,6 +63,8 @@ const movieInit = async function () {
   await controlMovieDefaultState();
   controlMovieSpotlight();
   controlMovieTracks();
+
+  console.log(model.state);
 };
 
 movieInit();

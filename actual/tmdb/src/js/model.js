@@ -4,7 +4,15 @@
 // Description: Fetches data from and posts data to the API
 /////////////////////////////////////////////////
 
-import { OPTIONS, BASE_URL, BASE_URL_IMAGE, IMG_SIZE, MOST_POPULAR_GENRES } from "./config.js";
+import {
+  OPTIONS,
+  BASE_URL,
+  BASE_URL_IMAGE,
+  IMG_SIZE,
+  SPOTLIGHT_CONTENT_NUM,
+  POPULAR_MOVIE_SKIP_OFFSET,
+  MOST_POPULAR_GENRES,
+} from "./config.js";
 
 /////////////////////////////////////////////////
 ///////// Represents the state of the system
@@ -124,7 +132,7 @@ export const fetchTopRatedMovies = async function (page) {
 };
 
 /////////////////////////////////////////////////
-///////// Fetches movies by genre
+///////// Fetches movies by specified genres
 
 export const fetchMoviesByGenre = async function () {
   if (state.moviesByGenreInfo.length !== 0) return;
@@ -138,15 +146,12 @@ export const fetchMoviesByGenre = async function () {
       fetch(getMoviesByGenreURL(movieGenresId[2]), OPTIONS),
       fetch(getMoviesByGenreURL(movieGenresId[3]), OPTIONS),
     ]);
-
     const moviesByGenre = await Promise.all([
       response[0].json(),
       response[1].json(),
       response[2].json(),
       response[3].json(),
     ]);
-
-    console.log(moviesByGenre);
 
     moviesByGenre.forEach((result, index) => {
       state.moviesByGenreInfo.push({
@@ -157,39 +162,6 @@ export const fetchMoviesByGenre = async function () {
         },
       });
     });
-    // let response = await fetch(
-    //   `${BASE_URL}/discover/movie`
-    //     .concat(`?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`)
-    //     .concat(`&with_genres=${movieGenresId[0]}`),
-    //   OPTIONS
-    // );
-    // let moviesByGenre = await response.json();
-
-    // state.moviesByGenreInfo.push({
-    //   genreId: movieGenresId[0],
-    //   results: {
-    //     page: moviesByGenre.page,
-    //     movies: moviesByGenre.results,
-    //   },
-    // });
-
-    // movieGenresId.forEach(async function (genreId) {
-    //   let response = await fetch(
-    //     `${BASE_URL}/discover/movie`
-    //       .concat(`?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`)
-    //       .concat(`&with_genres=${genreId}`),
-    //     OPTIONS
-    //   );
-    //   let moviesByGenre = await response.json();
-
-    //   state.moviesByGenreInfo.push({
-    //     genreId: genreId,
-    //     results: {
-    //       page: moviesByGenre.page,
-    //       movies: moviesByGenre.results,
-    //     },
-    //   });
-    // });
   } catch (err) {
     console.error(`(model.js::fetchMoviesByGenre()) ${err}`);
     throw err;
@@ -205,8 +177,7 @@ export const determineMovieSpotlightContent = function () {
 
   const mostPopularMovies = state.mostPopularMoviesInfo[0].mostPopularMovies;
 
-  // FIXME: Magic numbers
-  for (let i = 0; i < 3 * 9; i += 9) {
+  for (let i = 0; i < SPOTLIGHT_CONTENT_NUM * POPULAR_MOVIE_SKIP_OFFSET; i += POPULAR_MOVIE_SKIP_OFFSET) {
     let entry = {};
 
     entry.id = mostPopularMovies[i].id;
@@ -233,9 +204,13 @@ export const determineMovieSpotlightContent = function () {
 ///////// track
 
 export const determineMovieTracksContent = function () {
-  // state.movieTracksInfo = state.topRatedMoviesInfo[0].topRatedMovies.slice(0, 10);
-  console.log(state.moviesByGenreInfo);
-  // console.log(state.movieTracksInfo);
+  state.movieTracksInfo.push(state.topRatedMoviesInfo[0].topRatedMovies.slice(0, 10));
+  state.movieTracksInfo.push(
+    [{ genreId: state.moviesByGenreInfo[0].genreId, movies: state.moviesByGenreInfo[0].results.movies.slice(0, 10) }],
+    [{ genreId: state.moviesByGenreInfo[1].genreId, movies: state.moviesByGenreInfo[1].results.movies.slice(0, 10) }],
+    [{ genreId: state.moviesByGenreInfo[2].genreId, movies: state.moviesByGenreInfo[2].results.movies.slice(0, 10) }],
+    [{ genreId: state.moviesByGenreInfo[3].genreId, movies: state.moviesByGenreInfo[3].results.movies.slice(0, 10) }]
+  );
 };
 
 /////////////////////////////////////////////////

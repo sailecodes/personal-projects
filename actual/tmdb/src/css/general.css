@@ -7,12 +7,12 @@
   --fs-large-l: 5.4rem;
   --fs-large-m: 4rem;
   --fs-large-s: 3.6rem;
+  --fs-med-l: 3rem;
   --fs-med-m: 1.4rem;
   --fs-med-s: 1rem;
 
   /* Padding */
   --padding-browser-side: 3.6rem;
-  --padding-browser-side-extra: 7.2rem;
 
   /* Colors */
   --main-c-darkest: #0c0032;
