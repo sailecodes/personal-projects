@@ -93,7 +93,7 @@ class SpotlightOverviewView {
   reassignSpotlightContent() {}
 
   /**
-   * Resets the position of the overview title after animation
+   * Makes the title transition towards the default position after clipped animation
    */
   addOnClippedTitleAnimDoneHandler() {
     this.#spotlightOverviewTitle.addEventListener("clippedTitleAnimDone", function () {
@@ -152,8 +152,6 @@ class SpotlightOverviewView {
    */
   addOnOverviewBackBtnClickedHandler() {
     document.querySelector(".content-spotlight--overview-back-btn").addEventListener("click", () => {
-      console.log("clicked");
-
       this.#toggleBackgroundText(false);
 
       this.#spotlightOverview.style.transform = "translateX(-100%)";
@@ -177,12 +175,18 @@ class SpotlightOverviewView {
     });
   }
 
+  /**
+   * Similar functionality to this.addOnSpotlightBtnClickedHandler() but upon clicking the left and right arrow keys
+   */
   addOnArrowKeyClickedHandler() {
     document.addEventListener("keydown", () => {
       this.#resetSpotlightAndOverview();
     });
   }
 
+  /**
+   * Similar functionality to this.addOnSpotlightBtnClickedHandler() but upon clicking a marker
+   */
   addOnMarkerClickedHandler() {
     document.querySelector(".content-spotlight--markers").addEventListener("click", (e) => {
       this.#resetSpotlightAndOverview();

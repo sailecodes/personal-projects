@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////
 // CONTROLLER of the MVC architecture
 //
-// Description: Controls information flow between the model and different views
+// Description: Controls data flow between the model and different views
 /////////////////////////////////////////////////
 
 import * as model from "./model.js";
@@ -16,35 +16,52 @@ import spotlightOverviewView from "./views/spotlightOverviewView.js";
 searchBarView.initHandlers();
 
 /////////////////////////////////////////////////
-///////// Spotlight functionality
+///////// Default movie state init
 
-const controlMovieSpotlight = async function () {
-  try {
-    // Fetches the first page of popular movies
-    if (model.state.popularMoviesInfo.length === 0) await model.fetchPopularMovies(1);
-
-    // Determines the top 3 most popular movies
-    if (model.state.movieSpotlightInfo.length === 0) await model.determineMovieSpotlight();
-
-    // Displays the top 3 most popular movies in the spotlight
-    // Note: Dependent on above code
-    spotlightContentView.initVars(model.state.movieSpotlightInfo);
-    spotlightContentView.initDefaultState();
-
-    // Readies the slider functionality
-    // Note: Dependent on above code
-    spotlightSliderView.initVars();
-    spotlightSliderView.initDefaultState(); // ^
-    spotlightSliderView.initHandlers();
-
-    // Readies the overview functionality
-    spotlightOverviewView.initDefaultState(model.state.movieSpotlightInfo[0]);
-    spotlightOverviewView.initVars(model.state.movieSpotlightInfo);
-    spotlightOverviewView.initHandlers();
-  } catch (err) {
-    console.error(`(controller.js::controlSpotlightMovieData()) ${err})`);
-    throw err;
-  }
+const controlMovieDefaultState = async function () {
+  await Promise.all([model.fetchMovieGenres(), model.fetchMostPopularMovies(1), model.fetchTopRatedMovies(1)]);
+  await model.fetchMoviesByGenre();
 };
 
-controlMovieSpotlight();
+/////////////////////////////////////////////////
+///////// Movie spotlight functionality
+
+const controlMovieSpotlight = function () {
+  // Determines the top 3 most popular movies
+  model.determineMovieSpotlightContent();
+
+  // Displays the top 3 most popular movies in the spotlight
+  // Note: Dependent on above code
+  spotlightContentView.initVars(model.state.movieSpotlightInfo);
+  spotlightContentView.initDefaultState();
+
+  // Readies the slider functionality
+  // Note: Dependent on above code
+  spotlightSliderView.initVars();
+  spotlightSliderView.initDefaultState();
+  spotlightSliderView.initHandlers();
+
+  // Readies the overview functionality
+  // Note: Dependent on above code
+  spotlightOverviewView.initDefaultState(model.state.movieSpotlightInfo[0]);
+  spotlightOverviewView.initVars(model.state.movieSpotlightInfo);
+  spotlightOverviewView.initHandlers();
+};
+
+/////////////////////////////////////////////////
+///////// Movie tracks functionality
+
+const controlMovieTracks = function () {
+  model.determineMovieTracksContent();
+};
+
+/////////////////////////////////////////////////
+///////// Movie init
+
+const movieInit = async function () {
+  await controlMovieDefaultState();
+  controlMovieSpotlight();
+  controlMovieTracks();
+};
+
+movieInit();

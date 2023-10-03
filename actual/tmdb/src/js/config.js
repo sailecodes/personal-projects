@@ -22,8 +22,13 @@ export const BASE_URL_IMAGE = "https://image.tmdb.org/t/p";
 export const IMG_SIZE = "original";
 
 /////////////////////////////////////////////////
-///////// Spotlight and overview
+///////// Spotlight
 
 export const SO_TITLE_MAX_WIDTH = 305;
-export const SO_CTITLE_TRANS_DURATION_RATIO = 112;
+export const SO_CTITLE_TRANS_DURATION_RATIO = 112; // TODO: Ratio should be changed so larger --> slower, smaller --> faster
 export const SO_CTITLE_TRANS_DELAY_OFFSET = 2000;
+
+/////////////////////////////////////////////////
+///////// Movie tracks
+
+export const MOST_POPULAR_GENRES = ["adventure", "action", "drama", "romance"];
