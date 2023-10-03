@@ -22,7 +22,7 @@ class SpotlightSliderView {
     this.#sliderElements.forEach((_, index) => {
       this.#markerContainer.insertAdjacentHTML(
         "beforeend",
-        `<div class="content-spotlight--marker" data-slide=${index}></div>`
+        `<div class="content-spotlight--marker content-spotlight--marker-${index}" data-slide=${index}></div>`
       );
     });
   }

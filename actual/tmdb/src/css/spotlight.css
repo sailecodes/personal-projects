@@ -274,12 +274,13 @@
   bottom: 2%;
   right: 50%;
 
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
+  width: 4.4rem;
+  height: 1.2rem;
 }
 
 .content-spotlight--marker {
+  position: absolute;
+
   background-color: var(--c-white);
 
   width: 0.8rem;
@@ -292,6 +293,27 @@
 
 .content-spotlight--marker:hover {
   cursor: pointer;
+}
+
+.content-spotlight--marker-0 {
+  left: 15%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.content-spotlight--marker-1 {
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.content-spotlight--marker-2 {
+  right: 15%;
+  top: 50%;
+
+  transform: translate(50%, -50%);
 }
 
 .content-spotlight--marker-active {

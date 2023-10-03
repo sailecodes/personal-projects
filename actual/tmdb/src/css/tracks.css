@@ -6,6 +6,8 @@
 
   padding: 0 var(--padding-browser-side) 0 var(--padding-browser-side);
   margin-bottom: 6rem;
+
+  overflow: hidden;
 }
 
 .content-tracks--section {
@@ -28,14 +30,22 @@
 }
 
 .content-tracks--section-slider {
-  display: flex;
-  gap: 1rem;
-
   background-color: red;
+
+  max-height: min-content;
+
+  white-space: nowrap;
+}
+
+span {
+  display: inline-block;
 }
 
 .content-tracks--section-slider-content {
   width: 25rem;
+
+  /* FIXME: First content shouldn't have margin-left */
+  margin-left: 0.5rem;
 }
 
 .content-tracks--section-slider-content:hover {
