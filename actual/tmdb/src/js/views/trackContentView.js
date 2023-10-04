@@ -1,4 +1,4 @@
-import { BASE_URL_IMAGE, IMG_SIZE } from "../config";
+import { BASE_URL_IMG, IMG_SIZE } from "../config.js";
 
 class TrackContentView {
   #trackContent;
@@ -11,7 +11,7 @@ class TrackContentView {
 
   initDefaultState() {
     this.#trackContent.forEach((content) => {
-      this.#track.insertAdjacenctHTML(
+      this.#track.insertAdjacentHTML(
         "beforeend",
         `<div class="content-tracks--section">
           <div class="content-tracks--section-heading">

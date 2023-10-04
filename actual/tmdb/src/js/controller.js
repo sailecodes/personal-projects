@@ -61,6 +61,7 @@ const controlMovieTracks = async function () {
 
   //
   trackContentView.initVars(model.state.movieTracksInfo);
+  trackContentView.initDefaultState();
 };
 
 /////////////////////////////////////////////////

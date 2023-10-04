@@ -7,7 +7,7 @@
 import {
   OPTIONS,
   BASE_URL,
-  BASE_URL_IMAGE,
+  BASE_URL_IMG,
   IMG_SIZE,
   SPOTLIGHT_CONTENT_NUM,
   POPULAR_MOVIE_SKIP_OFFSET,
@@ -219,7 +219,7 @@ export const determineMovieSpotlightContent = function () {
 
     entry.description = mostPopularMovies[i].overview;
     entry.rating = mostPopularMovies[i].vote_average;
-    entry.backdropPath = `${BASE_URL_IMAGE}/${IMG_SIZE}${mostPopularMovies[i].backdrop_path}`;
+    entry.backdropPath = `${BASE_URL_IMG}/${IMG_SIZE}${mostPopularMovies[i].backdrop_path}`;
 
     state.movieSpotlightInfo.push(entry);
   }

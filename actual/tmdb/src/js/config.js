@@ -17,7 +17,7 @@ export const OPTIONS = {
 };
 
 export const BASE_URL = "https://api.themoviedb.org/3";
-export const BASE_URL_IMAGE = "https://image.tmdb.org/t/p";
+export const BASE_URL_IMG = "https://image.tmdb.org/t/p";
 
 export const IMG_SIZE = "original";
 
