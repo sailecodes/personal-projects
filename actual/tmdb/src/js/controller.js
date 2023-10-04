@@ -9,6 +9,7 @@ import searchBarView from "./views/searchBarView.js";
 import spotlightContentView from "./views/spotlightContentView.js";
 import spotlightSliderView from "./views/spotlightSliderView.js";
 import spotlightOverviewView from "./views/spotlightOverviewView.js";
+import trackContentView from "./views/trackContentView.js";
 
 /////////////////////////////////////////////////
 ///////// Search bar functionality
@@ -54,6 +55,8 @@ const controlMovieSpotlight = function () {
 const controlMovieTracks = function () {
   // Determines the top rated movies and most popular movies by genre
   model.determineMovieTracksContent();
+
+  trackContentView.initVars(model.state.movieTracksInfo);
 };
 
 /////////////////////////////////////////////////
@@ -63,8 +66,6 @@ const movieInit = async function () {
   await controlMovieDefaultState();
   controlMovieSpotlight();
   controlMovieTracks();
-
-  console.log(model.state);
 };
 
 movieInit();

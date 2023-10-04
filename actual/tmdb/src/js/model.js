@@ -12,6 +12,7 @@ import {
   SPOTLIGHT_CONTENT_NUM,
   POPULAR_MOVIE_SKIP_OFFSET,
   MOST_POPULAR_GENRES,
+  TOP_TRACK_HEADING,
 } from "./config.js";
 
 /////////////////////////////////////////////////
@@ -155,7 +156,7 @@ export const fetchMoviesByGenre = async function () {
 
     moviesByGenre.forEach((result, index) => {
       state.moviesByGenreInfo.push({
-        genreId: movieGenresId[index],
+        genre: MOST_POPULAR_GENRES[index],
         results: {
           page: result.page,
           movies: result.results,
@@ -167,6 +168,11 @@ export const fetchMoviesByGenre = async function () {
     throw err;
   }
 };
+
+/////////////////////////////////////////////////
+///////// Fetches movies by specified genres
+
+// 'https://api.themoviedb.org/3/movie/565770/images?include_image_language=en'
 
 /////////////////////////////////////////////////
 ///////// Determines which movies are in the
@@ -204,12 +210,12 @@ export const determineMovieSpotlightContent = function () {
 ///////// track
 
 export const determineMovieTracksContent = function () {
-  state.movieTracksInfo.push(state.topRatedMoviesInfo[0].topRatedMovies.slice(0, 10));
   state.movieTracksInfo.push(
-    [{ genreId: state.moviesByGenreInfo[0].genreId, movies: state.moviesByGenreInfo[0].results.movies.slice(0, 10) }],
-    [{ genreId: state.moviesByGenreInfo[1].genreId, movies: state.moviesByGenreInfo[1].results.movies.slice(0, 10) }],
-    [{ genreId: state.moviesByGenreInfo[2].genreId, movies: state.moviesByGenreInfo[2].results.movies.slice(0, 10) }],
-    [{ genreId: state.moviesByGenreInfo[3].genreId, movies: state.moviesByGenreInfo[3].results.movies.slice(0, 10) }]
+    { heading: TOP_TRACK_HEADING, movies: state.topRatedMoviesInfo[0].topRatedMovies.slice(0, 10) },
+    { heading: state.moviesByGenreInfo[0].genre, movies: state.moviesByGenreInfo[0].results.movies.slice(0, 10) },
+    { heading: state.moviesByGenreInfo[1].genre, movies: state.moviesByGenreInfo[1].results.movies.slice(0, 10) },
+    { heading: state.moviesByGenreInfo[2].genre, movies: state.moviesByGenreInfo[2].results.movies.slice(0, 10) },
+    { heading: state.moviesByGenreInfo[3].genre, movies: state.moviesByGenreInfo[3].results.movies.slice(0, 10) }
   );
 };
 

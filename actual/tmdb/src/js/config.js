@@ -26,6 +26,7 @@ export const IMG_SIZE = "original";
 
 export const SPOTLIGHT_CONTENT_NUM = 3;
 export const POPULAR_MOVIE_SKIP_OFFSET = 9;
+export const TOP_TRACK_HEADING = "Top Rated";
 
 /////////////////////////////////////////////////
 ///////// Spotlight
@@ -37,4 +38,4 @@ export const SO_CTITLE_TRANS_DELAY_OFFSET = 2000;
 /////////////////////////////////////////////////
 ///////// Movie tracks
 
-export const MOST_POPULAR_GENRES = ["adventure", "action", "drama", "romance"];
+export const MOST_POPULAR_GENRES = ["Adventure", "Action", "Drama", "Romance"];
