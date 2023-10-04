@@ -52,10 +52,14 @@ const controlMovieSpotlight = function () {
 /////////////////////////////////////////////////
 ///////// Movie tracks functionality
 
-const controlMovieTracks = function () {
+const controlMovieTracks = async function () {
   // Determines the top rated movies and most popular movies by genre
   model.determineMovieTracksContent();
 
+  // Note: Dependent on above code
+  await model.fetchBackdropsOfTrackMovies();
+
+  //
   trackContentView.initVars(model.state.movieTracksInfo);
 };
 
@@ -65,7 +69,7 @@ const controlMovieTracks = function () {
 const movieInit = async function () {
   await controlMovieDefaultState();
   controlMovieSpotlight();
-  controlMovieTracks();
+  await controlMovieTracks();
 };
 
 movieInit();

@@ -1,3 +1,5 @@
+import { BASE_URL_IMAGE, IMG_SIZE } from "../config";
+
 class TrackContentView {
   #trackContent;
   #track;
@@ -5,7 +7,6 @@ class TrackContentView {
   initVars(trackContent) {
     this.#trackContent = trackContent;
     this.#track = document.querySelector(".content-tracks");
-    console.log(trackContent);
   }
 
   initDefaultState() {
@@ -27,21 +28,11 @@ class TrackContentView {
                 return `<div class="content-tracks--section-slider-content">
                           <img
                             class="content-tracks--section-slider-content-img"
-                            src="https://image.tmdb.org/t/p/original/xXXFdqV965crlxCO3dj3PhtcCAf.jpg"
+                            src="${BASE_URL_IMG}/${IMG_SIZE}${movie.trackBackdrop}"
                           />
                         </div>`;
               })
               .join("")}
-            <div class="content-tracks--section-slider-content">
-              <img
-                class="content-tracks--section-slider-content-img"
-                src="https://image.tmdb.org/t/p/original/xXXFdqV965crlxCO3dj3PhtcCAf.jpg" />
-            </div>
-            <div class="content-tracks--section-slider-content">
-              <img
-                class="content-tracks--section-slider-content-img"
-                src="https://image.tmdb.org/t/p/original/xXXFdqV965crlxCO3dj3PhtcCAf.jpg" />
-            </div>
           </div>
 
           <button class="content-tracks--btn content-tracks--left-btn">

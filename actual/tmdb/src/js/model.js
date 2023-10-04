@@ -170,9 +170,29 @@ export const fetchMoviesByGenre = async function () {
 };
 
 /////////////////////////////////////////////////
-///////// Fetches movies by specified genres
+///////// Fetches backdrops of track movies
 
-// 'https://api.themoviedb.org/3/movie/565770/images?include_image_language=en'
+export const fetchBackdropsOfTrackMovies = async function () {
+  try {
+    for (let i = 0; i < state.movieTracksInfo.length; i++) {
+      for (let j = 0; j < state.movieTracksInfo[i].movies.length; j++) {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${state.movieTracksInfo[i].movies[j].id}/images?include_image_language=en`,
+          OPTIONS
+        );
+        const imgObj = await response.json();
+
+        state.movieTracksInfo[i].movies[j].trackBackdrop =
+          imgObj.backdrops.length === 0
+            ? state.movieTracksInfo[i].movies[j].backdrop_path
+            : imgObj.backdrops[0].file_path;
+      }
+    }
+  } catch (err) {
+    console.error(`(model.js::fetchBackdropsOfTrackMovies()) ${err}`);
+    throw err;
+  }
+};
 
 /////////////////////////////////////////////////
 ///////// Determines which movies are in the
