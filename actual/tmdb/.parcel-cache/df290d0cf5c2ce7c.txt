@@ -1,4 +1,4 @@
-9511
+9523
 61C:\Users\boinx\Documents\CS\websites\actual\tmdb\package.json133401789559576040 0
 83C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\actual\number133401452021499972 1
 111C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\htmlnano\lib\modules\collapseBooleanAttributes.js133401451041018922 0
@@ -15,7 +15,7 @@
 103C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\source-map-js\lib\source-map-generator.js133401451039893374 0
 107C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\internals\dom-token-list-prototype.js133401451988118886 0
 92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-what\lib\commonjs\index.js133401451035896538 0
-53C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist133406762478391655 1
+53C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist133408759703475758 1
 92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\features\array\push.js133401452014528762 0
 96C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\es.array.splice.js133401451990358892 0
 96C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\string\starts-with.js133401452019013635 0
@@ -46,7 +46,7 @@
 117C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\features\reflect\get-own-property-descriptor.js133401452002206790 0
 92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-what\lib\es\parse.d.ts.map133401451041978972 0
 111C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\caniuse-lite\data\features\link-rel-preconnect.js133401451088192488 0
-59C:\Users\boinx\Documents\CS\websites\actual\tmdb\index.html133405921803963916 0
+59C:\Users\boinx\Documents\CS\websites\actual\tmdb\index.html133408718942207127 0
 98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\node_modules\msgpackr\unpack.js133401451064007778 0
 101C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\es.array.to-reversed.js133401451990358892 0
 98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\dom-serializer\node_modules\entities133401451060162753 1
@@ -62,12 +62,13 @@
 84C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\htmlnano\.eslintignore133401451038521987 0
 103C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\es.number.to-precision.js133401451991478933 0
 98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\transformer-babel\lib\jsx.js133401451054878956 0
+67C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\css\tracks.css133408719689268151 0
 78C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\array133401452026382616 1
 86C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\detect-libc\package.json133401451036789899 0
 91C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\escape-string-regexp\index.js133401451035639602 0
 128C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-select\node_modules\entities\lib\esm\decode_codepoint.d.ts.map133401451063045140 0
 92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\postcss-value-parser\README.md133401451040214348 0
-84C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\views\spotlightSliderView.js133405038523989440 0
+84C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\views\spotlightSliderView.js133408358690929520 0
 61C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules133401791611754169 1
 85C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\views\spotlightContentView.js133406760381586628 0
 52C:\Users\boinx\Documents\CS\websites\actual\tmdb\src133402249289302287 1
@@ -77,7 +78,7 @@
 118C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\htmlnano\docs\versioned_docs\version-2.0.0\030-config.md133401451056318944 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\string\repeat.js133401452015730966 0
 92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\string\trim-left.js133401452023662499 0
-56C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\css133402596380298317 1
+56C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\css133407742137332026 1
 94C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-what\lib\commonjs\parse.d.ts133401451044943851 0
 98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\internals\array-iteration.js133401451980358923 0
 112C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\chacha8.c133401451048066261 0
@@ -86,7 +87,7 @@
 71C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\callsites133401451037695495 1
 83C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\is-json\test\index.js133401451038431861 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\transformer-postcss\src133401451048388839 1
-65C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\config.js133404924154541181 0
+65C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\config.js133407676606456003 0
 94C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\workers\test\integration133401451045983879 1
 72C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\domhandler133401451038754578 1
 92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\regenerator-runtime\runtime.js133401451978758864 0
@@ -98,7 +99,7 @@
 90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\string\sub.js133401452019816103 0
 125C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dependencies\lmdb-data-v1\libraries\liblmdb\sample-bdb.txt133401451072336334 0
 82C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\htmlnano\lib\presets133401451048066261 1
-69C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\controller.js133405315442709808 0
+69C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\controller.js133407673546023898 0
 104C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\dom-collections\for-each.js133401452000765068 0
 77C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\index.d.ts133401451072016329 0
 83C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\profiler\test133401451045903879 1
@@ -114,7 +115,7 @@
 119C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\es.reflect.get-own-property-descriptor.js133401451992119022 0
 92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\xxhash-wasm\cjs\xxhash-wasm.js133401451038521987 0
 111C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\package-manager\src\NodePackageManager.js133401451061765073 0
-64C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\model.js133405315639867132 0
+64C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\model.js133407676750444333 0
 87C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\array\slice.js133401452017653634 0
 61C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\views133404120903992891 1
 108C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\caniuse-lite\data\features\css-focus-within.js133401451073056387 0
@@ -146,7 +147,7 @@
 102C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dependencies\v8\v8-fast-api-calls.h133401451068493368 0
 88C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-select\lib\sort.js.map133401451053598926 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\lib\tokenizer\types.js133401451079387213 0
-86C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\views\spotlightOverviewView.js133406761890600203 0
+86C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\js\views\spotlightOverviewView.js133407532878351400 0
 73C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\xxhash-wasm133401451042461462 1
 70C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\domutils133401451043501457 1
 80C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\tslib\tslib.es6.js133401451038059351 0
@@ -155,8 +156,18 @@
 112C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\utils\test\replaceBundleReferences.test.js133401451069613328 0
 77C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\srcset\index.js133401451037225609 0
 74C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\img\temp-backdrop.jpg133402345591775078 0
+85C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dist\index.cjs.map133401451070893378 0
+83C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\dist\data.js133401451073458818 0
+67C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\css\footer.css133407742962490007 0
+90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\math\acosh.js133401451979318867 0
+99C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\features\string\trim-start.js133401452024062596 0
+88C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\utility-types\CHANGELOG.md133401451041658969 0
+87C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\es.set.js133401451992358935 0
+94C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\instance\every.js133401451997005028 0
+74C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\browserslist133401451043821466 1
+90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@swc\helpers\_\_to_primitive133401451081312321 1
 96C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\es.string.split.js133401451992758900 0
-68C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\css\general.css133403653966120468 0
+68C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\css\general.css133407737316992632 0
 78C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\term-size\vendor133401451038920803 1
 121C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@swc\helpers\_\_class_private_field_loose_base\package.json133401451077704773 0
 90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\csso\lib\restructure\prepare133401451062245067 1
@@ -165,7 +176,7 @@
 78C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\msgpackr-extract133401451038836297 1
 109C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-select\node_modules\domhandler\lib\index.js133401451058078939 0
 106C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\csso\node_modules\css-tree\cjs\utils\url.cjs133401451073938825 0
-70C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\css\spotlight.css133405944992901712 0
+70C:\Users\boinx\Documents\CS\websites\actual\tmdb\src\css\spotlight.css133408453847384250 0
 100C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\object\lookup-setter.js133401452011248761 0
 81C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\workers\src133401451052718934 1
 85C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\mdn-data\css\units.json133401451046786226 0
@@ -181,6 +192,14 @@
 80C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\.package-lock.json133401791614193989 0
 70C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree133401451080192298 1
 101C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\features\array\filter-reject.js133401451997645027 0
+92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dependencies\lmdb-data-v1133401451038920803 1
+89C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\svgo\plugins\mergeStyles.js133401451046706262 0
+120C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\csso\node_modules\css-tree\lib\syntax\node\SelectorList.js133401451081072319 0
+119C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\dom-serializer\node_modules\entities\lib\maps\decode.json133401451056638973 0
+110C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@swc\helpers\cjs\_object_destructuring_empty.cjs133401451055358946 0
+109C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\typed-array\uint8-clamped-array.js133401452024782475 0
+68C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\braces133401451037868354 1
+90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\web\dom-exception.js133401451988039298 0
 101C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\packager-svg\lib\SVGPackager.js133401451049918936 0
 78C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\SECURITY.md133401451071696411 0
 117C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\node_modules\node-addon-api\tools\eslint-format.js133401451061765073 0
@@ -203,14 +222,6 @@
 106C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\internals\dom-exception-constants.js133401451988039298 0
 74C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\svgo\LICENSE133401451035896538 0
 68C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@babel133401451029762420 1
-92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dependencies\lmdb-data-v1133401451038920803 1
-89C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\svgo\plugins\mergeStyles.js133401451046706262 0
-120C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\csso\node_modules\css-tree\lib\syntax\node\SelectorList.js133401451081072319 0
-119C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\dom-serializer\node_modules\entities\lib\maps\decode.json133401451056638973 0
-110C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@swc\helpers\cjs\_object_destructuring_empty.cjs133401451055358946 0
-109C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\typed-array\uint8-clamped-array.js133401452024782475 0
-68C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\braces133401451037868354 1
-90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\web\dom-exception.js133401451988039298 0
 96C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\es.array.concat.js133401451989718983 0
 120C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\csso\node_modules\css-tree\cjs\syntax\config\generator.cjs133401451066250014 0
 88C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\workers\lib\bus.js133401451044703860 0
@@ -226,10 +237,10 @@
 99C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\svgo\lib\svgo\css-select-adapter.d.ts133401451061845163 0
 90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\instance\map.js133401452011728860 0
 84C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\data-view133401452017173621 1
-83C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\js-yaml\lib\loader.js133401451045023858 0
 113C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mdb_drop.c133401451049758958 0
 105C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\node_modules\msgpackr\dist\test.js.map133401451067690065 0
 97C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\type-fest\source\readonly-deep.d.ts133401451047506349 0
+83C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\js-yaml\lib\loader.js133401451045023858 0
 90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\cjs\utils\clone.cjs133401451042861504 0
 96C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\typed-array\find.js133401451999325003 0
 109C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\caniuse-lite\data\features\keyboardevent-key.js133401451087312311 0
@@ -316,14 +327,6 @@
 86C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\README.md133401452026702482 0
 83C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\braces\lib\compile.js133401451038199419 0
 70C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\boolbase133401451036087345 1
-85C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dist\index.cjs.map133401451070893378 0
-83C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\dist\data.js133401451073458818 0
-99C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\features\string\trim-start.js133401452024062596 0
-88C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\utility-types\CHANGELOG.md133401451041658969 0
-87C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\es.set.js133401451992358935 0
-94C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\instance\every.js133401451997005028 0
-74C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\browserslist133401451043821466 1
-90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@swc\helpers\_\_to_primitive133401451081312321 1
 100C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\esnext.math.degrees.js133401451995322052 0
 97C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\symbol\async-iterator.js133401451980998877 0
 90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\source-map\lib\base64-vlq.js133401451038347080 0
@@ -819,9 +822,9 @@
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\semver\ranges\max-satisfying.js133401451047106266 0
 97C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\string\virtual\anchor.js133401451979718898 0
 89C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\utility-types\dist\index.js133401451038059351 0
+74C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\posthtml\lib133401451038674456 1
 97C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\svgo\lib\svgo\css-select-adapter.js133401451045903879 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\caniuse-lite\data\regions\VE.js133401451099952474 0
-74C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\posthtml\lib133401451038674456 1
 96C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-select\lib\esm\attributes.d.ts133401451059202756 0
 103C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\lib\syntax\node\ClassSelector.js133401451071133413 0
 112C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\intro.doc133401451065850006 0
@@ -1045,6 +1048,7 @@
 96C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\symbol\replace-all.js133401452015890974 0
 100C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\term-size\vendor\windows\term-size.exe133401451039463274 0
 91C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\js-yaml\lib\type\timestamp.js133401451047746250 0
+76C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.c96d573c.css.map133408759703395717 0
 85C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\weak-map133401452007089191 1
 102C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\es.array-buffer.slice.js133401451989718983 0
 115C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\csso\node_modules\css-tree\lib\syntax\config\lexer.js133401451079791821 0
@@ -2084,8 +2088,6 @@
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\utils\src\countLines.js133401451060882739 0
 111C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\module.c133401451056318944 0
 80C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\is-number\index.js133401451035315944 0
-80C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\cjs\utils133401451068653367 1
-80C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\js-yaml\lib\schema133401451044703860 1
 84C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\nth-check\package.json133401451039492318 0
 109C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\esnext.string.to-well-formed.js133401451996202115 0
 86C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\nth-check\lib\compile.js133401451035802872 0
@@ -2602,10 +2604,10 @@
 138C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\optimizer-htmlnano\node_modules\css-tree\lib\syntax\scope\default.js133401451067049989 0
 95C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dependencies\lz4\lib\LICENSE133401451044383852 0
 100C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\array\virtual\find-index.js133401451998205026 0
+98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\lookup-getter.js133401452011168749 0
 99C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\typed-array\unique-by.js133401452025102418 0
 84C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lightningcss\README.md133401451043261453 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\lmdb\dependencies\lz4\lib\lz4.c133401451048473320 0
-98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\lookup-getter.js133401452011168749 0
 103C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\actual\async-iterator\for-each.js133401452000445014 0
 71C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\.bin\svgo133401451120272303 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\queue-microtask.js133401452014688797 0
@@ -2818,6 +2820,8 @@
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\caniuse-lite\data\regions\BJ.js133401451058158950 0
 82C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\js-yaml\package.json133401451048066261 0
 83C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\js-yaml\lib\common.js133401451038199419 0
+80C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\cjs\utils133401451068653367 1
+80C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\js-yaml\lib\schema133401451044703860 1
 83C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\js-yaml\lib\schema.js133401451046546232 0
 100C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\lib\tokenizer\adopt-buffer.js133401451069693344 0
 104C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-select\node_modules\domutils\readme.md133401451067370038 0
@@ -3018,8 +3022,6 @@
 84C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\dom-serializer\LICENSE133401451034932679 0
 91C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\cjs\utils\string.cjs133401451066890009 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\utils\src\getRootDir.js133401451063767706 0
-98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\lookup-setter.js133401452011248761 0
-104C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\features\typed-array\filter-out.js133401451997565017 0
 98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\htmlnano\lib\modules\mergeScripts.js133401451044783857 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\caniuse-lite\data\regions\ML.js133401451089792368 0
 91C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\domelementtype\lib\index.d.ts133401451040458919 0
@@ -4223,6 +4225,7 @@
 103C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\cjs\syntax\node\TypeSelector.cjs133401451068333390 0
 103C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\cjs\syntax\node\UnicodeRange.cjs133401451068413374 0
 91C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\regexp\sticky.js133401452019093623 0
+76C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.f34c344d.css.map133408759703395717 0
 78C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\.bin\js-yaml.cmd133401451120192296 0
 96C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\css-tree\cjs\syntax\node\Value.cjs133401451068973375 0
 111C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@babel\code-frame\node_modules\chalk\package.json133401451056958983 0
@@ -4956,6 +4959,7 @@
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\promise\index.js133401452006927241 0
 100C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\actual\symbol\async-dispose.js133401451980758886 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\workers\src\cpuCount.js133401451046786226 0
+72C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.f4c47bfd.css133408759703195697 0
 101C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\reflect\define-property.js133401451986759076 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\object\assign.js133401451980758886 0
 91C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\freeze.js133401452000925013 0
@@ -4999,7 +5003,6 @@
 101C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\number\to-exponential.js133401452020936076 0
 100C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\number\virtual\index.js133401452006927241 0
 109C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\number\virtual\to-exponential.js133401452021016083 0
-90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\math\acosh.js133401451979318867 0
 90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\math\asinh.js133401451980678894 0
 100C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\array\virtual\to-spliced.js133401452022379927 0
 110C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\esnext.object.iterate-entries.js133401451995562107 0
@@ -5051,6 +5054,7 @@
 97C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\instance\index-of.js133401452004766746 0
 104C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\modules\esnext.json.is-raw-json.js133401451995001899 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\instance\keys.js133401452010608751 0
+76C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.f4c47bfd.css.map133408759703395717 0
 102C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\instance\last-index-of.js133401452010848766 0
 98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\instance\match-all.js133401452011968765 0
 96C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\stable\instance\pad-end.js133401452013648715 0
@@ -6080,6 +6084,8 @@
 100C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\iterate-entries.js133401452009248732 0
 99C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\iterate-values.js133401452009248732 0
 89C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\keys.js133401452010528770 0
+98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\lookup-setter.js133401452011248761 0
+104C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\features\typed-array\filter-out.js133401451997565017 0
 103C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\prevent-extensions.js133401452014288743 0
 90C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\proto.js133401452014448783 0
 101C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\full\object\set-prototype-of.js133401452017093644 0
@@ -7029,6 +7035,7 @@
 92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\string\match-all.js133401452011808755 0
 108C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\caniuse-lite\data\features\text-size-adjust.js133401451098352342 0
 112C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\source-map\parcel_sourcemap_wasm\dist-node133401451067049989 1
+75C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.be711b4c.js.map133408759703395717 0
 88C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\string\match.js133401452012048909 0
 92C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\string\pad-start.js133401452013728768 0
 86C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\es\string\raw.js133401452014848766 0
@@ -7411,8 +7418,8 @@
 103C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\actual\string\virtual\trim-end.js133401452023502486 0
 94C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\actual\set\difference.js133401451987718941 0
 96C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\actual\set\intersection.js133401452007488822 0
-98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\actual\set\is-superset-of.js133401452008608806 0
 133C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\optimizer-svgo\node_modules\svgo\lib\svgo\css-select-adapter.js133401451064087679 0
+98C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\actual\set\is-superset-of.js133401452008608806 0
 101C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\caniuse-lite\data\features\dom-range.js133401451080992308 0
 72C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\braces\lib133401451040378800 1
 104C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\core-js\actual\set\symmetric-difference.js133401452020536107 0
@@ -8421,6 +8428,7 @@
 85C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\package-manager133401451066730001 1
 133C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\generator\sourceMap.js133401451074178823 0
 76C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\plugin133401451044223862 1
+72C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.c96d573c.css133408759703195697 0
 146C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\optimizer-htmlnano\node_modules\css-tree\lib\syntax\pseudo\nth-last-child.js133401451072496449 0
 82C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\reporter-cli133401451060402787 1
 89C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\@parcel\runtime-browser-hmr133401451050958956 1
@@ -9485,6 +9493,8 @@
 89C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\.bin\update-browserslist-db133401451120272303 0
 93C:\Users\boinx\Documents\CS\websites\actual\tmdb\node_modules\.bin\update-browserslist-db.ps1133401451120192296 0
 76C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.021d2db4.css.map133402322042686044 0
+72C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.211603c8.css133408759703195697 0
+76C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.211603c8.css.map133408759703355743 0
 76C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.32ad6428.css.map133402322287966965 0
 76C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.5b6aef43.css.map133402587230093631 0
 72C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.6078bf67.css133402587229933599 0
@@ -9496,6 +9506,7 @@
 72C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.9bae50b6.css133402322287806940 0
 76C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.9bae50b6.css.map133402322287966965 0
 71C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.a5be67fe.js133402322287806940 0
+71C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.be711b4c.js133408759703195697 0
 72C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.c1ccc107.css133401789559456018 0
 76C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.c1ccc107.css.map133401789559466120 0
 72C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.c4aa2577.css133406762478066999 0
@@ -9507,6 +9518,7 @@
 72C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.e40c66a6.css133404147143948050 0
 76C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.e40c66a6.css.map133404147144149070 0
 72C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.ea0267e6.css133404147143948050 0
-64C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.html133406762478066999 0
+72C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.f34c344d.css133408759703195697 0
+64C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\index.html133408759703195697 0
 70C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\tmdb.3464ddca.js133401789559506247 0
 74C:\Users\boinx\Documents\CS\websites\actual\tmdb\dist\tmdb.3464ddca.js.map133401789559515981 0
