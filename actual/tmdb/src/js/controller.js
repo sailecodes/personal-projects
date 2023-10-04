@@ -5,11 +5,12 @@
 /////////////////////////////////////////////////
 
 import * as model from "./model.js";
-import searchBarView from "./views/searchBarView.js";
-import spotlightContentView from "./views/spotlightContentView.js";
-import spotlightSliderView from "./views/spotlightSliderView.js";
-import spotlightOverviewView from "./views/spotlightOverviewView.js";
-import trackContentView from "./views/trackContentView.js";
+import searchBarView from "./views/searchbar/searchBarView.js";
+import spotlightContentView from "./views/spotlight/spotlightContentView.js";
+import spotlightSliderView from "./views/spotlight/spotlightSliderView.js";
+import spotlightOverviewView from "./views/spotlight/spotlightOverviewView.js";
+import trackContentView from "./views/track/trackContentView.js";
+import trackSliderView from "./views/track/trackSliderView.js";
 
 /////////////////////////////////////////////////
 ///////// Search bar functionality
@@ -62,6 +63,9 @@ const controlMovieTracks = async function () {
   //
   trackContentView.initVars(model.state.movieTracksInfo);
   trackContentView.initDefaultState();
+
+  trackSliderView.initVars();
+  trackSliderView.addOnSliderHoverHandler(); //
 };
 
 /////////////////////////////////////////////////

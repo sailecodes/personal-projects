@@ -1,4 +1,4 @@
-import { SO_TITLE_MAX_WIDTH, SO_CTITLE_TRANS_DURATION_RATIO, SO_CTITLE_TRANS_DELAY_OFFSET } from "../config.js";
+import { SO_TITLE_MAX_WIDTH, SO_CTITLE_TRANS_DURATION_RATIO, SO_CTITLE_TRANS_DELAY_OFFSET } from "../../config.js";
 
 /**
  * Handles the view of the spotlight overview
@@ -48,7 +48,7 @@ class SpotlightOverviewView {
             </div>
             <p class="content-spotlight--overview-rating" style="background-color: ${this.#getNewRatingColor(
               initialContent.rating
-            )};">${initialContent.rating}</p>
+            )};">${this.#convertToNumWithDecimalPlace(initialContent.rating, 1)}</p>
           </div>
           <button class="content-spotlight--overview-back-btn">
             <svg
@@ -256,7 +256,7 @@ class SpotlightOverviewView {
 
   #changeOverviewElements(currentContent) {
     this.#spotlightOverviewTitle.textContent = currentContent.title;
-    this.#spotlightOverviewRating.textContent = currentContent.rating;
+    this.#spotlightOverviewRating.textContent = this.#convertToNumWithDecimalPlace(Number(currentContent.rating), 1);
     this.#spotlightOverviewReleaseDate.textContent = `Release Date: ${currentContent.releaseDate}`;
     this.#spotlightOverviewGenres.innerHTML = "";
     this.#spotlightOverviewGenres.innerHTML = `
@@ -270,6 +270,10 @@ class SpotlightOverviewView {
         .join("")}
     `;
     this.#spotlightOverviewDesc.textContent = currentContent.description;
+  }
+
+  #convertToNumWithDecimalPlace(num, decimalPlaces) {
+    return (Math.round(num * 10) / 10).toFixed(decimalPlaces);
   }
 
   #getNewRatingColor(rating) {
