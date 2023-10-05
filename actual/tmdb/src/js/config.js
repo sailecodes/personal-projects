@@ -24,18 +24,19 @@ export const IMG_SIZE = "original";
 /////////////////////////////////////////////////
 ///////// Model
 
-export const SPOTLIGHT_CONTENT_NUM = 3;
 export const POPULAR_MOVIE_SKIP_OFFSET = 9;
-export const TOP_TRACK_HEADING = "Top Rated";
 
 /////////////////////////////////////////////////
 ///////// Spotlight
 
+export const SPOTLIGHT_CONTENT_NUM = 3;
 export const SO_TITLE_MAX_WIDTH = 305;
 export const SO_CTITLE_TRANS_DURATION_RATIO = 112; // TODO: Ratio should be changed so larger --> slower, smaller --> faster
 export const SO_CTITLE_TRANS_DELAY_OFFSET = 2000;
 
 /////////////////////////////////////////////////
-///////// Movie tracks
+///////// Tracks
 
+export const TOP_TRACK_HEADING = "Top Rated";
 export const MOST_POPULAR_GENRES = ["Adventure", "Action", "Drama", "Romance"];
+export const TRACK_CONTENT_TRANSLATE_VAL = 522.5;
