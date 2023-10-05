@@ -57,6 +57,7 @@ const controlMovieTracks = async function () {
   // Determines the top rated movies and most popular movies by genre
   model.determineMovieTracksContent();
 
+  // Fetches relevant backdrops of each movie in the tracks
   // Note: Dependent on above code
   await model.fetchBackdropsOfTrackMovies();
 
@@ -64,8 +65,9 @@ const controlMovieTracks = async function () {
   trackContentView.initVars(model.state.movieTracksInfo);
   trackContentView.initDefaultState();
 
+  //
   trackSliderView.initVars();
-  trackSliderView.addOnSliderHoverHandler(); //
+  trackSliderView.addOnSliderHoverHandler();
 };
 
 /////////////////////////////////////////////////
