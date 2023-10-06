@@ -11,7 +11,6 @@
       rel="stylesheet" />
 
     <link rel="stylesheet" href="src/css/general.css" />
-    <link rel="stylesheet" href="src/css/utilities.css" />
     <link rel="stylesheet" href="src/css/navbar.css" />
     <link rel="stylesheet" href="src/css/spotlight.css" />
     <link rel="stylesheet" href="src/css/tracks.css" />
@@ -27,31 +26,40 @@
     <!-- Navigation Bar -->
     <!--                -->
     <nav>
-      <div class="nav-bar--logo">Saile</div>
+      <div class="nav-bar--left">
+        <div class="nav-bar--logo">Saile</div>
 
-      <div class="nav-bar--main-content">
-        <form class="nav-bar--search" action="">
-          <input type="text" class="nav-bar--search-bar" placeholder="Search a movie or show..." />
-          <button class="nav-bar--search-bar-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="nav-bar--search-bar-icon">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-            </svg>
-          </button>
+        <div class="nav-bar--configs">
+          <button class="nav-bar--btn nav-bar--configs-btn nav-bar--movies">Movies</button>
+          <button class="nav-bar--btn nav-bar--configs-btn nav-bar--shows">Shows</button>
+
+          <form class="nav-bar--search-form" action="">
+            <button class="nav-bar--search-bar-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="nav-bar--search-bar-icon">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+            </button>
+            <input type="text" class="nav-bar--search-bar" placeholder="Search a movie or show..." />
+          </form>
+        </div>
+      </div>
+
+      <div class="nav-bar--right">
+        <form class="" action="">
+          <button class="nav-bar--btn nav-bar--right-btn nav-bar--sign-in-btn">Sign In</button>
         </form>
-        <button class="nav-bar--btn nav-bar--movies">Movies</button>
-        <button class="nav-bar--btn nav-bar--shows">Shows</button>
-        <div class="vertical-line--sm"></div>
-        <form action=""><button class="nav-bar--btn nav-bar--sign-in-btn">Sign In</button></form>
-        <form action=""><button class="nav-bar--btn nav-bar--sign-up-btn">Sign Up Now</button></form>
+        <form class="" action="">
+          <button class="nav-bar--btn nav-bar--right-btn nav-bar--sign-up-btn">Sign Up Now</button>
+        </form>
       </div>
     </nav>
 

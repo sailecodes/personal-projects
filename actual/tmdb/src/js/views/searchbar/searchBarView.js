@@ -1,5 +1,5 @@
 class SearchBarView {
-  #searchContainer = document.querySelector(".nav-bar--search");
+  #searchContainer = document.querySelector(".nav-bar--search-form");
   #searchBar = document.querySelector(".nav-bar--search-bar");
   #searchBarBtn = document.querySelector(".nav-bar--search-bar-btn");
 
