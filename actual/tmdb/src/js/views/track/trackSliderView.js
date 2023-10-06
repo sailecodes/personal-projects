@@ -94,9 +94,9 @@ class TrackSliderView {
     if (leftBtn.style.opacity === "1") return;
 
     leftBtn.style.opacity = "1";
-    leftBtn.style.pointerEvents = "auto";
   }
 
+  // FIXME: (BUG) Right --> Left, Image appears immediately on the left side
   #displayNextContentBatch(btn, dirFlag) {
     const slider = dirFlag ? btn.previousElementSibling.previousElementSibling : btn.previousElementSibling;
     const sliderContent = Array.from(slider.querySelectorAll(".content-tracks--section-slider-content"));
@@ -116,6 +116,8 @@ class TrackSliderView {
       if (dirFlag) {
         if (oldTranslateVal < TRACK_LEFT_INVIS_MIN_POS) {
           this.#placeAtNewLoc(slider, content, tempNewTranslateVal, dirFlag);
+        } else if (oldTranslateVal === 1985.5) {
+          this.#placeAtNewLoc(slider, content, tempNewTranslateVal, false);
         }
       } else {
         if (oldTranslateVal > TRACK_RIGHT_INVIS_MIN_POS) {
