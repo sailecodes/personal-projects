@@ -107,6 +107,12 @@ class TrackSliderView {
 
       content.style.transform = `translateX(${tempNewTranslateVal}%)`;
 
+      if (tempNewTranslateVal === TRACK_LEFT_INVIS_MIN_POS || tempNewTranslateVal === TRACK_RIGHT_INVIS_MIN_POS) {
+        this.#toggleElementBrightness(content, true);
+      } else {
+        this.#toggleElementBrightness(content, false);
+      }
+
       if (dirFlag) {
         if (oldTranslateVal < TRACK_LEFT_INVIS_MIN_POS) {
           this.#placeAtNewLoc(slider, content, tempNewTranslateVal, dirFlag);
@@ -117,6 +123,16 @@ class TrackSliderView {
         }
       }
     });
+  }
+
+  #toggleElementBrightness(content, toggleFlag) {
+    if (toggleFlag) {
+      setTimeout(() => {
+        content.style.filter = "brightness(50%)";
+      }, 1900);
+    } else {
+      content.style.filter = "brightness(100%)";
+    }
   }
 
   #getOldTranslateVal(prevTranslateValStr) {

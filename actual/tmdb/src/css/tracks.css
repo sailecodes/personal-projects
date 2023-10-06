@@ -54,7 +54,7 @@
   height: 14.063rem;
   width: 25rem;
 
-  transition: transform 2s cubic-bezier(0.17, 0.84, 0.44, 1);
+  transition: filter 0.2s, transform 2s cubic-bezier(0.17, 0.84, 0.44, 1);
 }
 
 .content-tracks--section-slider-content:hover {
