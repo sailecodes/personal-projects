@@ -114,13 +114,18 @@ export const fetchMostPopularMovies = async function (page) {
 };
 
 /////////////////////////////////////////////////
-///////// Fetches top rated movies
+///////// Fetches top rated (popular) movies
 
 export const fetchTopRatedMovies = async function (page) {
   if (state.topRatedMoviesInfo.length !== 0) return;
 
   try {
-    const response = await fetch(`${BASE_URL}/movie/top_rated?language=en-US&page=${page}`, OPTIONS);
+    const response = await fetch(
+      `${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}`
+        .concat(`&primary_release_date.gte=2020-01-01&release_date.gte=2020-01-01&sort_by=popularity.desc`)
+        .concat(`&vote_average.gte=8&vote_count.gte=100&with_original_language=en&without_genres=16`),
+      OPTIONS
+    );
     const topRatedMovies = await response.json();
 
     state.topRatedMoviesInfo.push({
@@ -204,7 +209,7 @@ export const determineMovieSpotlightContent = function () {
 
   const mostPopularMovies = state.mostPopularMoviesInfo[0].mostPopularMovies;
 
-  for (let i = 0; i < SPOTLIGHT_CONTENT_NUM * POPULAR_MOVIE_SKIP_OFFSET; i += POPULAR_MOVIE_SKIP_OFFSET) {
+  for (let i = 1; i < SPOTLIGHT_CONTENT_NUM * POPULAR_MOVIE_SKIP_OFFSET; i += POPULAR_MOVIE_SKIP_OFFSET) {
     let entry = {};
 
     entry.id = mostPopularMovies[i].id;

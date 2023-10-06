@@ -24,7 +24,7 @@ export const IMG_SIZE = "original";
 /////////////////////////////////////////////////
 ///////// Model
 
-export const POPULAR_MOVIE_SKIP_OFFSET = 9;
+export const POPULAR_MOVIE_SKIP_OFFSET = 6;
 
 /////////////////////////////////////////////////
 ///////// Spotlight
