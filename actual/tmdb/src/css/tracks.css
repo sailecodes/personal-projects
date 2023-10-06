@@ -7,16 +7,20 @@
   margin-bottom: 6rem;
 
   overflow: hidden;
+
+  background-color: gray;
 }
 
 .content-tracks--section {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 
-  position: relative;
+  height: fit-content;
 
-  height: 19.6rem;
+  background-color: lightblue;
 }
 
 .content-tracks--section-heading {
@@ -34,18 +38,23 @@
 
 .content-tracks--section-slider {
   position: relative;
-  left: -1%;
+  left: -1.5%;
+
+  height: 14.063rem;
+  width: 133.5rem;
+
+  background-color: darkolivegreen;
 }
 
 .content-tracks--section-slider-content {
   position: absolute;
-  left: 0.9%;
+  left: 1.45%;
 
   flex-shrink: 0;
   height: 14.063rem;
   width: 25rem;
 
-  transition: transform 1s;
+  transition: transform 10s;
 }
 
 .content-tracks--section-slider-content:hover {

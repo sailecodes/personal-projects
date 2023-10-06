@@ -1,7 +1,8 @@
 /////////////////////////////////////////////////
-// MODEL of the MVC architecture
+// MOVIE MODEL of the MVC architecture
 //
-// Description: Fetches data from and posts data to the API
+// Description: Fetches movie data from and posts
+//              movie data to the API
 /////////////////////////////////////////////////
 
 import {
@@ -13,7 +14,7 @@ import {
   POPULAR_MOVIE_SKIP_OFFSET,
   MOST_POPULAR_GENRES,
   TOP_TRACK_HEADING,
-} from "./config.js";
+} from "../config.js";
 
 /////////////////////////////////////////////////
 ///////// Represents the state of the system
@@ -231,23 +232,10 @@ export const determineMovieSpotlightContent = function () {
 
 export const determineMovieTracksContent = function () {
   state.movieTracksInfo.push(
-    { heading: TOP_TRACK_HEADING, movies: state.topRatedMoviesInfo[0].topRatedMovies.slice(0, 10) },
-    { heading: state.moviesByGenreInfo[0].genre, movies: state.moviesByGenreInfo[0].results.movies.slice(0, 10) },
-    { heading: state.moviesByGenreInfo[1].genre, movies: state.moviesByGenreInfo[1].results.movies.slice(0, 10) },
-    { heading: state.moviesByGenreInfo[2].genre, movies: state.moviesByGenreInfo[2].results.movies.slice(0, 10) },
-    { heading: state.moviesByGenreInfo[3].genre, movies: state.moviesByGenreInfo[3].results.movies.slice(0, 10) }
+    { heading: TOP_TRACK_HEADING, movies: state.topRatedMoviesInfo[0].topRatedMovies }
+    // { heading: state.moviesByGenreInfo[0].genre, movies: state.moviesByGenreInfo[0].results.movies.slice(0, 10) },
+    // { heading: state.moviesByGenreInfo[1].genre, movies: state.moviesByGenreInfo[1].results.movies.slice(0, 10) },
+    // { heading: state.moviesByGenreInfo[2].genre, movies: state.moviesByGenreInfo[2].results.movies.slice(0, 10) },
+    // { heading: state.moviesByGenreInfo[3].genre, movies: state.moviesByGenreInfo[3].results.movies.slice(0, 10) }
   );
-};
-
-/////////////////////////////////////////////////
-///////// Fetches TV show genres
-
-// TODO: Use for TV portion
-export const fetchTVSGenres = async function () {
-  if (state.tvsGenresInfo.length !== 0) return;
-
-  const response = await fetch(`${BASE_URL}/genre/tv/list?language=en`, OPTIONS);
-  const { genres } = await response.json();
-
-  state.tvsGenresInfo = genres;
 };

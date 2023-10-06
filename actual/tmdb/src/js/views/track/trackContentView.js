@@ -7,6 +7,8 @@ class TrackContentView {
   initVars(trackContent) {
     this.#trackContent = trackContent;
     this.#track = document.querySelector(".content-tracks");
+
+    console.log(this.#trackContent);
   }
 
   initDefaultState() {
@@ -18,6 +20,8 @@ class TrackContentView {
           <div class="content-tracks--section-heading">
             <p class="content-tracks--section-heading-title">${content.heading}</p>
             <div class="content-tracks--section-slider-markers">
+              <div class="content-tracks--section-slider-marker content-tracks--section-slider-marker-active"></div>
+              <div class="content-tracks--section-slider-marker"></div>
               <div class="content-tracks--section-slider-marker"></div>
               <div class="content-tracks--section-slider-marker"></div>
             </div>
