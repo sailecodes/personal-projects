@@ -73,8 +73,7 @@ const controlMovieTracks = async function () {
 
   //
   trackSliderView.initVars();
-  trackSliderView.addOnSliderHoverHandler();
-  trackSliderView.addOnSliderBtnClickHandler();
+  trackSliderView.initHandlers();
 };
 
 /////////////////////////////////////////////////

@@ -15,6 +15,11 @@ class TrackSliderView {
     this.#trackSections = document.querySelectorAll(".content-tracks--section");
   }
 
+  initHandlers() {
+    this.addOnSliderHoverHandler();
+    this.addOnSliderBtnClickHandler();
+  }
+
   /**
    *  Handles the visibility of the track markers
    */
@@ -43,14 +48,28 @@ class TrackSliderView {
 
       if (btn) {
         if (btn.classList.contains("content-tracks--left-btn")) {
+          this.#disableSliderBtns(btn);
           this.#toggleMarker(btn, false);
           this.#displayNextContentBatch(btn, false);
         } else if (btn.classList.contains("content-tracks--right-btn")) {
+          this.#disableSliderBtns(btn);
           this.#toggleMarker(btn, true);
           this.#makeSliderLeftBtnVisible(btn);
           this.#displayNextContentBatch(btn, true);
         }
       }
+    });
+  }
+
+  #disableSliderBtns(btn) {
+    const btns = btn.closest(".content-tracks--section").querySelectorAll(".content-tracks--btn");
+
+    btns.forEach((btn) => {
+      btn.style.pointerEvents = "none";
+
+      setTimeout(() => {
+        btn.style.pointerEvents = "auto";
+      }, 1900);
     });
   }
 
