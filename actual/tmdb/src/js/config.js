@@ -39,5 +39,8 @@ export const SO_CTITLE_TRANS_DELAY_OFFSET = 2000;
 
 export const TOP_TRACK_HEADING = "Top Rated";
 export const MOST_POPULAR_GENRES = ["Adventure", "Action", "Drama", "Romance"];
-export const TRACK_CONTENT_TRANSLATE_VAL = 522.5;
-export const TRACK_CONTENT_BATCH_NUM = 4;
+export const TRACK_CONTENT_BATCH_AMT = 4;
+export const TRACK_CONTENT_TRANSLATEX_VAL = 522.5;
+export const TRACK_CONTENT_FULL_TRANSLATEX_VAL = 2090;
+export const TRACK_LEFT_INVIS_MIN_POS = -104.5;
+export const TRACK_RIGHT_INVIS_MIN_POS = 522.5;

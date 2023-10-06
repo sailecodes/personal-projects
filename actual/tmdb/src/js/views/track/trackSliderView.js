@@ -1,4 +1,10 @@
-import { TRACK_CONTENT_TRANSLATE_VAL, TRACK_CONTENT_BATCH_NUM } from "../../config.js";
+import {
+  TRACK_CONTENT_BATCH_AMT,
+  TRACK_CONTENT_TRANSLATEX_VAL,
+  TRACK_CONTENT_FULL_TRANSLATEX_VAL,
+  TRACK_LEFT_INVIS_MIN_POS,
+  TRACK_RIGHT_INVIS_MIN_POS,
+} from "../../config.js";
 
 class TrackSliderView {
   #trackParent;
@@ -7,14 +13,10 @@ class TrackSliderView {
   initVars() {
     this.#trackParent = document.querySelector(".content-tracks");
     this.#trackSections = document.querySelectorAll(".content-tracks--section");
-    // this.#sliders = document.querySelectorAll(".content-tracks--section-slider");
-    // this.#markerContainer = document.querySelector(".content-tracks--section-slider-markers");
   }
 
   /**
-   *
-   * FIXME:
-   *  (BUG) Track slider markers don't appear in-between section and buttons
+   *  Handles the visibility of the track markers
    */
   addOnSliderHoverHandler() {
     this.#trackSections.forEach((section) => {
@@ -31,6 +33,7 @@ class TrackSliderView {
   }
 
   /**
+   * Handles the carousel functionality of each track
    *
    * Note: Clicking a button too fast (from rendering) results in e.target === <path ... />
    */
@@ -40,16 +43,12 @@ class TrackSliderView {
 
       if (btn) {
         if (btn.classList.contains("content-tracks--left-btn")) {
-          console.log("left btn clicked");
-
           this.#toggleMarker(btn, false);
-          // this.#nextContentBatch(btn, false);
+          this.#displayNextContentBatch(btn, false);
         } else if (btn.classList.contains("content-tracks--right-btn")) {
-          console.log("right btn clicked");
-
           this.#toggleMarker(btn, true);
-          this.#insertSliderLeftBtn(btn);
-          // this.#nextContentBatch(btn, true);
+          this.#makeSliderLeftBtnVisible(btn);
+          this.#displayNextContentBatch(btn, true);
         }
       }
     });
@@ -61,83 +60,75 @@ class TrackSliderView {
 
     markers.forEach((marker, index) => {
       if (marker.classList.contains("content-tracks--section-slider-marker-active")) {
-        activeMarkerInd = dirFlag ? (index + 1) % 4 : (index + 3) % 4;
+        activeMarkerInd = dirFlag ? (index + 1) % TRACK_CONTENT_BATCH_AMT : (index + 3) % TRACK_CONTENT_BATCH_AMT;
       }
+
       marker.classList.remove("content-tracks--section-slider-marker-active");
     });
 
     markers[activeMarkerInd].classList.add("content-tracks--section-slider-marker-active");
   }
 
-  #insertSliderLeftBtn(btn) {
+  #makeSliderLeftBtnVisible(btn) {
     const leftBtn = btn.previousElementSibling;
 
     if (leftBtn.style.opacity === "1") return;
-
-    console.log("inserting left btn");
 
     leftBtn.style.opacity = "1";
     leftBtn.style.pointerEvents = "auto";
   }
 
-  #nextContentBatch(btn, dirFlag) {
-    console.log("shifting track content");
-
+  #displayNextContentBatch(btn, dirFlag) {
     const slider = dirFlag ? btn.previousElementSibling.previousElementSibling : btn.previousElementSibling;
     const sliderContent = Array.from(slider.querySelectorAll(".content-tracks--section-slider-content"));
 
-    sliderContent.forEach((content, index) => {
-      const prevTranslateVal = Number(this.#getTranslatePercentage(content.style.transform));
+    sliderContent.forEach((content) => {
+      const oldTranslateVal = this.#getOldTranslateVal(content.style.transform);
+      const tempNewTranslateVal = this.#getTempNewTranslateVal(oldTranslateVal, dirFlag);
 
-      // if (prevTranslateVal < 0) {
-      //   setTimeout(() => {
-      //     content.style.transform = `translateX(${prevTranslateVal + 1045}%)`;
-      //   }, 1500); // FIXME: temp time
-      // } else {
-      //   const num = prevTranslateVal - 522.5;
-      //   content.style.transform = `translateX(${num}%)`;
+      content.style.transform = `translateX(${tempNewTranslateVal}%)`;
 
-      //   if (num < -104.5) {
-      //     setTimeout(() => {
-      //       content.style.transition = "none";
-      //       content.style.opacity = "0";
-      //       content.style.transform = `translateX(${num + 1045}%)`;
-      //       setTimeout(() => {
-      //         content.style.transition = "transform 10s";
-      //         content.style.opacity = "1";
-      //       }, 500);
-      //     }, 2000);
-      //   }
-      // }
-
-      // content.style.transform = `translateX(${prevTranslateVal - TRACK_CONTENT_TRANSLATE_VAL}%)`;
-
-      // const newTranslateVal = this.#getShiftedTranslatePercentage(prevTranslateVal, dirFlag);
-
-      // content.style.transform = `translateX(${newTranslateVal}%)`;
+      if (dirFlag) {
+        if (oldTranslateVal < TRACK_LEFT_INVIS_MIN_POS) {
+          this.#placeAtNewLoc(slider, content, tempNewTranslateVal, dirFlag);
+        }
+      } else {
+        if (oldTranslateVal > TRACK_RIGHT_INVIS_MIN_POS) {
+          this.#placeAtNewLoc(slider, content, tempNewTranslateVal, dirFlag);
+        }
+      }
     });
   }
 
-  #getTranslatePercentage(prevTranslateValStr) {
+  #getOldTranslateVal(prevTranslateValStr) {
     const temp = prevTranslateValStr.slice(11);
 
-    return temp.slice(0, temp.indexOf("%"));
+    return Number(temp.slice(0, temp.indexOf("%")));
   }
 
-  #getShiftedTranslatePercentage(prevTranslateVal, dirFlag) {
-    if (dirFlag) {
-      if (prevTranslateVal >= 0) {
-        return prevTranslateVal - TRACK_CONTENT_TRANSLATE_VAL;
-      } else {
-        return prevTranslateVal + TRACK_CONTENT_TRANSLATE_VAL;
-      }
-    } else {
-      if (prevTranslateVal < 418) {
-        return prevTranslateVal + TRACK_CONTENT_TRANSLATE_VAL;
-      } else {
-        return prevTranslateVal - TRACK_CONTENT_TRANSLATE_VAL;
-      }
-    }
+  #getTempNewTranslateVal(oldTranslateVal, dirFlag) {
+    return dirFlag ? oldTranslateVal - TRACK_CONTENT_TRANSLATEX_VAL : oldTranslateVal + TRACK_CONTENT_TRANSLATEX_VAL;
+  }
+
+  #placeAtNewLoc(slider, content, tempNewTranslateVal, dirFlag) {
+    const actualNewTranslateVal = dirFlag
+      ? tempNewTranslateVal + TRACK_CONTENT_FULL_TRANSLATEX_VAL
+      : tempNewTranslateVal - TRACK_CONTENT_FULL_TRANSLATEX_VAL;
+    const imgElement = content.querySelector("img");
+
+    slider.insertAdjacentHTML(
+      "beforeend",
+      `
+          <div class="content-tracks--section-slider-content" style="transform: translateX(${actualNewTranslateVal}%)">
+            <img
+              class="content-tracks--section-slider-content-img"
+              src="${imgElement.src}"
+            />
+          </div>
+        `
+    );
+
+    content.remove();
   }
 }
 
