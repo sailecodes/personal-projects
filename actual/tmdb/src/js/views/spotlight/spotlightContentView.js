@@ -17,7 +17,7 @@ class SpotlightContentView {
             <iframe
               class="content-spotlight--trailer"
               frameborder="none"
-              src="https://www.youtube.com/embed/tgbNymZ7vqY?enablejsapi=1&controls=0&autoplay=1">
+              src="https://www.youtube.com/embed/${content.trailerUrl}?enablejsapi=1&rel=0&controls=0&autoplay=1">
             </iframe>
           </div>
           <img class="content-spotlight--backdrop" src="${content.backdropPath}" />

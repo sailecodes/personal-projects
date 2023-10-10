@@ -128,6 +128,8 @@ export const fetchTrailerURLOfSpotlightMovies = async function () {
     const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?language=en-US`, OPTIONS);
     const { results: urls } = await response.json();
 
+    state.movieSpotlightInfo[i].trailerUrl = "";
+
     if (urls.length === 1) {
       state.movieSpotlightInfo[i].trailerUrl = urls[0].key;
     } else {
@@ -137,6 +139,12 @@ export const fetchTrailerURLOfSpotlightMovies = async function () {
           urls[j].type.toLowerCase() === "trailer" &&
           urls[j].name.toLowerCase().includes("official") &&
           urls[j].name.toLowerCase().includes("trailer")
+        ) {
+          state.movieSpotlightInfo[i].trailerUrl = urls[j].key;
+        } else if (
+          !state.movieSpotlightInfo[i].trailerUrl &&
+          urls[j].official &&
+          urls[j].type.toLowerCase() === "trailer"
         ) {
           state.movieSpotlightInfo[i].trailerUrl = urls[j].key;
         }
