@@ -9,6 +9,7 @@ import * as movieModel from "./models/movieModel.js";
 
 import searchBarView from "./views/searchbar/searchBarView.js";
 import spotlightContentView from "./views/spotlight/spotlightContentView.js";
+import spotlightTrailerView from "./views/spotlight/spotlightTrailerView.js";
 import spotlightSliderView from "./views/spotlight/spotlightSliderView.js";
 import spotlightOverviewView from "./views/spotlight/spotlightOverviewView.js";
 import trackContentView from "./views/track/trackContentView.js";
@@ -44,6 +45,9 @@ const controlMovieSpotlight = async function () {
   // Note: Dependent on above code
   spotlightContentView.initVars(movieModel.state.movieSpotlightInfo);
   spotlightContentView.initDefaultState();
+
+  spotlightTrailerView.initVars();
+  spotlightTrailerView.addOnTrailerBtnClickedHandler();
 
   // Readies the slider functionality
   // Note: Dependent on above code

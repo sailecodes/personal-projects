@@ -95,7 +95,7 @@
   align-items: center;
   gap: 0.4rem;
 
-  background-color: rgba(109, 109, 110, 0.7);
+  background-color: rgba(109, 109, 110, 0.8);
 
   color: var(--c-white);
 
@@ -109,7 +109,7 @@
 }
 
 .content-spotlight--desc-btn {
-  background-color: rgba(53, 0, 211, 0.7);
+  background-color: rgba(53, 0, 211, 0.8);
 
   width: 15rem;
 
@@ -117,7 +117,7 @@
 }
 
 .content-spotlight--desc-btn:hover {
-  background-color: rgba(36, 0, 144, 0.7);
+  background-color: rgba(36, 0, 144, 0.8);
 }
 
 .content-spotlight--trailer-btn {
@@ -127,7 +127,7 @@
 }
 
 .content-spotlight--trailer-btn:hover {
-  background-color: rgba(89, 89, 89, 0.7);
+  background-color: rgba(89, 89, 89, 0.8);
 }
 
 .content-spotlight--text-icon {

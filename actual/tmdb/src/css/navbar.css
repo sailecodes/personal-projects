@@ -53,7 +53,7 @@ nav {
 }
 
 .nav-bar--configs-btn:hover {
-  background-color: rgba(109, 109, 110, 0.3);
+  background-color: rgba(109, 109, 110, 0.4);
 }
 
 .nav-bar--search-form {
@@ -106,7 +106,7 @@ nav {
 }
 
 .nav-bar--sign-in-btn:hover {
-  background-color: rgba(109, 109, 110, 0.3);
+  background-color: rgba(109, 109, 110, 0.4);
 }
 
 .nav-bar--sign-up-btn {
