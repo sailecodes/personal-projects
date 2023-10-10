@@ -18,6 +18,7 @@ import {
 
 /////////////////////////////////////////////////
 ///////// Represents the state of the system
+/////////////////////////////////////////////////
 
 export const state = {
   movieGenresInfo: [],
@@ -33,6 +34,7 @@ export const state = {
 
 /////////////////////////////////////////////////
 ///////// Helper functions
+/////////////////////////////////////////////////
 
 export const getMovieGenresStr = function (movieGenresId) {
   const movieGenresStr = [];
@@ -78,6 +80,7 @@ const getMoviesByGenreURL = function (genreId) {
 
 /////////////////////////////////////////////////
 ///////// Fetches movie genres
+/////////////////////////////////////////////////
 
 export const fetchMovieGenres = async function () {
   if (state.movieGenresInfo.length !== 0) return;
@@ -95,6 +98,7 @@ export const fetchMovieGenres = async function () {
 
 /////////////////////////////////////////////////
 ///////// Fetches most popular movies
+/////////////////////////////////////////////////
 
 export const fetchMostPopularMovies = async function (page) {
   if (state.mostPopularMoviesInfo.length !== 0) return;
@@ -114,7 +118,36 @@ export const fetchMostPopularMovies = async function (page) {
 };
 
 /////////////////////////////////////////////////
+///////// Fetches trailer URL of spotlight
+///////// movies
+/////////////////////////////////////////////////
+
+export const fetchTrailerURLOfSpotlightMovies = async function () {
+  for (let i = 0; i < state.movieSpotlightInfo.length; i++) {
+    const movieId = state.movieSpotlightInfo[i].id;
+    const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?language=en-US`, OPTIONS);
+    const { results: urls } = await response.json();
+
+    if (urls.length === 1) {
+      state.movieSpotlightInfo[i].trailerUrl = urls[0].key;
+    } else {
+      for (let j = 0; j < urls.length; j++) {
+        if (
+          urls[j].official &&
+          urls[j].type.toLowerCase() === "trailer" &&
+          urls[j].name.toLowerCase().includes("official") &&
+          urls[j].name.toLowerCase().includes("trailer")
+        ) {
+          state.movieSpotlightInfo[i].trailerUrl = urls[j].key;
+        }
+      }
+    }
+  }
+};
+
+/////////////////////////////////////////////////
 ///////// Fetches top rated (popular) movies
+/////////////////////////////////////////////////
 
 export const fetchTopRatedMovies = async function (page) {
   if (state.topRatedMoviesInfo.length !== 0) return;
@@ -140,6 +173,7 @@ export const fetchTopRatedMovies = async function (page) {
 
 /////////////////////////////////////////////////
 ///////// Fetches movies by specified genres
+/////////////////////////////////////////////////
 
 export const fetchMoviesByGenre = async function () {
   if (state.moviesByGenreInfo.length !== 0) return;
@@ -177,6 +211,7 @@ export const fetchMoviesByGenre = async function () {
 
 /////////////////////////////////////////////////
 ///////// Fetches backdrops of track movies
+/////////////////////////////////////////////////
 
 export const fetchBackdropsOfTrackMovies = async function () {
   try {
@@ -203,6 +238,7 @@ export const fetchBackdropsOfTrackMovies = async function () {
 /////////////////////////////////////////////////
 ///////// Determines which movies are in the
 ///////// spotlight (i.e. top 3 most popular)
+/////////////////////////////////////////////////
 
 export const determineMovieSpotlightContent = function () {
   if (state.mostPopularMoviesInfo.length === 0) return;
@@ -234,6 +270,7 @@ export const determineMovieSpotlightContent = function () {
 /////////////////////////////////////////////////
 ///////// Determines which movies are in each
 ///////// track
+/////////////////////////////////////////////////
 
 export const determineMovieTracksContent = function () {
   state.movieTracksInfo.push(

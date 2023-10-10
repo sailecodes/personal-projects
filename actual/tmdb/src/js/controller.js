@@ -34,9 +34,11 @@ const controlMovieDefaultState = async function () {
 /////////////////////////////////////////////////
 ///////// Movie spotlight functionality
 
-const controlMovieSpotlight = function () {
+const controlMovieSpotlight = async function () {
   // Determines the top 3 most popular movies
   movieModel.determineMovieSpotlightContent();
+
+  await movieModel.fetchTrailerURLOfSpotlightMovies();
 
   // Displays the top 3 most popular movies in the spotlight
   // Note: Dependent on above code
@@ -85,28 +87,28 @@ const movieInit = async function () {
   await controlMovieTracks();
 };
 
-// movieInit();
+movieInit();
 
-let trailerPlayFlag = false;
-const trailerBtn = document.querySelector(".content-spotlight--trailer-btn");
+// let trailerPlayFlag = false;
+// const trailerBtn = document.querySelector(".content-spotlight--trailer-btn");
 
-trailerBtn.addEventListener("click", (e) => {
-  const ytIframe = document.querySelector(".content-spotlight--trailer");
-  const trailerBtnText = document.querySelector(".content-spotlight--trailer-text");
+// trailerBtn.addEventListener("click", (e) => {
+//   const ytIframe = document.querySelector(".content-spotlight--trailer");
+//   const trailerBtnText = document.querySelector(".content-spotlight--trailer-text");
 
-  if (trailerPlayFlag) {
-    trailerBtnText.textContent = "Watch trailer";
-    ytIframe.style.transitionDuration = "0.1s";
-    ytIframe.style.opacity = "0";
-    ytIframe.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', "*");
-  } else {
-    trailerBtnText.textContent = "Pause trailer";
-    ytIframe.style.transitionDuration = "1s";
-    ytIframe.style.transitionDelay = "1s";
-    ytIframe.style.opacity = "1";
-    ytIframe.allow = "autoplay";
-    ytIframe.src = ytIframe.src.concat("&autoplay=1");
-  }
+//   if (trailerPlayFlag) {
+//     trailerBtnText.textContent = "Watch trailer";
+//     ytIframe.style.transitionDuration = "0.1s";
+//     ytIframe.style.opacity = "0";
+//     ytIframe.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', "*");
+//   } else {
+//     trailerBtnText.textContent = "Pause trailer";
+//     ytIframe.style.transitionDuration = "1s";
+//     ytIframe.style.transitionDelay = "1s";
+//     ytIframe.style.opacity = "1";
+//     ytIframe.allow = "autoplay";
+//     ytIframe.src = ytIframe.src.concat("&autoplay=1");
+//   }
 
-  trailerPlayFlag = !trailerPlayFlag;
-});
+//   trailerPlayFlag = !trailerPlayFlag;
+// });
