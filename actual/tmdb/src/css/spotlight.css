@@ -112,10 +112,22 @@
   background-color: rgba(53, 0, 211, 0.7);
 
   width: 15rem;
+
+  transition: background-color 0.3s;
+}
+
+.content-spotlight--desc-btn:hover {
+  background-color: rgba(36, 0, 144, 0.7);
 }
 
 .content-spotlight--trailer-btn {
   width: 12.5rem;
+
+  transition: background-color 0.3s;
+}
+
+.content-spotlight--trailer-btn:hover {
+  background-color: rgba(89, 89, 89, 0.7);
 }
 
 .content-spotlight--text-icon {
@@ -240,15 +252,12 @@
 
   display: flex;
 
-  /* margin-left: -0.1rem; */
   margin-bottom: 1rem;
 }
 
 .content-spotlight--overview-description {
   width: 46.4rem;
   font-size: var(--fs-med-m);
-
-  /* margin-left: 0.15rem; */
 }
 
 .content-spotlight--btn {

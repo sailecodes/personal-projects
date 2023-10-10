@@ -13,6 +13,13 @@ class SpotlightContentView {
         "beforeend",
         `
         <div class="content-spotlight--main-content">
+          <div class="content-spotlight--trailer-container">
+            <iframe
+              class="content-spotlight--trailer"
+              frameborder="none"
+              src="https://www.youtube.com/embed/tgbNymZ7vqY?enablejsapi=1&controls=0&autoplay=1">
+            </iframe>
+          </div>
           <img class="content-spotlight--backdrop" src="${content.backdropPath}" />
           <div class="content-spotlight--text-container">
             <p class="content-spotlight--title">${content.title}</p>
