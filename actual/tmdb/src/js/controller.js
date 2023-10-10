@@ -48,6 +48,7 @@ const controlMovieSpotlight = async function () {
 
   spotlightTrailerView.initVars();
   spotlightTrailerView.addOnTrailerBtnClickedHandler();
+  spotlightTrailerView.addOnSpotlightBtnClickedHandler();
 
   // Readies the slider functionality
   // Note: Dependent on above code
