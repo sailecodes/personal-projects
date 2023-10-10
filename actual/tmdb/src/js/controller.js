@@ -85,4 +85,25 @@ const movieInit = async function () {
   await controlMovieTracks();
 };
 
-movieInit();
+// movieInit();
+
+let trailerPlayFlag = false;
+const trailerBtn = document.querySelector(".content-spotlight--trailer-btn");
+
+trailerBtn.addEventListener("click", (e) => {
+  const ytIframe = document.querySelector(".content-spotlight--trailer");
+
+  if (trailerPlayFlag) {
+    ytIframe.style.transitionDuration = "0.1s";
+    ytIframe.style.opacity = "0";
+    ytIframe.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', "*");
+  } else {
+    ytIframe.style.transitionDuration = "1s";
+    ytIframe.style.transitionDelay = "1s";
+    ytIframe.style.opacity = "1";
+    ytIframe.allow = "autoplay";
+    ytIframe.src = ytIframe.src.concat("&autoplay=1");
+  }
+
+  trailerPlayFlag = !trailerPlayFlag;
+});

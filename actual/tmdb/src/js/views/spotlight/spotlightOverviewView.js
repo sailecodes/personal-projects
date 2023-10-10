@@ -106,7 +106,7 @@ class SpotlightOverviewView {
    * description' container, and animates the overview title if clipped
    */
   addOnReadBtnClickedHandler() {
-    document.querySelectorAll(".content-spotlight--more-container").forEach((container) => {
+    document.querySelectorAll(".content-spotlight--desc-btn").forEach((container) => {
       container.addEventListener("click", () => {
         this.#toggleBackgroundText(true);
 
