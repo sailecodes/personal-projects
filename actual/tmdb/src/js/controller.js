@@ -101,3 +101,30 @@ const movieInit = async function () {
 };
 
 movieInit();
+
+// FIXME: inefficient
+document.querySelectorAll(".content-tracks--section-slider-content").forEach((sliderContent) => {
+  sliderContent.addEventListener("mouseenter", () => {
+    const prevTransform = sliderContent.style.transform;
+    sliderContent.style.transform = prevTransform.concat(" scale(1.3)");
+
+    const overviewImg = sliderContent.querySelector(".content-tracks--overview-img");
+    overviewImg.style.borderRadius = "4px 4px 0 0";
+
+    const overviewMeta = sliderContent.querySelector(".content-tracks--overview-meta");
+    overviewMeta.style.opacity = "1";
+    overviewMeta.style.pointerEvents = "auto";
+  });
+
+  sliderContent.addEventListener("mouseleave", () => {
+    const prevTransform = sliderContent.style.transform;
+    sliderContent.style.transform = prevTransform.slice(0, prevTransform.indexOf(" "));
+
+    const overviewImg = sliderContent.querySelector(".content-tracks--overview-img");
+    overviewImg.style.borderRadius = "4px";
+
+    const overviewMeta = sliderContent.querySelector(".content-tracks--overview-meta");
+    overviewMeta.style.opacity = "0";
+    overviewMeta.style.pointerEvents = "none";
+  });
+});

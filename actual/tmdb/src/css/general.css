@@ -46,4 +46,6 @@ body {
   font-family: "Poppins", sans-serif;
 
   background-color: var(--main-c-darkest);
+
+  overflow-x: hidden;
 }
