@@ -249,6 +249,10 @@
   margin-bottom: 1rem;
 }
 
+.content-spotlight--overview-genre {
+  flex-shrink: 0;
+}
+
 .content-spotlight--overview-description {
   width: 46.4rem;
   font-size: var(--fs-med-m);
