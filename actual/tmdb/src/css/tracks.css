@@ -82,6 +82,7 @@
 .content-tracks--section-slider-content {
   position: absolute;
   left: 2.61%;
+  z-index: 47;
 
   flex-shrink: 0;
   height: 14.063rem;
