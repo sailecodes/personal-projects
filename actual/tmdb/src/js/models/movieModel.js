@@ -9,10 +9,13 @@ import {
   OPTIONS,
   BASE_URL,
   BASE_URL_IMG,
+  MOVIE_GENRES_INTER_URL,
+  TOP_RATED_INTER_URL,
+  MOST_POPULAR_INTER_URL,
+  MOVIE_BY_GENRE_INTER_URL,
   IMG_SIZE,
-  SPOTLIGHT_CONTENT_NUM,
-  POPULAR_MOVIE_SKIP_OFFSET,
   MOST_POPULAR_GENRES,
+  SPOTLIGHT_CONTENT_NUM,
   TOP_TRACK_HEADING,
 } from "../config.js";
 
@@ -21,10 +24,11 @@ import {
 /////////////////////////////////////////////////
 
 export const state = {
-  movieGenresInfo: [],
-  tvsGenresInfo: [],
+  unqMovies: new Map(),
 
-  mostPopularMoviesInfo: [], // [{ mostPopularMovies: [{...}, {...}, ...], page: _}, { ... }, ...]
+  movieGenresInfo: [],
+
+  mostPopularMoviesInfo: [], // [{ mostPopularMovies: [{...}, {...}, ...], page: _ }, { ... }, ...]
   movieSpotlightInfo: [], // [{ id: _, title: '', releaseDate: '', ... }, ...]
 
   topRatedMoviesInfo: [],
@@ -72,12 +76,6 @@ export const getMovieGenresId = function (movieGenresStr) {
   return movieGenresId;
 };
 
-const getMoviesByGenreURL = function (genreId) {
-  return `${BASE_URL}/discover/movie`
-    .concat(`?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`)
-    .concat(`&with_genres=${genreId}`);
-};
-
 /////////////////////////////////////////////////
 ///////// Fetches movie genres
 /////////////////////////////////////////////////
@@ -86,7 +84,7 @@ export const fetchMovieGenres = async function () {
   if (state.movieGenresInfo.length !== 0) return;
 
   try {
-    const response = await fetch(`${BASE_URL}/genre/movie/list?language=en`, OPTIONS);
+    const response = await fetch(`${BASE_URL}${MOVIE_GENRES_INTER_URL}`, OPTIONS);
     const { genres } = await response.json();
 
     state.movieGenresInfo = genres;
@@ -100,56 +98,30 @@ export const fetchMovieGenres = async function () {
 ///////// Fetches most popular movies
 /////////////////////////////////////////////////
 
+export const markUnqMovies = function (dataArr) {
+  for (let i = 0; i < dataArr.length; i++) {
+    for (let j = 0; j < dataArr[i].results.length; j++) {
+      if (!state.mostPopularMoviesInfo.unqMovies.has(dataArr[i].results[j].id)) {
+        state.mostPopularMoviesInfo.unqMovies.set(dataArr[i].results[j].id, "");
+      }
+    }
+  }
+};
+
 export const fetchMostPopularMovies = async function (page) {
   if (state.mostPopularMoviesInfo.length !== 0) return;
 
   try {
-    const response = await fetch(`${BASE_URL}/movie/popular/?language=en-US&page=${page}`, OPTIONS);
-    const mostPopularMovies = await response.json();
+    const response = await fetch(`${BASE_URL}${MOST_POPULAR_INTER_URL}page=${page}`, OPTIONS);
+    const data = await response.json();
 
     state.mostPopularMoviesInfo.push({
-      mostPopularMovies: mostPopularMovies.results,
-      page: mostPopularMovies.page,
+      results: data.results.slice(0, SPOTLIGHT_CONTENT_NUM),
+      page: data.page,
     });
   } catch (err) {
-    console.error(`(model.js::fetchPopularMovies()) ${err}`);
+    console.error(`(model.js::fetchMostPopularMovies()) ${err}`);
     throw err;
-  }
-};
-
-/////////////////////////////////////////////////
-///////// Fetches trailer URL of spotlight
-///////// movies
-/////////////////////////////////////////////////
-
-export const fetchTrailerURLOfSpotlightMovies = async function () {
-  for (let i = 0; i < state.movieSpotlightInfo.length; i++) {
-    const movieId = state.movieSpotlightInfo[i].id;
-    const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?language=en-US`, OPTIONS);
-    const { results: urls } = await response.json();
-
-    state.movieSpotlightInfo[i].trailerUrl = "";
-
-    if (urls.length === 1) {
-      state.movieSpotlightInfo[i].trailerUrl = urls[0].key;
-    } else {
-      for (let j = 0; j < urls.length; j++) {
-        if (
-          urls[j].official &&
-          urls[j].type.toLowerCase() === "trailer" &&
-          urls[j].name.toLowerCase().includes("official") &&
-          urls[j].name.toLowerCase().includes("trailer")
-        ) {
-          state.movieSpotlightInfo[i].trailerUrl = urls[j].key;
-        } else if (
-          !state.movieSpotlightInfo[i].trailerUrl &&
-          urls[j].official &&
-          urls[j].type.toLowerCase() === "trailer"
-        ) {
-          state.movieSpotlightInfo[i].trailerUrl = urls[j].key;
-        }
-      }
-    }
   }
 };
 
@@ -161,17 +133,12 @@ export const fetchTopRatedMovies = async function (page) {
   if (state.topRatedMoviesInfo.length !== 0) return;
 
   try {
-    const response = await fetch(
-      `${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}`
-        .concat(`&primary_release_date.gte=2020-01-01&release_date.gte=2020-01-01&sort_by=popularity.desc`)
-        .concat(`&vote_average.gte=8&vote_count.gte=100&with_original_language=en&without_genres=16`),
-      OPTIONS
-    );
-    const topRatedMovies = await response.json();
+    const response = await fetch(`${BASE_URL}${TOP_RATED_INTER_URL}page=${page}`, OPTIONS);
+    const data = await response.json();
 
     state.topRatedMoviesInfo.push({
-      topRatedMovies: topRatedMovies.results,
-      page: topRatedMovies.page,
+      results: data.results,
+      page: data.page,
     });
   } catch (err) {
     console.error(`(model.js::fetchTopRatedMovies()) ${err}`);
@@ -183,17 +150,19 @@ export const fetchTopRatedMovies = async function (page) {
 ///////// Fetches movies by specified genres
 /////////////////////////////////////////////////
 
-export const fetchMoviesByGenre = async function () {
+export const fetchMoviesByGenre = async function (page) {
   if (state.moviesByGenreInfo.length !== 0) return;
 
   const movieGenresId = getMovieGenresId(MOST_POPULAR_GENRES);
 
+  fetch(`${BASE_URL}with_genres=12&page=1`, OPTIONS);
+
   try {
     const response = await Promise.all([
-      fetch(getMoviesByGenreURL(movieGenresId[0]), OPTIONS),
-      fetch(getMoviesByGenreURL(movieGenresId[1]), OPTIONS),
-      fetch(getMoviesByGenreURL(movieGenresId[2]), OPTIONS),
-      fetch(getMoviesByGenreURL(movieGenresId[3]), OPTIONS),
+      fetch(`${BASE_URL}${MOVIE_BY_GENRE_INTER_URL}with_genres=${movieGenresId[0]}&page=${page}`, OPTIONS),
+      fetch(`${BASE_URL}${MOVIE_BY_GENRE_INTER_URL}with_genres=${movieGenresId[1]}&page=${page}`, OPTIONS),
+      fetch(`${BASE_URL}${MOVIE_BY_GENRE_INTER_URL}with_genres=${movieGenresId[2]}&page=${page}`, OPTIONS),
+      fetch(`${BASE_URL}${MOVIE_BY_GENRE_INTER_URL}with_genres=${movieGenresId[3]}&page=${page}`, OPTIONS),
     ]);
     const moviesByGenre = await Promise.all([
       response[0].json(),
@@ -226,7 +195,7 @@ export const fetchBackdropsOfTrackMovies = async function () {
     for (let i = 0; i < state.movieTracksInfo.length; i++) {
       for (let j = 0; j < state.movieTracksInfo[i].movies.length; j++) {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${state.movieTracksInfo[i].movies[j].id}/images?include_image_language=en`,
+          `${BASE_URL}/movie/${state.movieTracksInfo[i].movies[j].id}/images?include_image_language=en`,
           OPTIONS
         );
         const imgObj = await response.json();
@@ -244,16 +213,52 @@ export const fetchBackdropsOfTrackMovies = async function () {
 };
 
 /////////////////////////////////////////////////
+///////// Fetches trailer URL of spotlight
+///////// movies
+/////////////////////////////////////////////////
+
+export const fetchTrailerKeyOfSpotlightMovies = async function () {
+  for (let i = 0; i < state.movieSpotlightInfo.length; i++) {
+    const movieId = state.movieSpotlightInfo[i].id;
+    const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?language=en-US`, OPTIONS);
+    const { results: urls } = await response.json();
+
+    state.movieSpotlightInfo[i].trailerUrl = "";
+
+    if (urls.length === 1) {
+      state.movieSpotlightInfo[i].trailerUrl = urls[0].key;
+    } else {
+      for (let j = 0; j < urls.length; j++) {
+        if (
+          urls[j].official &&
+          urls[j].type.toLowerCase() === "trailer" &&
+          urls[j].name.toLowerCase().includes("official") &&
+          urls[j].name.toLowerCase().includes("trailer")
+        ) {
+          state.movieSpotlightInfo[i].trailerUrl = urls[j].key;
+        } else if (
+          !state.movieSpotlightInfo[i].trailerUrl &&
+          urls[j].official &&
+          urls[j].type.toLowerCase() === "trailer"
+        ) {
+          state.movieSpotlightInfo[i].trailerUrl = urls[j].key;
+        }
+      }
+    }
+  }
+};
+
+/////////////////////////////////////////////////
 ///////// Determines which movies are in the
 ///////// spotlight (i.e. top 3 most popular)
 /////////////////////////////////////////////////
 
-export const determineMovieSpotlightContent = function () {
+export const determineSpotlightMovies = function () {
   if (state.mostPopularMoviesInfo.length === 0) return;
 
-  const mostPopularMovies = state.mostPopularMoviesInfo[0].mostPopularMovies;
+  const mostPopularMovies = state.mostPopularMoviesInfo[0].results;
 
-  for (let i = 1; i < SPOTLIGHT_CONTENT_NUM * POPULAR_MOVIE_SKIP_OFFSET; i += POPULAR_MOVIE_SKIP_OFFSET) {
+  for (let i = 0; i < SPOTLIGHT_CONTENT_NUM; i++) {
     let entry = {};
 
     entry.id = mostPopularMovies[i].id;
@@ -280,12 +285,12 @@ export const determineMovieSpotlightContent = function () {
 ///////// track
 /////////////////////////////////////////////////
 
-export const determineMovieTracksContent = function () {
+export const determineTrackMovies = function () {
   state.movieTracksInfo.push(
-    { heading: TOP_TRACK_HEADING, movies: state.topRatedMoviesInfo[0].topRatedMovies }
-    // { heading: state.moviesByGenreInfo[0].genre, movies: state.moviesByGenreInfo[0].results.movies.slice(0, 10) },
-    // { heading: state.moviesByGenreInfo[1].genre, movies: state.moviesByGenreInfo[1].results.movies.slice(0, 10) },
-    // { heading: state.moviesByGenreInfo[2].genre, movies: state.moviesByGenreInfo[2].results.movies.slice(0, 10) },
-    // { heading: state.moviesByGenreInfo[3].genre, movies: state.moviesByGenreInfo[3].results.movies.slice(0, 10) }
+    { heading: TOP_TRACK_HEADING, movies: state.topRatedMoviesInfo[0].results },
+    { heading: state.moviesByGenreInfo[0].genre, movies: state.moviesByGenreInfo[0].results.movies },
+    { heading: state.moviesByGenreInfo[1].genre, movies: state.moviesByGenreInfo[1].results.movies },
+    { heading: state.moviesByGenreInfo[2].genre, movies: state.moviesByGenreInfo[2].results.movies },
+    { heading: state.moviesByGenreInfo[3].genre, movies: state.moviesByGenreInfo[3].results.movies }
   );
 };

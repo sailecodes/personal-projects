@@ -1,4 +1,8 @@
-import { SO_TITLE_MAX_WIDTH, SO_CTITLE_TRANS_DURATION_RATIO, SO_CTITLE_TRANS_DELAY_OFFSET } from "../../config.js";
+import {
+  SO_TITLE_MAX_WIDTH,
+  SO_CLIPPED_TITLE_TRANS_DURATION_RATIO,
+  SO_CLIPPED_TITLE_TRANS_DELAY_OFFSET,
+} from "../../config.js";
 
 /**
  * Handles the view of the spotlight overview
@@ -14,7 +18,7 @@ class SpotlightOverviewView {
   #spotlightOverviewGenres;
   #spotlightOverviewDesc;
 
-  #CustomEventClippedTitleAnimDone;
+  #customEventClippedTitleAnimDone;
   #clippedTitleAnimId;
 
   /**
@@ -29,7 +33,7 @@ class SpotlightOverviewView {
     this.#spotlightOverviewReleaseDate = this.#spotlightOverview.querySelector(".content-spotlight--overview-date");
     this.#spotlightOverviewGenres = this.#spotlightOverview.querySelector(".content-spotlight--overview-genres");
     this.#spotlightOverviewDesc = this.#spotlightOverview.querySelector(".content-spotlight--overview-description");
-    this.#CustomEventClippedTitleAnimDone = new Event("clippedTitleAnimDone");
+    this.#customEventClippedTitleAnimDone = new Event("clippedTitleAnimDone");
   }
 
   /**
@@ -87,9 +91,13 @@ class SpotlightOverviewView {
     this.addOnMarkerClickedHandler();
   }
 
-  // TODO: Maybe needed in the future if the spotlight is dynamically changed while on the website
-  //       and spotlightContent needs to be updated so the handlers can use the right data. Maybe
-  //       should be a handler, waiting for the signal that the spotlight content has been updated
+  /**
+   *
+   *
+   * TODO: Maybe needed in the future if the spotlight is dynamically changed while on the website
+   *       and spotlightContent needs to be updated so the handlers can use the right data. Maybe
+   *       should be a handler, waiting for the signal that the spotlight content has been updated
+   */
   reassignSpotlightContent() {}
 
   /**
@@ -123,7 +131,7 @@ class SpotlightOverviewView {
     if (this.#spotlightOverviewTitleClipCntr.offsetWidth >= this.#spotlightOverviewTitleClipCntr.scrollWidth) return;
 
     const transitionDuration = Math.ceil(
-      this.#spotlightOverviewTitleClipCntr.scrollWidth / SO_CTITLE_TRANS_DURATION_RATIO
+      this.#spotlightOverviewTitleClipCntr.scrollWidth / SO_CLIPPED_TITLE_TRANS_DURATION_RATIO
     );
 
     this.#spotlightOverviewTitle.style.transitionDuration = `${transitionDuration}s`;
@@ -133,8 +141,8 @@ class SpotlightOverviewView {
 
     this.#spotlightOverviewTitle.style.left = `-${leftOver}%`;
     this.#clippedTitleAnimId = setTimeout(
-      () => this.#spotlightOverviewTitle.dispatchEvent(this.#CustomEventClippedTitleAnimDone),
-      `${transitionDuration * 1000 + SO_CTITLE_TRANS_DELAY_OFFSET}`
+      () => this.#spotlightOverviewTitle.dispatchEvent(this.#customEventClippedTitleAnimDone),
+      `${transitionDuration * 1000 + SO_CLIPPED_TITLE_TRANS_DELAY_OFFSET}`
     );
   }
 
@@ -179,8 +187,10 @@ class SpotlightOverviewView {
    * Similar functionality to this.addOnSpotlightBtnClickedHandler() but upon clicking the left and right arrow keys
    */
   addOnArrowKeyClickedHandler() {
-    document.addEventListener("keydown", () => {
-      this.#resetSpotlightAndOverview();
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        this.#resetSpotlightAndOverview();
+      }
     });
   }
 

@@ -105,9 +105,9 @@ class SpotlightSliderView {
 
   #addBtnHoverShadow(e, flag) {
     if (e.currentTarget.classList.contains("content-spotlight--left-btn")) {
-      document.querySelector(".slider-shadow-left").style.width = flag ? "7rem" : "0rem";
+      document.querySelector(".slider-shadow-left-bg").style.width = flag ? "7rem" : "0rem";
     } else if (e.currentTarget.classList.contains("content-spotlight--right-btn")) {
-      document.querySelector(".slider-shadow-right").style.width = flag ? "7rem" : "0rem";
+      document.querySelector(".slider-shadow-right-bg").style.width = flag ? "7rem" : "0rem";
     }
   }
 }

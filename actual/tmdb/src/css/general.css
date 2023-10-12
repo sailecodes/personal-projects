@@ -1,5 +1,3 @@
-/* ---- VARIABLES ---- */
-
 :root {
   /* Font size */
   --fs-general: 62.5%;
@@ -30,8 +28,6 @@
   --c-rating-bad: #ffa534;
   --c-rating-worst: #ff4545;
 }
-
-/* ---- HIGHEST LEVEL ---- */
 
 * {
   margin: 0;

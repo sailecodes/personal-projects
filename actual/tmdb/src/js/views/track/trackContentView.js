@@ -7,8 +7,6 @@ class TrackContentView {
   initVars(trackContent) {
     this.#trackContent = trackContent;
     this.#track = document.querySelector(".content-tracks");
-
-    console.log(this.#trackContent);
   }
 
   initDefaultState() {
@@ -64,6 +62,9 @@ class TrackContentView {
                 <path class="path" stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
               </svg>
           </button>
+
+          <div class="slider-shadow-left-sm"></div>
+          <div class="slider-shadow-right-sm"></div>
         </div>`
       );
     });

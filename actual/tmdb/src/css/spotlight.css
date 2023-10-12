@@ -1,16 +1,10 @@
 .content-spotlight {
   position: relative;
 
-  background-color: #000;
-
   height: 48rem;
 
   margin-bottom: 6rem;
 
-  overflow: hidden;
-}
-
-.content-spotlight--slider {
   overflow: hidden;
 }
 
@@ -264,6 +258,10 @@
   position: absolute;
   z-index: 50;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background: none;
 
   border: none;
@@ -299,7 +297,7 @@
   height: 3.6rem;
 }
 
-.slider-shadow-right {
+.slider-shadow-right-bg {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -313,7 +311,7 @@
   transition: width 0.3s ease-out;
 }
 
-.slider-shadow-left {
+.slider-shadow-left-bg {
   position: absolute;
   bottom: 0;
   z-index: 49;

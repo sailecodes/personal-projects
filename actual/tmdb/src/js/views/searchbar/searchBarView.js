@@ -1,7 +1,13 @@
 class SearchBarView {
-  #searchContainer = document.querySelector(".nav-bar--search-form");
-  #searchBar = document.querySelector(".nav-bar--search-bar");
-  #searchBarBtn = document.querySelector(".nav-bar--search-bar-btn");
+  #searchContainer;
+  #searchBar;
+  #searchBarBtn;
+
+  initVars() {
+    this.#searchContainer = document.querySelector(".nav-bar--search-form");
+    this.#searchBar = document.querySelector(".nav-bar--search-bar");
+    this.#searchBarBtn = document.querySelector(".nav-bar--search-bar-btn");
+  }
 
   initHandlers() {
     this.#addSearchHandler();
@@ -23,12 +29,14 @@ class SearchBarView {
 
   #addSearchBarHandler() {
     this.#searchBarBtn.addEventListener("mouseenter", () => {
-      this.#changeSearchBarStyle(true);
-      this.#searchContainer.addEventListener("mouseleave", this.#changeSearchBarStyle.bind(this, false));
+      this.#toggleSearchBar(true);
+      this.#searchContainer.addEventListener("mouseleave", (e) => {
+        this.#toggleSearchBar(false);
+      });
     });
   }
 
-  #changeSearchBarStyle(flag) {
+  #toggleSearchBar(flag) {
     this.#searchBar.style.width = flag ? "36rem" : "0rem";
     this.#searchBar.style.padding = flag ? "0 1rem 0 1rem" : "0rem";
   }

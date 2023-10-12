@@ -16,14 +16,52 @@ class TrackSliderView {
   }
 
   initHandlers() {
-    this.addOnSliderHoverHandler();
-    this.addOnSliderBtnClickHandler();
+    this.addOnSliderHoveredHandler();
+    this.addOnSliderBtnClickedHandler();
+    this.addOnBtnHoveredHandler();
+  }
+
+  /**
+   * Handles the visibility of the shadows when hovering over a track button
+   */
+  addOnBtnHoveredHandler() {
+    this.#trackParent.addEventListener("mouseover", (e) => {
+      const btn = e.target.closest(".content-tracks--btn");
+
+      if (btn) {
+        if (btn.classList.contains("content-tracks--left-btn")) {
+          this.#addBtnHoverShadow(btn, false, true);
+        } else if (btn.classList.contains("content-tracks--right-btn")) {
+          this.#addBtnHoverShadow(btn, true, true);
+        }
+      }
+    });
+
+    this.#trackParent.addEventListener("mouseout", (e) => {
+      const btn = e.target.closest(".content-tracks--btn");
+
+      if (btn) {
+        if (btn.classList.contains("content-tracks--left-btn")) {
+          this.#addBtnHoverShadow(btn, false, false);
+        } else if (btn.classList.contains("content-tracks--right-btn")) {
+          this.#addBtnHoverShadow(btn, true, false);
+        }
+      }
+    });
+  }
+
+  #addBtnHoverShadow(btn, btnFlag, toggleFlag) {
+    const trackSliderShadow = btn
+      .closest(".content-tracks--section")
+      .querySelector(btnFlag ? ".slider-shadow-right-sm" : ".slider-shadow-left-sm");
+
+    trackSliderShadow.style.width = toggleFlag ? "3rem" : "0rem";
   }
 
   /**
    *  Handles the visibility of the track markers
    */
-  addOnSliderHoverHandler() {
+  addOnSliderHoveredHandler() {
     this.#trackSections.forEach((section) => {
       section.addEventListener("mouseenter", (e) => {
         section.querySelector(".content-tracks--section-slider-markers").style.width = "6rem";
@@ -42,7 +80,7 @@ class TrackSliderView {
    *
    * Note: Clicking a button too fast (from rendering) results in e.target === <path ... />
    */
-  addOnSliderBtnClickHandler() {
+  addOnSliderBtnClickedHandler() {
     this.#trackParent.addEventListener("click", (e) => {
       const btn = e.target.closest(".content-tracks--btn");
 
@@ -90,13 +128,9 @@ class TrackSliderView {
 
   #makeSliderLeftBtnVisible(btn) {
     const leftBtn = btn.previousElementSibling;
-
-    if (leftBtn.style.opacity === "1") return;
-
     leftBtn.style.opacity = "1";
   }
 
-  // FIXME: (BUG) Right --> Left, Image appears immediately on the left side
   #displayNextContentBatch(btn, dirFlag) {
     const slider = dirFlag ? btn.previousElementSibling.previousElementSibling : btn.previousElementSibling;
     const sliderContent = Array.from(slider.querySelectorAll(".content-tracks--section-slider-content"));
@@ -156,13 +190,13 @@ class TrackSliderView {
     slider.insertAdjacentHTML(
       "beforeend",
       `
-          <div class="content-tracks--section-slider-content" style="transform: translateX(${actualNewTranslateVal}%)">
-            <img
-              class="content-tracks--section-slider-content-img"
-              src="${imgElement.src}"
-            />
-          </div>
-        `
+      <div class="content-tracks--section-slider-content" style="transform: translateX(${actualNewTranslateVal}%)">
+        <img
+          class="content-tracks--section-slider-content-img"
+          src="${imgElement.src}"
+        />
+      </div>
+      `
     );
 
     content.remove();
