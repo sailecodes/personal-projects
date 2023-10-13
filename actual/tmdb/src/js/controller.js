@@ -14,6 +14,7 @@ import spotlightSliderView from "./views/spotlight/spotlightSliderView.js";
 import spotlightOverviewView from "./views/spotlight/spotlightOverviewView.js";
 import trackContentView from "./views/track/trackContentView.js";
 import trackSliderView from "./views/track/trackSliderView.js";
+import trackOverviewView from "./views/track/trackOverviewView.js";
 
 /////////////////////////////////////////////////
 ///////// Search bar functionality
@@ -98,52 +99,9 @@ const controlMovieTracks = async function () {
 const movieInit = async function () {
   await controlMovieDefaultState();
   await Promise.all([controlMovieSpotlight() /*, controlMovieTracks()*/]);
+
+  trackOverviewView.initVars();
+  trackOverviewView.initHandlers();
 };
 
 movieInit();
-
-///////////////////////////////////////////////////////////////
-
-// FIXME: inefficient
-document.querySelectorAll(".content-tracks--section-slider-content").forEach((sliderContent) => {
-  let overviewTransId;
-
-  sliderContent.addEventListener("mouseenter", () => {
-    clearTimeout(overviewTransId);
-
-    const prevTransformStr = sliderContent.style.transform;
-    const prevTransformVal = Number(prevTransformStr.slice(11, prevTransformStr.indexOf("%")));
-
-    sliderContent.style.zIndex = "48";
-    sliderContent.style.transition = "filter 0.8s, transform 1.3s cubic-bezier(0.17, 0.84, 0.44, 1)";
-    sliderContent.style.transformOrigin =
-      prevTransformVal === 0 ? "left" : prevTransformVal === 418 ? "right" : "center";
-    sliderContent.style.transform = sliderContent.style.transform.concat(" scale(1.3)");
-
-    const overviewImg = sliderContent.querySelector(".content-tracks--overview-img");
-    overviewImg.style.borderRadius = "4px 4px 0 0";
-
-    const overviewMeta = sliderContent.querySelector(".content-tracks--overview-meta");
-    overviewMeta.style.opacity = "1";
-    overviewMeta.style.pointerEvents = "auto";
-  });
-
-  sliderContent.addEventListener("mouseleave", () => {
-    const prevTransform = sliderContent.style.transform;
-    sliderContent.style.zIndex = "47";
-    sliderContent.style.transform = prevTransform.slice(0, prevTransform.indexOf(" "));
-    sliderContent.style.transition = "filter 0.8s, transform 0.6s cubic-bezier(0.17, 0.84, 0.44, 1)";
-
-    const overviewImg = sliderContent.querySelector(".content-tracks--overview-img");
-    overviewImg.style.borderRadius = "4px";
-
-    const overviewMeta = sliderContent.querySelector(".content-tracks--overview-meta");
-    overviewMeta.style.opacity = "0";
-    overviewMeta.style.pointerEvents = "none";
-
-    overviewTransId = setTimeout(() => {
-      sliderContent.style.transition = "filter 0.8s, transform 2.5s cubic-bezier(0.17, 0.84, 0.44, 1)";
-      sliderContent.style.transformOrigin = "center";
-    }, 1000);
-  });
-});
