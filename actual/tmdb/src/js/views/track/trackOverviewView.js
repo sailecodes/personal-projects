@@ -26,7 +26,7 @@ class TrackOverviewView {
             const trailerIframe = sliderContent.querySelector(".content-tracks--trailer");
             const trailerIframeAttrFlag = trailerIframe.allow === "autoplay";
 
-            this.#changeTrailerBtnIcon(e, trailerIframeAttrFlag);
+            this.#changeTrailerBtnIcon(e.target, trailerIframeAttrFlag);
 
             trailerIframe.style.transitionDuration = trailerIframeAttrFlag ? "0.1s" : "1s";
             trailerIframe.style.transitionDelay = trailerIframeAttrFlag ? "0s" : "1s";
@@ -40,8 +40,8 @@ class TrackOverviewView {
     });
   }
 
-  #changeTrailerBtnIcon(e, trailerIframeAttrFlag) {
-    const overviewTrailerBtn = e.target.closest(".content-tracks--overview-trailer-btn");
+  #changeTrailerBtnIcon(target, trailerIframeAttrFlag) {
+    const overviewTrailerBtn = target.closest(".content-tracks--overview-trailer-btn");
 
     overviewTrailerBtn.innerHTML = "";
     overviewTrailerBtn.insertAdjacentHTML(
@@ -126,10 +126,9 @@ class TrackOverviewView {
           return;
         }
 
-        sliderContent.style.zIndex = "47";
+        this.#resetTrailerFeatures(sliderContent);
 
         const currTransformStr = sliderContent.style.transform;
-
         sliderContent.style.transform = currTransformStr.slice(0, currTransformStr.indexOf(" "));
         sliderContent.style.transition = "filter 0.8s, transform 0.6s cubic-bezier(0.17, 0.84, 0.44, 1)";
 
@@ -146,12 +145,27 @@ class TrackOverviewView {
         //       unhovering during the first sequence causes execution of the code below
         overviewTransitionId = setTimeout(() => {
           // this.#canSeeOverview = true;
-          // sliderContent.style.zIndex = "47";
+          sliderContent.style.zIndex = "47";
           sliderContent.style.transition = "filter 0.8s, transform 2.5s cubic-bezier(0.17, 0.84, 0.44, 1)";
           sliderContent.style.transformOrigin = "center";
         }, 500);
       });
     }
+  }
+
+  #resetTrailerFeatures(sliderContent) {
+    const overviewTrailerBtn = sliderContent.querySelector(".content-tracks--overview-trailer-btn");
+
+    this.#changeTrailerBtnIcon(overviewTrailerBtn, true);
+
+    const trailerIframe = sliderContent.querySelector(".content-tracks--trailer");
+
+    trailerIframe.style.transitionDuration = "0.1s";
+    trailerIframe.style.transitionDelay = "0s";
+    trailerIframe.style.opacity = "0";
+
+    trailerIframe.allow = "";
+    trailerIframe.src = trailerIframe.src;
   }
 
   // TODO: Could be a utility function
