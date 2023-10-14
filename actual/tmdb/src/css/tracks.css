@@ -230,7 +230,7 @@
 
   overflow: hidden;
 
-  transition: opacity 0.2s, min-height 0.3s;
+  transition: opacity 0.1s, min-height 0.3s;
 }
 
 .content-tracks--overview-meta:hover {

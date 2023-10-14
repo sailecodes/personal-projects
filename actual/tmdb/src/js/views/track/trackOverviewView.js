@@ -1,10 +1,16 @@
 class TrackOverviewView {
+  /** DOM elements */
   #sliderContents;
-  #canSeeOverview;
+
+  /** Meta fields */
+  #enlargeContentDelayIds;
+  #currContentHoveredPos;
+  #hasHovered;
+  #resetDelayFinished;
 
   initVars() {
     this.#sliderContents = document.querySelectorAll(".content-tracks--section-slider-content");
-    this.#canSeeOverview = true;
+    this.#enlargeContentDelayIds = [];
   }
 
   initHandlers() {
@@ -40,8 +46,121 @@ class TrackOverviewView {
     });
   }
 
-  #changeTrailerBtnIcon(target, trailerIframeAttrFlag) {
-    const overviewTrailerBtn = target.closest(".content-tracks--overview-trailer-btn");
+  addOnContentHoveredHandler() {
+    for (let i = 0; i < this.#sliderContents.length; i++) {
+      const sliderContent = this.#sliderContents[i];
+      let overviewDelayResetId;
+
+      sliderContent.addEventListener("mouseenter", async () => {
+        this.#enlargeContentDelayIds.forEach((id) => {
+          clearTimeout(id);
+        });
+
+        const currTransformVal = this.#getTransformVal(sliderContent.style.transform);
+        console.log("hovered", currTransformVal, " current pos hovered", this.#currContentHoveredPos);
+
+        if (sliderContent.style.transform.includes("scale(1.3)")) {
+          return;
+        } else if (this.#hasHovered) {
+          if (!this.#resetDelayFinished && this.#currContentHoveredPos !== currTransformVal) {
+            console.log(
+              "delay start",
+              " hovered",
+              currTransformVal,
+              " current pos hovered",
+              this.#currContentHoveredPos
+            );
+            await this.#delay(401);
+            console.log("delay end", " hovered", currTransformVal, " current pos hovered", this.#currContentHoveredPos);
+            if (sliderContent.style.transform.includes("scale(1.3)")) {
+              return;
+            }
+          }
+        } // else if (!this.#canSeeOverview) {
+        //   await this.#delay(400);
+        //   console.log("after delay");
+
+        //   // Note: Hovering over an unscaled content and causing a delay, then hovering
+        //   //       over the same content and causing a delay causes a bug where the first
+        //   //       sequence enlarges the content AFTER the first if-check or DURING the
+        //   //       delay of the second sequence, which results in scaling twice or more
+        //   if (sliderContent.style.transform.includes("scale(1.3)")) {
+        //     return;
+        //   }
+        // }
+
+        clearTimeout(overviewDelayResetId);
+
+        this.#hasHovered = true;
+
+        this.#currContentHoveredPos = currTransformVal;
+
+        console.log("enlarging", currTransformVal, " current pos hovered", this.#currContentHoveredPos);
+
+        sliderContent.style.zIndex = "48";
+        sliderContent.style.transition = "filter 0.8s, transform 1.2s cubic-bezier(0.17, 0.84, 0.44, 1)";
+        sliderContent.style.transformOrigin =
+          currTransformVal === 0 ? "left" : currTransformVal === 418 ? "right" : "center";
+        sliderContent.style.transform = sliderContent.style.transform.concat(" scale(1.3)");
+
+        const overviewImg = sliderContent.querySelector(".content-tracks--overview-img");
+        overviewImg.style.borderRadius = "4px 4px 0 0";
+
+        const overviewMeta = sliderContent.querySelector(".content-tracks--overview-meta");
+        overviewMeta.style.opacity = "1";
+        overviewMeta.style.pointerEvents = "auto";
+      });
+
+      sliderContent.addEventListener("mouseleave", () => {
+        if (!sliderContent.style.transform.includes("scale(1.3)")) return;
+
+        this.#resetTrailerFeatures(sliderContent);
+
+        const currTransformStr = sliderContent.style.transform;
+        sliderContent.style.transform = currTransformStr.slice(0, currTransformStr.indexOf(" "));
+        sliderContent.style.transition = "filter 0.8s, transform 0.6s cubic-bezier(0.17, 0.84, 0.44, 1)";
+
+        console.log("shrinking", currTransformStr);
+
+        const overviewImg = sliderContent.querySelector(".content-tracks--overview-img");
+        overviewImg.style.borderRadius = "4px";
+
+        const overviewMeta = sliderContent.querySelector(".content-tracks--overview-meta");
+        overviewMeta.style.minHeight = "3.5rem";
+        overviewMeta.style.opacity = "0";
+        overviewMeta.style.pointerEvents = "none";
+
+        this.#resetDelayFinished = false;
+
+        overviewDelayResetId = setTimeout(() => {
+          console.log("resetting", currTransformStr);
+
+          sliderContent.style.zIndex = "47";
+          sliderContent.style.transition = "filter 0.8s, transform 2.5s cubic-bezier(0.17, 0.84, 0.44, 1)";
+
+          this.#resetDelayFinished = true;
+        }, 400);
+      });
+    }
+  }
+
+  #resetTrailerFeatures(sliderContent) {
+    const overviewTrailerBtn = sliderContent.querySelector(".content-tracks--overview-trailer-btn");
+
+    this.#changeTrailerBtnIcon(overviewTrailerBtn, true);
+
+    const trailerIframe = sliderContent.querySelector(".content-tracks--trailer");
+
+    trailerIframe.style.transitionDuration = "0.1s";
+    trailerIframe.style.transitionDelay = "0s";
+    trailerIframe.style.opacity = "0";
+
+    trailerIframe.allow = "";
+    trailerIframe.src = trailerIframe.src;
+  }
+
+  #changeTrailerBtnIcon(element, trailerIframeAttrFlag) {
+    const overviewTrailerBtn = element.closest(".content-tracks--overview-trailer-btn");
 
     overviewTrailerBtn.innerHTML = "";
     overviewTrailerBtn.insertAdjacentHTML(
@@ -80,98 +199,11 @@ class TrackOverviewView {
     );
   }
 
-  addOnContentHoveredHandler() {
-    for (let i = 0; i < this.#sliderContents.length; i++) {
-      const sliderContent = this.#sliderContents[i];
-      let overviewTransitionId;
-
-      sliderContent.addEventListener("mouseenter", async () => {
-        if (sliderContent.style.transform.includes("scale(1.3)")) {
-          return;
-        } // else if (!this.#canSeeOverview) {
-        //   await this.#delay(400);
-        //   console.log("after delay");
-
-        //   // Note: Hovering over an unscaled content and causing a delay, then hovering
-        //   //       over the same content and causing a delay causes a bug where the first
-        //   //       sequence enlarges the content AFTER the first if-check or DURING the
-        //   //       delay of the second sequence, which results in scaling twice or more
-        //   if (sliderContent.style.transform.includes("scale(1.3)")) {
-        //     return;
-        //   }
-        // }
-
-        // this.#canSeeOverview = false;
-
-        clearTimeout(overviewTransitionId);
-
-        const currTransformVal = this.#getTransformVal(sliderContent.style.transform);
-
-        sliderContent.style.zIndex = "48";
-        sliderContent.style.transition = "filter 0.8s, transform 1.2s cubic-bezier(0.17, 0.84, 0.44, 1)";
-        sliderContent.style.transformOrigin =
-          currTransformVal === 0 ? "left" : currTransformVal === 418 ? "right" : "center";
-        sliderContent.style.transform = sliderContent.style.transform.concat(" scale(1.3)");
-
-        const overviewImg = sliderContent.querySelector(".content-tracks--overview-img");
-        overviewImg.style.borderRadius = "4px 4px 0 0";
-
-        const overviewMeta = sliderContent.querySelector(".content-tracks--overview-meta");
-        overviewMeta.style.opacity = "1";
-        overviewMeta.style.pointerEvents = "auto";
-      });
-
-      sliderContent.addEventListener("mouseleave", () => {
-        if (!sliderContent.style.transform.includes("scale(1.3)")) {
-          return;
-        }
-
-        this.#resetTrailerFeatures(sliderContent);
-
-        const currTransformStr = sliderContent.style.transform;
-        sliderContent.style.transform = currTransformStr.slice(0, currTransformStr.indexOf(" "));
-        sliderContent.style.transition = "filter 0.8s, transform 0.6s cubic-bezier(0.17, 0.84, 0.44, 1)";
-
-        const overviewImg = sliderContent.querySelector(".content-tracks--overview-img");
-        overviewImg.style.borderRadius = "4px";
-
-        const overviewMeta = sliderContent.querySelector(".content-tracks--overview-meta");
-        overviewMeta.style.minHeight = "3.5rem";
-        overviewMeta.style.opacity = "0";
-        overviewMeta.style.pointerEvents = "none";
-
-        // Note: Unhovering over a content and immediately hovering over another causes a
-        //       bug where this.#canSeeOverview = true DURING the second sequence because
-        //       unhovering during the first sequence causes execution of the code below
-        overviewTransitionId = setTimeout(() => {
-          // this.#canSeeOverview = true;
-          sliderContent.style.zIndex = "47";
-          sliderContent.style.transition = "filter 0.8s, transform 2.5s cubic-bezier(0.17, 0.84, 0.44, 1)";
-          sliderContent.style.transformOrigin = "center";
-        }, 500);
-      });
-    }
-  }
-
-  #resetTrailerFeatures(sliderContent) {
-    const overviewTrailerBtn = sliderContent.querySelector(".content-tracks--overview-trailer-btn");
-
-    this.#changeTrailerBtnIcon(overviewTrailerBtn, true);
-
-    const trailerIframe = sliderContent.querySelector(".content-tracks--trailer");
-
-    trailerIframe.style.transitionDuration = "0.1s";
-    trailerIframe.style.transitionDelay = "0s";
-    trailerIframe.style.opacity = "0";
-
-    trailerIframe.allow = "";
-    trailerIframe.src = trailerIframe.src;
-  }
-
   // TODO: Could be a utility function
   #delay(time) {
     return new Promise((resolve) => {
-      setTimeout(() => resolve(), time);
+      const enlargeContentDelayId = setTimeout(() => resolve(), time);
+      this.#enlargeContentDelayIds.push(enlargeContentDelayId);
     });
   }
 
