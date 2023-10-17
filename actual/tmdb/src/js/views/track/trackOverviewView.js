@@ -4,6 +4,8 @@ class TrackOverviewView {
 
   /** Meta fields */
   #enlargeContentDelayIds;
+  #overviewDelayResetId;
+  #currContentHovered;
   #currContentHoveredPos;
   #hasHovered;
   #resetDelayFinished;
@@ -14,11 +16,11 @@ class TrackOverviewView {
   }
 
   initHandlers() {
-    this.addOnBtnIconClickedHandler();
-    this.addOnContentHoveredHandler();
+    this.handleOnMetaBtnIconClicked();
+    this.handleOnContentHoveredAndUnhovered();
   }
 
-  addOnBtnIconClickedHandler() {
+  handleOnMetaBtnIconClicked() {
     this.#sliderContents.forEach((sliderContent) => {
       sliderContent.addEventListener("click", (e) => {
         if (e.target.closest(".content-tracks--overview-btn")) {
@@ -46,7 +48,7 @@ class TrackOverviewView {
     });
   }
 
-  addOnContentHoveredHandler() {
+  handleOnContentHoveredAndUnhovered() {
     for (let i = 0; i < this.#sliderContents.length; i++) {
       const sliderContent = this.#sliderContents[i];
       let overviewDelayResetId;
@@ -56,46 +58,32 @@ class TrackOverviewView {
           clearTimeout(id);
         });
 
+        // if (this.#currContentHovered === sliderContent) {
+        //   clearTimeout(this.#overviewDelayResetId);
+        // }
+
+        this.#currContentHovered = sliderContent;
         const currTransformVal = this.#getTransformVal(sliderContent.style.transform);
-        console.log("hovered", currTransformVal, " current pos hovered", this.#currContentHoveredPos);
 
         if (sliderContent.style.transform.includes("scale(1.3)")) {
           return;
         } else if (this.#hasHovered) {
           if (!this.#resetDelayFinished && this.#currContentHoveredPos !== currTransformVal) {
-            console.log(
-              "delay start",
-              " hovered",
-              currTransformVal,
-              " current pos hovered",
-              this.#currContentHoveredPos
-            );
             await this.#delay(401);
-            console.log("delay end", " hovered", currTransformVal, " current pos hovered", this.#currContentHoveredPos);
+
+            if (!sliderContent.matches(":hover")) {
+              return;
+            }
             if (sliderContent.style.transform.includes("scale(1.3)")) {
               return;
             }
           }
-        } // else if (!this.#canSeeOverview) {
-        //   await this.#delay(400);
-        //   console.log("after delay");
-
-        //   // Note: Hovering over an unscaled content and causing a delay, then hovering
-        //   //       over the same content and causing a delay causes a bug where the first
-        //   //       sequence enlarges the content AFTER the first if-check or DURING the
-        //   //       delay of the second sequence, which results in scaling twice or more
-        //   if (sliderContent.style.transform.includes("scale(1.3)")) {
-        //     return;
-        //   }
-        // }
+        }
 
         clearTimeout(overviewDelayResetId);
 
         this.#hasHovered = true;
-
         this.#currContentHoveredPos = currTransformVal;
-
-        console.log("enlarging", currTransformVal, " current pos hovered", this.#currContentHoveredPos);
 
         sliderContent.style.zIndex = "48";
         sliderContent.style.transition = "filter 0.8s, transform 1.2s cubic-bezier(0.17, 0.84, 0.44, 1)";
@@ -120,8 +108,6 @@ class TrackOverviewView {
         sliderContent.style.transform = currTransformStr.slice(0, currTransformStr.indexOf(" "));
         sliderContent.style.transition = "filter 0.8s, transform 0.6s cubic-bezier(0.17, 0.84, 0.44, 1)";
 
-        console.log("shrinking", currTransformStr);
-
         const overviewImg = sliderContent.querySelector(".content-tracks--overview-img");
         overviewImg.style.borderRadius = "4px";
 
@@ -133,8 +119,6 @@ class TrackOverviewView {
         this.#resetDelayFinished = false;
 
         overviewDelayResetId = setTimeout(() => {
-          console.log("resetting", currTransformStr);
-
           sliderContent.style.zIndex = "47";
           sliderContent.style.transition = "filter 0.8s, transform 2.5s cubic-bezier(0.17, 0.84, 0.44, 1)";
 

@@ -3,8 +3,8 @@
   flex-direction: column;
   gap: 4rem;
 
-  padding: 0 var(--padding-browser-side) 0 var(--padding-browser-side);
-  margin-bottom: 6rem;
+  padding: 6rem var(--padding-browser-side) 11rem var(--padding-browser-side);
+  /* margin-bottom: 6rem; */
 
   background-color: gray;
 }
@@ -222,7 +222,6 @@
   min-width: 25rem;
   min-height: 3.5rem;
 
-  pointer-events: none;
   opacity: 0;
 
   padding: 0.5rem;
