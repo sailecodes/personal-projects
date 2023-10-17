@@ -76,8 +76,20 @@ export const getMovieGenresId = function (movieGenresStr) {
   return movieGenresId;
 };
 
+const reformatEntry = function (entry) {
+  return {
+    id: entry.id,
+    title: entry.title,
+    releaseDate: entry.release_date,
+    genres: getMovieGenresStr(entry.genre_ids),
+    description: entry.overview,
+    rating: entry.vote_average,
+    backdropPath: `${BASE_URL_IMG}/${IMG_SIZE}${entry.backdrop_path}`,
+  };
+};
+
 /////////////////////////////////////////////////
-///////// Fetches movie genres
+///////// Fetch functions
 /////////////////////////////////////////////////
 
 export const fetchMovieGenres = async function () {
@@ -94,11 +106,7 @@ export const fetchMovieGenres = async function () {
   }
 };
 
-/////////////////////////////////////////////////
-///////// Fetches most popular movies
-/////////////////////////////////////////////////
-
-export const markUnqMovies = function (dataArr) {
+/*export const markUnqMovies = function (dataArr) {
   for (let i = 0; i < dataArr.length; i++) {
     for (let j = 0; j < dataArr[i].results.length; j++) {
       if (!state.mostPopularMoviesInfo.unqMovies.has(dataArr[i].results[j].id)) {
@@ -106,7 +114,7 @@ export const markUnqMovies = function (dataArr) {
       }
     }
   }
-};
+};*/
 
 export const fetchMostPopularMovies = async function (page) {
   if (state.mostPopularMoviesInfo.length !== 0) return;
@@ -116,18 +124,14 @@ export const fetchMostPopularMovies = async function (page) {
     const data = await response.json();
 
     state.mostPopularMoviesInfo.push({
-      results: data.results.slice(0, SPOTLIGHT_CONTENT_NUM),
       page: data.page,
+      results: data.results.slice(0, SPOTLIGHT_CONTENT_NUM),
     });
   } catch (err) {
     console.error(`(model.js::fetchMostPopularMovies()) ${err}`);
     throw err;
   }
 };
-
-/////////////////////////////////////////////////
-///////// Fetches top rated (popular) movies
-/////////////////////////////////////////////////
 
 export const fetchTopRatedMovies = async function (page) {
   if (state.topRatedMoviesInfo.length !== 0) return;
@@ -137,18 +141,16 @@ export const fetchTopRatedMovies = async function (page) {
     const data = await response.json();
 
     state.topRatedMoviesInfo.push({
-      results: data.results,
       page: data.page,
+      results: data.results.map((movie) => {
+        return reformatEntry(movie);
+      }),
     });
   } catch (err) {
     console.error(`(model.js::fetchTopRatedMovies()) ${err}`);
     throw err;
   }
 };
-
-/////////////////////////////////////////////////
-///////// Fetches movies by specified genres
-/////////////////////////////////////////////////
 
 export const fetchMoviesByGenre = async function (page) {
   if (state.moviesByGenreInfo.length !== 0) return;
@@ -176,7 +178,9 @@ export const fetchMoviesByGenre = async function (page) {
         genre: MOST_POPULAR_GENRES[index],
         results: {
           page: result.page,
-          movies: result.results,
+          movies: result.results.map((movie) => {
+            return reformatEntry(movie);
+          }),
         },
       });
     });
@@ -185,10 +189,6 @@ export const fetchMoviesByGenre = async function (page) {
     throw err;
   }
 };
-
-/////////////////////////////////////////////////
-///////// Fetches backdrops of track movies
-/////////////////////////////////////////////////
 
 export const fetchBackdropsOfTrackMovies = async function () {
   try {
@@ -200,7 +200,7 @@ export const fetchBackdropsOfTrackMovies = async function () {
         );
         const imgObj = await response.json();
 
-        state.movieTracksInfo[i].movies[j].trackBackdrop =
+        state.movieTracksInfo[i].movies[j].backdropPath =
           imgObj.backdrops.length === 0
             ? state.movieTracksInfo[i].movies[j].backdrop_path
             : imgObj.backdrops[0].file_path;
@@ -211,11 +211,6 @@ export const fetchBackdropsOfTrackMovies = async function () {
     throw err;
   }
 };
-
-/////////////////////////////////////////////////
-///////// Fetches trailer URL of spotlight
-///////// movies
-/////////////////////////////////////////////////
 
 export const fetchTrailerKeyOfSpotlightMovies = async function () {
   for (let i = 0; i < state.movieSpotlightInfo.length; i++) {
@@ -249,8 +244,7 @@ export const fetchTrailerKeyOfSpotlightMovies = async function () {
 };
 
 /////////////////////////////////////////////////
-///////// Determines which movies are in the
-///////// spotlight (i.e. top 3 most popular)
+///////// Determines website content
 /////////////////////////////////////////////////
 
 export const determineSpotlightMovies = function () {
@@ -258,32 +252,8 @@ export const determineSpotlightMovies = function () {
 
   const mostPopularMovies = state.mostPopularMoviesInfo[0].results;
 
-  for (let i = 0; i < SPOTLIGHT_CONTENT_NUM; i++) {
-    let entry = {};
-
-    entry.id = mostPopularMovies[i].id;
-    entry.title = mostPopularMovies[i].title;
-    entry.releaseDate = mostPopularMovies[i].release_date;
-
-    try {
-      entry.genres = getMovieGenresStr(mostPopularMovies[i].genre_ids);
-    } catch (err) {
-      console.error(`(module.js::determineMovieSpotlight()) ${err}`);
-      throw err;
-    }
-
-    entry.description = mostPopularMovies[i].overview;
-    entry.rating = mostPopularMovies[i].vote_average;
-    entry.backdropPath = `${BASE_URL_IMG}/${IMG_SIZE}${mostPopularMovies[i].backdrop_path}`;
-
-    state.movieSpotlightInfo.push(entry);
-  }
+  for (let i = 0; i < SPOTLIGHT_CONTENT_NUM; i++) state.movieSpotlightInfo.push(reformatEntry(mostPopularMovies[i]));
 };
-
-/////////////////////////////////////////////////
-///////// Determines which movies are in each
-///////// track
-/////////////////////////////////////////////////
 
 export const determineTrackMovies = function () {
   state.movieTracksInfo.push(

@@ -90,6 +90,9 @@ const controlMovieTracks = async function () {
   //
   trackSliderView.initVars();
   trackSliderView.initHandlers();
+
+  trackOverviewView.initVars();
+  trackOverviewView.initHandlers();
 };
 
 /////////////////////////////////////////////////
@@ -98,10 +101,7 @@ const controlMovieTracks = async function () {
 
 const movieInit = async function () {
   await controlMovieDefaultState();
-  await Promise.all([controlMovieSpotlight() /*, controlMovieTracks()*/]);
-
-  trackOverviewView.initVars();
-  trackOverviewView.initHandlers();
+  await Promise.all([controlMovieSpotlight(), controlMovieTracks()]);
 };
 
 movieInit();

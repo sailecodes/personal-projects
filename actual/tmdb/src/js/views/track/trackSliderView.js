@@ -10,21 +10,27 @@ class TrackSliderView {
   #trackParent;
   #trackSections;
 
+  /**
+   * Initializes class variables
+   */
   initVars() {
     this.#trackParent = document.querySelector(".content-tracks");
     this.#trackSections = document.querySelectorAll(".content-tracks--section");
   }
 
+  /**
+   * Initializes class handlers
+   */
   initHandlers() {
-    this.addOnSliderHoveredHandler();
-    this.addOnSliderBtnClickedHandler();
-    this.addOnBtnHoveredHandler();
+    this.handleSliderHovered();
+    this.handleSliderBtnClicked();
+    this.handleSliderBtnHovered();
   }
 
   /**
    * Handles the visibility of the shadows when hovering over a track button
    */
-  addOnBtnHoveredHandler() {
+  handleSliderBtnHovered() {
     this.#trackParent.addEventListener("mouseover", (e) => {
       const btn = e.target.closest(".content-tracks--btn");
 
@@ -61,7 +67,7 @@ class TrackSliderView {
   /**
    *  Handles the visibility of the track markers
    */
-  addOnSliderHoveredHandler() {
+  handleSliderHovered() {
     this.#trackSections.forEach((section) => {
       section.addEventListener("mouseenter", (e) => {
         section.querySelector(".content-tracks--section-slider-markers").style.width = "6rem";
@@ -80,34 +86,47 @@ class TrackSliderView {
    *
    * Note: Clicking a button too fast (from rendering) results in e.target === <path ... />
    */
-  addOnSliderBtnClickedHandler() {
+  handleSliderBtnClicked() {
     this.#trackParent.addEventListener("click", (e) => {
       const btn = e.target.closest(".content-tracks--btn");
 
       if (btn) {
         if (btn.classList.contains("content-tracks--left-btn")) {
-          this.#disableSliderBtns(btn);
+          this.#disableContentHover(btn);
           this.#toggleMarker(btn, false);
-          this.#displayNextContentBatch(btn, false);
+          this.#displayNextBatch(btn, false);
         } else if (btn.classList.contains("content-tracks--right-btn")) {
-          this.#disableSliderBtns(btn);
+          const leftBtn = btn.previousElementSibling;
+          leftBtn.style.opacity = "1";
+
+          this.#disableContentHover(btn);
           this.#toggleMarker(btn, true);
-          this.#makeSliderLeftBtnVisible(btn);
-          this.#displayNextContentBatch(btn, true);
+          this.#displayNextBatch(btn, true);
         }
       }
     });
   }
 
-  #disableSliderBtns(btn) {
+  #disableContentHover(btn) {
+    const sliderContents = btn
+      .closest(".content-tracks--section")
+      .querySelectorAll(".content-tracks--section-slider-content");
     const btns = btn.closest(".content-tracks--section").querySelectorAll(".content-tracks--btn");
+
+    sliderContents.forEach((sliderContent) => {
+      sliderContent.style.pointerEvents = "none";
+
+      setTimeout(() => {
+        sliderContent.style.pointerEvents = "auto";
+      }, 2200);
+    });
 
     btns.forEach((btn) => {
       btn.style.pointerEvents = "none";
 
       setTimeout(() => {
         btn.style.pointerEvents = "auto";
-      }, 1900);
+      }, 2200);
     });
   }
 
@@ -126,12 +145,7 @@ class TrackSliderView {
     markers[activeMarkerInd].classList.add("content-tracks--section-slider-marker-active");
   }
 
-  #makeSliderLeftBtnVisible(btn) {
-    const leftBtn = btn.previousElementSibling;
-    leftBtn.style.opacity = "1";
-  }
-
-  #displayNextContentBatch(btn, dirFlag) {
+  #displayNextBatch(btn, dirFlag) {
     const slider = dirFlag ? btn.previousElementSibling.previousElementSibling : btn.previousElementSibling;
     const sliderContent = Array.from(slider.querySelectorAll(".content-tracks--section-slider-content"));
 
@@ -142,26 +156,26 @@ class TrackSliderView {
       content.style.transform = `translateX(${tempNewTranslateVal}%)`;
 
       if (tempNewTranslateVal === TRACK_LEFT_INVIS_MIN_POS || tempNewTranslateVal === TRACK_RIGHT_INVIS_MIN_POS) {
-        this.#toggleElementBrightness(content, true);
+        this.#toggleBrightness(content, true);
       } else {
-        this.#toggleElementBrightness(content, false);
+        this.#toggleBrightness(content, false);
       }
 
       if (dirFlag) {
         if (oldTranslateVal < TRACK_LEFT_INVIS_MIN_POS) {
-          this.#placeAtNewLoc(slider, content, tempNewTranslateVal, dirFlag);
+          this.#shiftToNewLoc(content, tempNewTranslateVal, dirFlag);
         } else if (oldTranslateVal === 1985.5) {
-          this.#placeAtNewLoc(slider, content, tempNewTranslateVal, false);
+          this.#shiftToNewLoc(content, tempNewTranslateVal, false);
         }
       } else {
         if (oldTranslateVal > TRACK_RIGHT_INVIS_MIN_POS) {
-          this.#placeAtNewLoc(slider, content, tempNewTranslateVal, dirFlag);
+          this.#shiftToNewLoc(content, tempNewTranslateVal, dirFlag);
         }
       }
     });
   }
 
-  #toggleElementBrightness(content, toggleFlag) {
+  #toggleBrightness(content, toggleFlag) {
     if (toggleFlag) {
       setTimeout(() => {
         content.style.filter = "brightness(50%)";
@@ -181,25 +195,17 @@ class TrackSliderView {
     return dirFlag ? oldTranslateVal - TRACK_CONTENT_TRANSLATEX_VAL : oldTranslateVal + TRACK_CONTENT_TRANSLATEX_VAL;
   }
 
-  #placeAtNewLoc(slider, content, tempNewTranslateVal, dirFlag) {
+  #shiftToNewLoc(content, tempNewTranslateVal, dirFlag) {
     const actualNewTranslateVal = dirFlag
       ? tempNewTranslateVal + TRACK_CONTENT_FULL_TRANSLATEX_VAL
       : tempNewTranslateVal - TRACK_CONTENT_FULL_TRANSLATEX_VAL;
-    const imgElement = content.querySelector("img");
 
-    slider.insertAdjacentHTML(
-      "beforeend",
-      `
-      <div class="content-tracks--section-slider-content" style="transform: translateX(${actualNewTranslateVal}%)">
-        <img
-          class="content-tracks--section-slider-content-img"
-          src="${imgElement.src}"
-        />
-      </div>
-      `
-    );
+    content.style.opacity = "0";
+    content.style.transform = `translateX(${actualNewTranslateVal}%)`;
 
-    content.remove();
+    setTimeout(() => {
+      content.style.opacity = "1";
+    }, 2000);
   }
 }
 

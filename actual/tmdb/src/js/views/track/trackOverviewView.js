@@ -1,25 +1,34 @@
 class TrackOverviewView {
-  /** DOM elements */
   #sliderContents;
-
-  /** Meta fields */
   #enlargeContentDelayIds;
   #currContentHoveredPos;
   #prevContentSliderHovered;
   #hasHovered;
   #resetDelayFinished;
 
+  /**
+   * Initializes class variables
+   */
   initVars() {
     this.#sliderContents = document.querySelectorAll(".content-tracks--section-slider-content");
     this.#enlargeContentDelayIds = [];
   }
 
+  /**
+   * Initializes class handlers
+   */
   initHandlers() {
-    this.handleOnMetaBtnIconClicked();
-    this.handleOnContentHoveredAndUnhovered();
+    this.handleMetaBtnIconClicked();
+    this.handleContentHoverState();
   }
 
-  handleOnMetaBtnIconClicked() {
+  /**
+   * Handles displaying the description or trailer for a track content depending on which
+   * button is clicked
+   *
+   * Note: Could be divided into separate functions but maintained for efficiency
+   */
+  handleMetaBtnIconClicked() {
     this.#sliderContents.forEach((sliderContent) => {
       sliderContent.addEventListener("click", (e) => {
         if (e.target.closest(".content-tracks--overview-btn")) {
@@ -47,13 +56,22 @@ class TrackOverviewView {
     });
   }
 
-  handleOnContentHoveredAndUnhovered() {
+  /**
+   * Handles enlarging and shrinking track content depending on hover state
+   *
+   * Note: Could be divided into separate functions but maintained for efficiency
+   */
+  handleContentHoverState() {
     for (let i = 0; i < this.#sliderContents.length; i++) {
       const sliderContent = this.#sliderContents[i];
       let overviewDelayResetId;
 
+      // Handles enlarging a track content that is being hovered
       sliderContent.addEventListener("mouseenter", async () => {
         const currTransformVal = this.#getTransformVal(sliderContent.style.transform);
+
+        if (currTransformVal < 0 || currTransformVal > 418) return;
+
         const currContentSliderHovered = Number(
           sliderContent.closest(".content-tracks--section-slider").dataset.sectionSlider
         );
@@ -98,8 +116,13 @@ class TrackOverviewView {
         overviewMeta.style.pointerEvents = "auto";
       });
 
+      // Handles shrinking a track content that is no longer hovered
       sliderContent.addEventListener("mouseleave", () => {
         if (!sliderContent.style.transform.includes("scale(1.3)")) return;
+
+        const currTransformVal = this.#getTransformVal(sliderContent.style.transform);
+
+        if (currTransformVal < 0 || currTransformVal > 418) return;
 
         this.#resetTrailerFeatures(sliderContent);
 
@@ -114,6 +137,9 @@ class TrackOverviewView {
         overviewMeta.style.minHeight = "3.5rem";
         overviewMeta.style.opacity = "0";
         overviewMeta.style.pointerEvents = "none";
+
+        const overviewMetaDesc = overviewMeta.querySelector(".content-tracks--overview-desc");
+        overviewMetaDesc.scrollTo(0, 0);
 
         this.#resetDelayFinished = false;
 
@@ -182,17 +208,15 @@ class TrackOverviewView {
     );
   }
 
-  // TODO: Could be a utility function
+  #getTransformVal(transformStr) {
+    return Number(transformStr.slice(11, transformStr.indexOf("%")));
+  }
+
   #delay(time) {
     return new Promise((resolve) => {
       const enlargeContentDelayId = setTimeout(() => resolve(), time);
       this.#enlargeContentDelayIds.push(enlargeContentDelayId);
     });
-  }
-
-  // TODO: Could be a utility function
-  #getTransformVal(transformStr) {
-    return Number(transformStr.slice(11, transformStr.indexOf("%")));
   }
 }
 

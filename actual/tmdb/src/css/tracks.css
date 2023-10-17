@@ -5,8 +5,6 @@
 
   padding: 0 var(--padding-browser-side) 0 var(--padding-browser-side);
   margin-bottom: 6rem;
-
-  background-color: gray;
 }
 
 .content-tracks--section {
@@ -15,8 +13,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-
-  background-color: lightblue;
 }
 
 .content-tracks--section-heading {
@@ -75,8 +71,6 @@
 
   height: 14.063rem;
   width: 136.7rem;
-
-  background-color: darkolivegreen;
 }
 
 .content-tracks--section-slider-content {
@@ -194,7 +188,7 @@
 }
 
 /* ///////////////////////////////////////////////// */
-/* ///////// Content overview                        */
+/* ///////// Content overview/meta                   */
 /* ///////////////////////////////////////////////// */
 
 .content-tracks--overview {
@@ -234,16 +228,6 @@
 
 .content-tracks--overview-meta:hover {
   cursor: auto;
-}
-
-.content-tracks--overview-meta::-webkit-scrollbar {
-  width: 0.5rem;
-}
-
-.content-tracks--overview-meta::-webkit-scrollbar-thumb {
-  background-color: var(--c-white);
-  border-radius: 10px;
-  border: 1.2px solid var(--main-c-light);
 }
 
 .content-tracks--overview-meta > div:nth-child(1) {
@@ -313,4 +297,17 @@
 
 .content-tracks--overview-desc {
   font-size: var(--fs-med-s);
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.content-tracks--overview-desc::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.content-tracks--overview-desc::-webkit-scrollbar-thumb {
+  background-color: var(--c-white);
+  border-radius: 10px;
+  border: 1.2px solid var(--main-c-light);
 }
