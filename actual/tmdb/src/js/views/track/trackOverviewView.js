@@ -4,9 +4,8 @@ class TrackOverviewView {
 
   /** Meta fields */
   #enlargeContentDelayIds;
-  #overviewDelayResetId;
-  #currContentHovered;
   #currContentHoveredPos;
+  #prevContentSliderHovered;
   #hasHovered;
   #resetDelayFinished;
 
@@ -54,36 +53,36 @@ class TrackOverviewView {
       let overviewDelayResetId;
 
       sliderContent.addEventListener("mouseenter", async () => {
-        this.#enlargeContentDelayIds.forEach((id) => {
-          clearTimeout(id);
-        });
-
-        // if (this.#currContentHovered === sliderContent) {
-        //   clearTimeout(this.#overviewDelayResetId);
-        // }
-
-        this.#currContentHovered = sliderContent;
         const currTransformVal = this.#getTransformVal(sliderContent.style.transform);
+        const currContentSliderHovered = Number(
+          sliderContent.closest(".content-tracks--section-slider").dataset.sectionSlider
+        );
 
         if (sliderContent.style.transform.includes("scale(1.3)")) {
           return;
         } else if (this.#hasHovered) {
-          if (!this.#resetDelayFinished && this.#currContentHoveredPos !== currTransformVal) {
+          if (
+            !this.#resetDelayFinished &&
+            this.#currContentHoveredPos !== currTransformVal &&
+            this.#prevContentSliderHovered === currContentSliderHovered
+          ) {
             await this.#delay(401);
 
-            if (!sliderContent.matches(":hover")) {
-              return;
-            }
-            if (sliderContent.style.transform.includes("scale(1.3)")) {
+            if (!sliderContent.matches(":hover") || sliderContent.style.transform.includes("scale(1.3)")) {
               return;
             }
           }
         }
 
+        this.#enlargeContentDelayIds.forEach((id) => {
+          clearTimeout(id);
+        });
+
         clearTimeout(overviewDelayResetId);
 
-        this.#hasHovered = true;
+        this.#prevContentSliderHovered = currContentSliderHovered;
         this.#currContentHoveredPos = currTransformVal;
+        this.#hasHovered = true;
 
         sliderContent.style.zIndex = "48";
         sliderContent.style.transition = "filter 0.8s, transform 1.2s cubic-bezier(0.17, 0.84, 0.44, 1)";

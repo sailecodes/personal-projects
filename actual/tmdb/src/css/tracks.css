@@ -3,8 +3,8 @@
   flex-direction: column;
   gap: 4rem;
 
-  padding: 6rem var(--padding-browser-side) 11rem var(--padding-browser-side);
-  /* margin-bottom: 6rem; */
+  padding: 0 var(--padding-browser-side) 0 var(--padding-browser-side);
+  margin-bottom: 6rem;
 
   background-color: gray;
 }
