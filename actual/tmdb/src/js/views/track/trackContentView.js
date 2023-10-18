@@ -50,7 +50,9 @@ class TrackContentView {
                                 <div class="content-tracks--overview-genres">
                                   ${movie.genres
                                     .map((genre, index) => {
-                                      return index === movie.genres.length - 1
+                                      if (index > 2) return ``;
+
+                                      return index === (movie.genres.length - 1 < 2 ? movie.genres.length - 1 : 2)
                                         ? `<p class="content-spotlight--overview-genre">${genre}</p>`
                                         : `<p class="content-spotlight--overview-genre">${genre}, &nbsp;</p>`;
                                     })

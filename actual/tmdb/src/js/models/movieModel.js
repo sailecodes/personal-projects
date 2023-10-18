@@ -11,12 +11,10 @@ import {
   BASE_URL_IMG,
   MOVIE_GENRES_INTER_URL,
   TOP_RATED_MOVIES_INTER_URL,
-  MOST_POPULAR_MOVIES_INTER_URL,
   MOVIE_BY_GENRE_INTER_URL,
   IMG_SIZE,
   MOST_POPULAR_MOVIE_GENRES,
   MOVIE_SPOTLIGHT_CONTENT,
-  SPOTLIGHT_CONTENT_NUM,
   TOP_TRACK_HEADING,
 } from "../config.js";
 
@@ -25,7 +23,7 @@ import {
 /////////////////////////////////////////////////
 
 export const state = {
-  unqMovies: new Map(),
+  trackBackdropsFetched: false,
 
   movieGenresInfo: [],
 
@@ -36,6 +34,18 @@ export const state = {
   moviesByGenreInfo: [],
   movieTracksInfo: [],
 };
+
+if (localStorage.getItem("movieState")) {
+  const tmpState = JSON.parse(localStorage.getItem("movieState"));
+
+  state.trackBackdropsFetched = tmpState.trackBackdropsFetched;
+  state.movieGenresInfo = tmpState.movieGenresInfo;
+  state.mostPopularMoviesInfo = tmpState.mostPopularMoviesInfo;
+  state.movieSpotlightInfo = tmpState.movieSpotlightInfo;
+  state.topRatedMoviesInfo = tmpState.topRatedMoviesInfo;
+  state.moviesByGenreInfo = tmpState.moviesByGenreInfo;
+  state.movieTracksInfo = tmpState.movieTracksInfo;
+}
 
 /////////////////////////////////////////////////
 ///////// Helper functions
@@ -107,16 +117,6 @@ export const fetchMovieGenres = async function () {
   }
 };
 
-/*export const markUnqMovies = function (dataArr) {
-  for (let i = 0; i < dataArr.length; i++) {
-    for (let j = 0; j < dataArr[i].results.length; j++) {
-      if (!state.mostPopularMoviesInfo.unqMovies.has(dataArr[i].results[j].id)) {
-        state.mostPopularMoviesInfo.unqMovies.set(dataArr[i].results[j].id, "");
-      }
-    }
-  }
-};*/
-
 export const fetchMostPopularMovies = function (page) {
   if (state.mostPopularMoviesInfo.length !== 0) return;
 
@@ -124,19 +124,6 @@ export const fetchMostPopularMovies = function (page) {
     page: 1,
     results: MOVIE_SPOTLIGHT_CONTENT,
   });
-
-  // try {
-  //   const response = await fetch(`${BASE_URL}${MOST_POPULAR_MOVIES_INTER_URL}page=${page}`, OPTIONS);
-  //   const data = await response.json();
-
-  //   state.mostPopularMoviesInfo.push({
-  //     page: data.page,
-  //     results: data.results.slice(0, SPOTLIGHT_CONTENT_NUM),
-  //   });
-  // } catch (err) {
-  //   console.error(`(model.js::fetchMostPopularMovies()) ${err}`);
-  //   throw err;
-  // }
 };
 
 export const fetchTopRatedMovies = async function (page) {
@@ -197,6 +184,8 @@ export const fetchMoviesByGenre = async function (page) {
 };
 
 export const fetchBackdropsOfTrackMovies = async function () {
+  if (state.trackBackdropsFetched) return;
+
   try {
     for (let i = 0; i < state.movieTracksInfo.length; i++) {
       for (let j = 0; j < state.movieTracksInfo[i].movies.length; j++) {
@@ -212,40 +201,11 @@ export const fetchBackdropsOfTrackMovies = async function () {
             : imgObj.backdrops[0].file_path;
       }
     }
+
+    state.trackBackdropsFetched = true;
   } catch (err) {
     console.error(`(model.js::fetchBackdropsOfTrackMovies()) ${err}`);
     throw err;
-  }
-};
-
-export const fetchTrailerKeyOfSpotlightMovies = async function () {
-  for (let i = 0; i < state.movieSpotlightInfo.length; i++) {
-    const movieId = state.movieSpotlightInfo[i].id;
-    const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?language=en-US`, OPTIONS);
-    const { results: urls } = await response.json();
-
-    state.movieSpotlightInfo[i].trailerUrl = "";
-
-    if (urls.length === 1) {
-      state.movieSpotlightInfo[i].trailerUrl = urls[0].key;
-    } else {
-      for (let j = 0; j < urls.length; j++) {
-        if (
-          urls[j].official &&
-          urls[j].type.toLowerCase() === "trailer" &&
-          urls[j].name.toLowerCase().includes("official") &&
-          urls[j].name.toLowerCase().includes("trailer")
-        ) {
-          state.movieSpotlightInfo[i].trailerUrl = urls[j].key;
-        } else if (
-          !state.movieSpotlightInfo[i].trailerUrl &&
-          urls[j].official &&
-          urls[j].type.toLowerCase() === "trailer"
-        ) {
-          state.movieSpotlightInfo[i].trailerUrl = urls[j].key;
-        }
-      }
-    }
   }
 };
 
@@ -258,14 +218,16 @@ export const fetchTrailerKeyOfSpotlightMovies = async function () {
  *       popular movies from API (e.g. background, trailer, etc.)
  */
 export const determineSpotlightMovies = function () {
-  if (state.mostPopularMoviesInfo.length === 0) return;
+  if (state.mostPopularMoviesInfo.length !== 0) return;
 
-  MOVIE_SPOTLIGHT_CONTENT.forEach((content) => {
+  state.mostPopularMoviesInfo[0].results.forEach((content) => {
     state.movieSpotlightInfo.push(reformatEntry(content));
   });
 };
 
 export const determineTrackMovies = function () {
+  if (state.movieTracksInfo.length !== 0) return;
+
   state.movieTracksInfo.push(
     { heading: TOP_TRACK_HEADING, movies: state.topRatedMoviesInfo[0].results },
     { heading: state.moviesByGenreInfo[0].genre, movies: state.moviesByGenreInfo[0].results.movies },

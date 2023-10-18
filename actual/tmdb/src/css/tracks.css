@@ -3,6 +3,8 @@
   flex-direction: column;
   gap: 4rem;
 
+  min-height: 115rem;
+
   padding: 0 var(--padding-browser-side) 0 var(--padding-browser-side);
   margin-bottom: 6rem;
 }

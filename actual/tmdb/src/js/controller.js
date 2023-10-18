@@ -43,13 +43,9 @@ const controlMovieDefaultState = async function () {
 ///////// Movie spotlight functionality
 /////////////////////////////////////////////////
 
-const controlMovieSpotlight = async function () {
+const controlMovieSpotlight = function () {
   // Determines the top 3 most popular movies
   movieModel.determineSpotlightMovies();
-
-  // Fetches the trailer key for each spotlight movie
-  // Note: Dependent on above code
-  await movieModel.fetchTrailerKeyOfSpotlightMovies();
 
   // Displays the top 3 most popular movies in the spotlight
   // Note: Dependent on above code
@@ -98,13 +94,22 @@ const controlMovieTracks = async function () {
   trackOverviewView.initHandlers();
 };
 
+const initMovieStateInLocalStorage = function (resetFlag) {
+  if (resetFlag || localStorage.getItem("movieState")) return;
+
+  localStorage.setItem("movieState", JSON.stringify(movieModel.state));
+};
+
 /////////////////////////////////////////////////
 ///////// Movie initialization
 /////////////////////////////////////////////////
 
 const movieInit = async function () {
   await controlMovieDefaultState();
-  await Promise.all([controlMovieSpotlight(), controlMovieTracks()]);
+  controlMovieSpotlight();
+  await controlMovieTracks();
+
+  initMovieStateInLocalStorage(false);
 };
 
 movieInit();
