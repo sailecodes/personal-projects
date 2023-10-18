@@ -22,15 +22,15 @@ class TrackSliderView {
    * Initializes class handlers
    */
   initHandlers() {
-    this.handleSliderHovered();
-    this.handleSliderBtnClicked();
-    this.handleSliderBtnHovered();
+    this._handleSliderHovered();
+    this._handleSliderBtnClicked();
+    this._handleSliderBtnHovered();
   }
 
   /**
-   * Handles the visibility of the shadows when hovering over a track button
+   * Handles the visibility of the shadows
    */
-  handleSliderBtnHovered() {
+  _handleSliderBtnHovered() {
     this.#trackParent.addEventListener("mouseover", (e) => {
       const btn = e.target.closest(".content-tracks--btn");
 
@@ -67,7 +67,7 @@ class TrackSliderView {
   /**
    *  Handles the visibility of the track markers
    */
-  handleSliderHovered() {
+  _handleSliderHovered() {
     this.#trackSections.forEach((section) => {
       section.addEventListener("mouseenter", (e) => {
         section.querySelector(".content-tracks--section-slider-markers").style.width = "6rem";
@@ -86,7 +86,7 @@ class TrackSliderView {
    *
    * Note: Clicking a button too fast (from rendering) results in e.target === <path ... />
    */
-  handleSliderBtnClicked() {
+  _handleSliderBtnClicked() {
     this.#trackParent.addEventListener("click", (e) => {
       const btn = e.target.closest(".content-tracks--btn");
 

@@ -1,3 +1,7 @@
+/* ///////////////////////////////////////////////// */
+/* ///////// General                                 */
+/* ///////////////////////////////////////////////// */
+
 .content-spotlight {
   position: relative;
 
@@ -8,14 +12,9 @@
   overflow: hidden;
 }
 
-.content-spotlight--main-content {
-  position: absolute;
-  top: 0;
-
-  width: 100%;
-
-  transition: transform 1s;
-}
+/* ///////////////////////////////////////////////// */
+/* ///////// Trailer                                 */
+/* ///////////////////////////////////////////////// */
 
 .content-spotlight--trailer-container {
   position: absolute;
@@ -37,6 +36,19 @@
   margin-left: -100%;
 
   transition: opacity ease-out;
+}
+
+/* ///////////////////////////////////////////////// */
+/* ///////// Main content                            */
+/* ///////////////////////////////////////////////// */
+
+.content-spotlight--main-content {
+  position: absolute;
+  top: 0;
+
+  width: 100%;
+
+  transition: transform 1s;
 }
 
 .content-spotlight--backdrop {
@@ -128,6 +140,10 @@
   width: 2.4rem;
   height: 2.4rem;
 }
+
+/* ///////////////////////////////////////////////// */
+/* ///////// Overview                                */
+/* ///////////////////////////////////////////////// */
 
 .content-spotlight--overview {
   position: absolute;
@@ -258,6 +274,10 @@
   font-size: var(--fs-med-m);
 }
 
+/* ///////////////////////////////////////////////// */
+/* ///////// Buttons                                 */
+/* ///////////////////////////////////////////////// */
+
 .content-spotlight--btn {
   position: absolute;
   z-index: 50;
@@ -301,32 +321,9 @@
   height: 3.6rem;
 }
 
-.slider-shadow-right-bg {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 49;
-
-  background-color: rgba(0, 0, 0, 0.25);
-
-  height: 48rem;
-  width: 0rem;
-
-  transition: width 0.3s ease-out;
-}
-
-.slider-shadow-left-bg {
-  position: absolute;
-  bottom: 0;
-  z-index: 49;
-
-  background-color: rgba(0, 0, 0, 0.25);
-
-  height: 48rem;
-  width: 0rem;
-
-  transition: width 0.3s ease-out;
-}
+/* ///////////////////////////////////////////////// */
+/* ///////// Markers                                 */
+/* ///////////////////////////////////////////////// */
 
 .content-spotlight--markers {
   position: absolute;
@@ -380,4 +377,35 @@
 
   width: 1.2rem;
   height: 1.2rem;
+}
+
+/* ///////////////////////////////////////////////// */
+/* ///////// Shadows                                 */
+/* ///////////////////////////////////////////////// */
+
+.slider-shadow-right-bg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 49;
+
+  background-color: rgba(0, 0, 0, 0.25);
+
+  height: 48rem;
+  width: 0rem;
+
+  transition: width 0.3s ease-out;
+}
+
+.slider-shadow-left-bg {
+  position: absolute;
+  bottom: 0;
+  z-index: 49;
+
+  background-color: rgba(0, 0, 0, 0.25);
+
+  height: 48rem;
+  width: 0rem;
+
+  transition: width 0.3s ease-out;
 }

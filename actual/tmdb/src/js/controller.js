@@ -29,13 +29,7 @@ searchBarView.initHandlers();
 
 const controlMovieDefaultState = async function () {
   movieModel.fetchMostPopularMovies(1);
-
-  await Promise.all([
-    movieModel.fetchMovieGenres(),
-    /*movieModel.fetchMostPopularMovies(1),*/ // Note: Static for now
-    movieModel.fetchTopRatedMovies(1),
-  ]);
-
+  await Promise.all([movieModel.fetchMovieGenres(), movieModel.fetchTopRatedMovies(1)]);
   await movieModel.fetchMoviesByGenre(); // Note: Dependent on fetchMovieGenres()
 };
 
@@ -82,14 +76,15 @@ const controlMovieTracks = async function () {
   // Note: Dependent on above code
   await movieModel.fetchBackdropsOfTrackMovies();
 
-  //
+  // Readies the track with content
   trackContentView.initVars(movieModel.state.movieTracksInfo);
   trackContentView.initDefaultState();
 
-  //
+  // Readies the track slider functionality
   trackSliderView.initVars();
   trackSliderView.initHandlers();
 
+  // Readies the track content overview functionality
   trackOverviewView.initVars();
   trackOverviewView.initHandlers();
 };

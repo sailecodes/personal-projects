@@ -4,11 +4,19 @@ class TrackContentView {
   #trackContent;
   #track;
 
+  /**
+   * Initializes class variables
+   *
+   * @param {*} trackContent Contains the content for each track
+   */
   initVars(trackContent) {
     this.#trackContent = trackContent;
     this.#track = document.querySelector(".content-tracks");
   }
 
+  /**
+   * Initializes the track default state
+   */
   initDefaultState() {
     this.#track.innerHTML = "";
     this.#trackContent.forEach((content, index) => {

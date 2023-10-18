@@ -18,8 +18,8 @@ class TrackOverviewView {
    * Initializes class handlers
    */
   initHandlers() {
-    this.handleMetaBtnIconClicked();
-    this.handleContentHoverState();
+    this._handleMetaBtnIconClicked();
+    this._handleContentHoverState();
   }
 
   /**
@@ -28,7 +28,7 @@ class TrackOverviewView {
    *
    * Note: Could be divided into separate functions but maintained for efficiency
    */
-  handleMetaBtnIconClicked() {
+  _handleMetaBtnIconClicked() {
     this.#sliderContents.forEach((sliderContent) => {
       sliderContent.addEventListener("click", (e) => {
         if (e.target.closest(".content-tracks--overview-btn")) {
@@ -61,7 +61,7 @@ class TrackOverviewView {
    *
    * Note: Could be divided into separate functions but maintained for efficiency
    */
-  handleContentHoverState() {
+  _handleContentHoverState() {
     for (let i = 0; i < this.#sliderContents.length; i++) {
       const sliderContent = this.#sliderContents[i];
       let overviewDelayResetId;
