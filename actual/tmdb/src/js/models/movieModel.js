@@ -10,11 +10,12 @@ import {
   BASE_URL,
   BASE_URL_IMG,
   MOVIE_GENRES_INTER_URL,
-  TOP_RATED_INTER_URL,
-  MOST_POPULAR_INTER_URL,
+  TOP_RATED_MOVIES_INTER_URL,
+  MOST_POPULAR_MOVIES_INTER_URL,
   MOVIE_BY_GENRE_INTER_URL,
   IMG_SIZE,
-  MOST_POPULAR_GENRES,
+  MOST_POPULAR_MOVIE_GENRES,
+  MOVIE_SPOTLIGHT_CONTENT,
   SPOTLIGHT_CONTENT_NUM,
   TOP_TRACK_HEADING,
 } from "../config.js";
@@ -116,28 +117,33 @@ export const fetchMovieGenres = async function () {
   }
 };*/
 
-export const fetchMostPopularMovies = async function (page) {
+export const fetchMostPopularMovies = function (page) {
   if (state.mostPopularMoviesInfo.length !== 0) return;
 
-  try {
-    const response = await fetch(`${BASE_URL}${MOST_POPULAR_INTER_URL}page=${page}`, OPTIONS);
-    const data = await response.json();
+  state.mostPopularMoviesInfo.push({
+    page: 1,
+    results: MOVIE_SPOTLIGHT_CONTENT,
+  });
 
-    state.mostPopularMoviesInfo.push({
-      page: data.page,
-      results: data.results.slice(0, SPOTLIGHT_CONTENT_NUM),
-    });
-  } catch (err) {
-    console.error(`(model.js::fetchMostPopularMovies()) ${err}`);
-    throw err;
-  }
+  // try {
+  //   const response = await fetch(`${BASE_URL}${MOST_POPULAR_MOVIES_INTER_URL}page=${page}`, OPTIONS);
+  //   const data = await response.json();
+
+  //   state.mostPopularMoviesInfo.push({
+  //     page: data.page,
+  //     results: data.results.slice(0, SPOTLIGHT_CONTENT_NUM),
+  //   });
+  // } catch (err) {
+  //   console.error(`(model.js::fetchMostPopularMovies()) ${err}`);
+  //   throw err;
+  // }
 };
 
 export const fetchTopRatedMovies = async function (page) {
   if (state.topRatedMoviesInfo.length !== 0) return;
 
   try {
-    const response = await fetch(`${BASE_URL}${TOP_RATED_INTER_URL}page=${page}`, OPTIONS);
+    const response = await fetch(`${BASE_URL}${TOP_RATED_MOVIES_INTER_URL}page=${page}`, OPTIONS);
     const data = await response.json();
 
     state.topRatedMoviesInfo.push({
@@ -155,7 +161,7 @@ export const fetchTopRatedMovies = async function (page) {
 export const fetchMoviesByGenre = async function (page) {
   if (state.moviesByGenreInfo.length !== 0) return;
 
-  const movieGenresId = getMovieGenresId(MOST_POPULAR_GENRES);
+  const movieGenresId = getMovieGenresId(MOST_POPULAR_MOVIE_GENRES);
 
   fetch(`${BASE_URL}with_genres=12&page=1`, OPTIONS);
 
@@ -175,7 +181,7 @@ export const fetchMoviesByGenre = async function (page) {
 
     moviesByGenre.forEach((result, index) => {
       state.moviesByGenreInfo.push({
-        genre: MOST_POPULAR_GENRES[index],
+        genre: MOST_POPULAR_MOVIE_GENRES[index],
         results: {
           page: result.page,
           movies: result.results.map((movie) => {
@@ -247,12 +253,16 @@ export const fetchTrailerKeyOfSpotlightMovies = async function () {
 ///////// Determines website content
 /////////////////////////////////////////////////
 
+/**
+ * Note: Static for now. Too many incompatibility issues with dynamically fetching most
+ *       popular movies from API (e.g. background, trailer, etc.)
+ */
 export const determineSpotlightMovies = function () {
   if (state.mostPopularMoviesInfo.length === 0) return;
 
-  const mostPopularMovies = state.mostPopularMoviesInfo[0].results;
-
-  for (let i = 0; i < SPOTLIGHT_CONTENT_NUM; i++) state.movieSpotlightInfo.push(reformatEntry(mostPopularMovies[i]));
+  MOVIE_SPOTLIGHT_CONTENT.forEach((content) => {
+    state.movieSpotlightInfo.push(reformatEntry(content));
+  });
 };
 
 export const determineTrackMovies = function () {

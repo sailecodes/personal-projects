@@ -103,7 +103,7 @@
 }
 
 .content-spotlight--desc-btn {
-  background-color: rgba(53, 0, 211, 0.8);
+  background-color: rgba(53, 0, 211, 0.85);
 
   width: 15rem;
 
@@ -111,7 +111,7 @@
 }
 
 .content-spotlight--desc-btn:hover {
-  background-color: rgba(36, 0, 144, 0.8);
+  background-color: rgba(36, 0, 144, 0.85);
 }
 
 .content-spotlight--trailer-btn {
@@ -121,7 +121,7 @@
 }
 
 .content-spotlight--trailer-btn:hover {
-  background-color: rgba(89, 89, 89, 0.8);
+  background-color: rgba(89, 89, 89, 0.85);
 }
 
 .content-spotlight--text-icon {

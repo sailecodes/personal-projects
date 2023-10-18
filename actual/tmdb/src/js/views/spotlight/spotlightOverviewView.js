@@ -172,8 +172,6 @@ class SpotlightOverviewView {
    * Makes the title and text in the spotlight visible, moves the overview out of the window, changes the
    * overview content, and resets the position of the title (for the case of clipped title animation) upon clicking
    * any spotlight transition button
-   *
-   * TODO: --> (BUG) Background title doesn't appear during transition
    */
   addOnSpotlightBtnClickedHandler() {
     document.querySelectorAll(".content-spotlight--btn").forEach((button) => {

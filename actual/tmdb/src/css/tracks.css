@@ -308,6 +308,7 @@
 
 .content-tracks--overview-desc::-webkit-scrollbar-thumb {
   background-color: var(--c-white);
+
   border-radius: 10px;
   border: 1.2px solid var(--main-c-light);
 }

@@ -28,11 +28,14 @@ searchBarView.initHandlers();
 /////////////////////////////////////////////////
 
 const controlMovieDefaultState = async function () {
+  movieModel.fetchMostPopularMovies(1);
+
   await Promise.all([
     movieModel.fetchMovieGenres(),
-    movieModel.fetchMostPopularMovies(1),
+    /*movieModel.fetchMostPopularMovies(1),*/ // Note: Static for now
     movieModel.fetchTopRatedMovies(1),
   ]);
+
   await movieModel.fetchMoviesByGenre(); // Note: Dependent on fetchMovieGenres()
 };
 

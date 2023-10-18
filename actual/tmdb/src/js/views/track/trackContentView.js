@@ -12,7 +12,6 @@ class TrackContentView {
   initDefaultState() {
     this.#track.innerHTML = "";
     this.#trackContent.forEach((content, index) => {
-      console.log(content);
       this.#track.insertAdjacentHTML(
         "beforeend",
         `<div class="content-tracks--section">
