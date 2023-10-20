@@ -1,0 +1,61 @@
+/* ///////////////////////////////////////////////// */
+/* ///////// General                                 */
+/* ///////////////////////////////////////////////// */
+
+footer {
+  position: relative;
+
+  background-color: var(--main-c-dark);
+  height: 25rem;
+}
+
+/* ///////////////////////////////////////////////// */
+/* ///////// Contact information                     */
+/* ///////////////////////////////////////////////// */
+
+.footer--contact-info {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  gap: 5rem;
+}
+
+.footer--contact-info-item:link,
+.footer--contact-info-item:visited {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  color: var(--c-white);
+
+  font-size: var(--fs-med-m);
+  text-decoration: none;
+}
+
+.footer--contact-info-item:hover,
+.footer--contact-info-item:active {
+  cursor: pointer;
+}
+
+.footer--contact-info-item-icon {
+  fill: var(--c-white);
+
+  width: 2.4rem;
+  height: 2.5rem;
+}
+
+/* ///////////////////////////////////////////////// */
+/* ///////// Property Message                        */
+/* ///////////////////////////////////////////////// */
+
+.footer--property-msg {
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  transform: translate(-50%, -50%);
+
+  color: var(--c-white);
+}
