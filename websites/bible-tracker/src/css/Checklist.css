@@ -1,0 +1,44 @@
+.Checklist {
+  /* background-color: darkseagreen; */
+
+  height: 100%;
+
+  font-size: 3rem;
+  padding: 1rem;
+}
+
+.Checklist header {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.Checklist > div {
+  height: 50rem;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  row-gap: 0.5rem;
+  column-gap: 7rem;
+}
+
+.Checklist > div > div {
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.Checklist > div button {
+  width: 2.4rem;
+  height: 2.4rem;
+
+  border: 0.1px solid #000;
+  border-radius: 100px;
+}
+
+.Checklist > div button:hover {
+  cursor: pointer;
+}
