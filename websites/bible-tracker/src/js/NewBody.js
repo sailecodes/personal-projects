@@ -1,5 +1,11 @@
+import BookNav from "./BookNav";
+
 const NewBody = () => {
-  return <div>NewBody</div>;
+  return (
+    <main>
+      <BookNav />
+    </main>
+  );
 };
 
 export default NewBody;
