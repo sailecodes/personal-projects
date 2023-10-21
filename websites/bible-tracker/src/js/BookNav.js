@@ -1,3 +1,5 @@
+import "../css/BookNav.css";
+
 import { useStoreState } from "easy-peasy";
 import { Link } from "react-router-dom";
 
