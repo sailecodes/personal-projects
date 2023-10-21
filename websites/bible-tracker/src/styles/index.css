@@ -1,0 +1,32 @@
+:root {
+  --color-primary-brown: #654b38;
+  --color-secondary-brown: #6b5b51;
+  --color-tertiary-brown: #9e9a9a;
+
+  --color-dirty-white: #b5e5ff;
+  --color-forest-green: #4c6444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 2rem;
+}

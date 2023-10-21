@@ -1,0 +1,11 @@
+.App {
+  background-color: lightblue;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 90vh;
+  max-height: 80rem;
+  width: 90vw;
+  max-width: 85rem;
+}
