@@ -1,5 +1,6 @@
 {
-  "newTestamentBooks": [
+  "oldTestament": [],
+  "newTestament": [
     { "bookName": "Matthew" },
     { "bookName": "Mark" },
     { "bookName": "Luke" },

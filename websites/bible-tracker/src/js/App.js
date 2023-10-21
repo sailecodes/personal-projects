@@ -1,7 +1,7 @@
-import "../styles/App.css";
+import "../css/App.css";
 
 import Header from "./Header";
-import Nav from "./Nav";
+import MainNav from "./MainNav";
 import Home from "./Home";
 import NewBody from "./NewBody";
 import OldBody from "./OldBody";
@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Nav />
+      <MainNav />
       <Routes>
         <Route
           path="/"

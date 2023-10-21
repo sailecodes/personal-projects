@@ -1,13 +1,14 @@
-import "../styles/Nav.css";
+import "../css/MainNav.css";
 
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useStoreState, useStoreActions } from "easy-peasy";
 
-const Nav = () => {
-  const [searchText, setSearchText] = useState("");
+const MainNav = () => {
+  const searchText = useStoreState((state) => state.searchText);
+  const setSearchText = useStoreActions((actions) => actions.setSearchText);
 
   return (
-    <div className="Nav">
+    <div className="MainNav">
       <form>
         <input
           type="text"
@@ -17,6 +18,9 @@ const Nav = () => {
         />
       </form>
       <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
         <li>
           <Link to="/oldtestament">Old Testament</Link>
         </li>
@@ -28,4 +32,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default MainNav;

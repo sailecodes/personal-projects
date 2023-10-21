@@ -1,4 +1,4 @@
-import "../styles/Header.css";
+import "../css/Header.css";
 
 const Header = () => {
   return <header className="Header">Bible Reading Checklist</header>;
