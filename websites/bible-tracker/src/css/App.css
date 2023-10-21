@@ -7,5 +7,6 @@
   height: 90vh;
   max-height: 80rem;
   width: 90vw;
+  min-width: 70rem;
   max-width: 85rem;
 }

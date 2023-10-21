@@ -1,13 +1,13 @@
 import { createStore, computed, action, thunk } from "easy-peasy";
+import axios from "axios";
 
 export default createStore({
-  oldTestament: [],
-  setOldTestament: action((state, payload) => {
-    state.oldTestament = payload;
+  newTestament: [],
+  setNewTestament: action((state, payload) => {
+    state.newTestament = payload;
   }),
   searchText: "",
   setSearchText: action((state, payload) => {
     state.searchText = payload;
   }),
-  getOldTestament: thunk(async (actions, newPost, helpers) => {}),
 });

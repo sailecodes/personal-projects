@@ -7,38 +7,26 @@ import NewBody from "./NewBody";
 import OldBody from "./OldBody";
 import Footer from "./Footer";
 
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useStoreState, useStoreActions } from "easy-peasy";
+import axios from "axios";
 
 function App() {
-  const tmpData = [
-    { bookName: "Matthew" },
-    { bookName: "Mark" },
-    { bookName: "Luke" },
-    { bookName: "John" },
-    { bookName: "Acts" },
-    { bookName: "Romans" },
-    { bookName: "1 Corinthians" },
-    { bookName: "2 Corinthians" },
-    { bookName: "Galatians" },
-    { bookName: "Ephesians" },
-    { bookName: "Philippians" },
-    { bookName: "Colossians" },
-    { bookName: "1 Thessalonians" },
-    { bookName: "2 Thessalonians" },
-    { bookName: "1 Timothy" },
-    { bookName: "2 Timothy" },
-    { bookName: "Titus" },
-    { bookName: "Philemon" },
-    { bookName: "Hebrews" },
-    { bookName: "James" },
-    { bookName: "1 Peter" },
-    { bookName: "2 Peter" },
-    { bookName: "1 John" },
-    { bookName: "2 John" },
-    { bookName: "3 John" },
-    { bookName: "Jude" },
-    { bookName: "Revelation" },
-  ];
+  const setNewTestament = useStoreActions((actions) => actions.setNewTestament);
+
+  useEffect(() => {
+    const fetchNewTestament = async () => {
+      try {
+        const response = await axios.get("http://localhost:3500/newTestament");
+        setNewTestament(response.data);
+      } catch (err) {
+        console.error(`Error: ${err.message}`);
+      }
+    };
+
+    fetchNewTestament();
+  }, [setNewTestament]);
 
   return (
     <div className="App">
