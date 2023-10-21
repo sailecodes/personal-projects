@@ -6,6 +6,7 @@ import Home from "./Home";
 import NewBody from "./NewBody";
 import OldBody from "./OldBody";
 import Footer from "./Footer";
+import Error from "./Error";
 
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
@@ -33,18 +34,24 @@ function App() {
       <Header />
       <MainNav />
       <Routes>
-        <Route
-          path="/"
-          element={<Home />}
-        />
-        <Route
-          path="/oldtestament"
-          element={<OldBody />}
-        />
-        <Route
-          path="/newtestament"
-          element={<NewBody />}
-        />
+        <Route path="/">
+          <Route
+            index
+            element={<Home />}
+          />
+          <Route
+            path="oldtestament"
+            element={<OldBody />}
+          />
+          <Route
+            path="newtestament/*"
+            element={<NewBody />}
+          />
+          <Route
+            path="*"
+            element={<Error />}
+          />
+        </Route>
       </Routes>
       <Footer />
     </div>

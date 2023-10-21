@@ -1,5 +1,4 @@
 import { createStore, computed, action, thunk } from "easy-peasy";
-import axios from "axios";
 
 export default createStore({
   newTestament: [],
