@@ -1,8 +1,6 @@
 .Hero--container {
   background-color: var(--color-white);
 
-  position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,7 +42,7 @@
 }
 
 .Hero--description {
-  font-size: 3.5rem;
+  font-size: 3.2rem;
 
   padding-left: 0.32rem;
 }

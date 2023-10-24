@@ -1,0 +1,39 @@
+.Projects--container {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.Projects {
+  background-color: darkgrey;
+
+  display: flex;
+  flex-direction: column;
+  gap: 50rem;
+
+  max-width: 120rem;
+  min-width: 120rem;
+
+  margin: 0 auto;
+  padding: 15rem 0;
+}
+
+.Projects--meta-container {
+  background-color: darkcyan;
+
+  display: flex;
+
+  /* TODO: Utility property */
+  /* flex-direction: row-reverse; */
+
+  padding: 0 1rem;
+}
+
+.Projects--visual-container {
+  /* FIXME: For now */
+  display: flex;
+}
+
+.Projects--img {
+  width: auto;
+  height: 28rem;
+}
