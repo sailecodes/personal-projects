@@ -1,0 +1,50 @@
+.Hero--container {
+  background-color: var(--color-white);
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 60rem;
+}
+
+.Hero {
+  background-color: azure;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  max-width: 120rem;
+  min-width: 120rem;
+  height: 30rem;
+
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.Hero--pf {
+  width: 28rem;
+  height: 28rem;
+
+  border-radius: 1000px;
+}
+
+.Hero--meta-container {
+  background-color: bisque;
+  color: var(--color-black);
+
+  text-align: left;
+}
+
+.Hero--intro {
+  font-size: 7rem;
+}
+
+.Hero--description {
+  font-size: 3.5rem;
+
+  padding-left: 0.32rem;
+}

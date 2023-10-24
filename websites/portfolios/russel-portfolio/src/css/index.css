@@ -1,0 +1,22 @@
+:root {
+  --color-white: #fffdfa;
+  --color-black: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+
+  background-color: cornflowerblue;
+}
+
+body {
+  font-family: "Varela Round", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

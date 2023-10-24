@@ -1,0 +1,7 @@
+.horizontal-line {
+  width: 15rem;
+
+  border: 1px solid var(--color-black);
+
+  margin: 0 auto;
+}
