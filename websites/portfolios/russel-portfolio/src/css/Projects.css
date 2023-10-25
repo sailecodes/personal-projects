@@ -4,7 +4,7 @@
 }
 
 .Projects {
-  background-color: darkgrey;
+  /* background-color: darkgrey; */
 
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@
 }
 
 .Projects--meta-container {
-  background-color: darkcyan;
+  /* background-color: darkcyan; */
 
   display: flex;
   align-items: center;
@@ -31,7 +31,7 @@
 }
 
 .Projects--text-container {
-  background-color: darkolivegreen;
+  /* background-color: darkolivegreen; */
 
   display: flex;
   flex-direction: column;
