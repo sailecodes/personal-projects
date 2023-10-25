@@ -17,11 +17,23 @@ const projectData = [
     description:
       "An exciting deck-building adventure that focuses on four unique heroes with different cards and relics.",
     imgPaths: [
-      "/img/projects/aeyos/aeyos-1.png",
-      "/img/projects/aeyos/aeyos-2.png",
-      "/img/projects/aeyos/aeyos-3.png",
-      "/img/projects/aeyos/aeyos-4.png",
-      "/img/projects/aeyos/aeyos-5.png",
+      "./img/projects/aeyos/aeyos-1.png",
+      "./img/projects/aeyos/aeyos-2.png",
+      "./img/projects/aeyos/aeyos-3.png",
+      "./img/projects/aeyos/aeyos-4.png",
+      "./img/projects/aeyos/aeyos-5.png",
+    ],
+  },
+  {
+    title: "Aeyos",
+    description:
+      "An exciting deck-building adventure that focuses on four unique heroes with different cards and relics.",
+    imgPaths: [
+      "./img/projects/aeyos/aeyos-1.png",
+      "./img/projects/aeyos/aeyos-2.png",
+      "./img/projects/aeyos/aeyos-3.png",
+      "./img/projects/aeyos/aeyos-4.png",
+      "./img/projects/aeyos/aeyos-5.png",
     ],
   },
 ];

@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Nav />
       <Hero />
-      <Projects />
+      <Projects path="projects/*" />
       <Footer />
     </div>
   );

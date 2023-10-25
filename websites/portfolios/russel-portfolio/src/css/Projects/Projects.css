@@ -8,7 +8,7 @@
 
   display: flex;
   flex-direction: column;
-  gap: 50rem;
+  gap: 25rem;
 
   max-width: 120rem;
   min-width: 120rem;
@@ -24,7 +24,6 @@
 
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   gap: 3rem;
 
   /* TODO: Utility property */
@@ -33,38 +32,8 @@
   padding: 0 1rem;
 }
 
-.Projects--text-container {
-  /* background-color: darkolivegreen; */
-
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  min-width: 45rem;
-  max-width: 45rem;
-
-  padding: 1rem;
-  padding-left: 0;
-}
-
-.Projects--name {
-  font-size: 4.5rem;
-}
-
-.Projects--description {
-  font-size: 1.8rem;
-}
-
-.Projects--text-container > a:link,
-.Projects--text-container > a:visited {
-  color: var(--color-white);
-
-  font-size: 1.2rem;
-  text-decoration: none;
-}
-
-.Projects--text-container > a:hover,
-.Projects--text-container > a:active {
+.Projects--meta-container-reverse {
+  flex-direction: row-reverse;
 }
 
 .Projects--roles-container {
@@ -136,6 +105,7 @@
 
 .Projects--arrow-btn-left {
   left: 37%;
+  /* left: 0; */
   top: 50%;
   transform: translate(50%, -50%);
 
@@ -143,13 +113,26 @@
   pointer-events: none;
 }
 
+.Projects--arrow-btn-left-reverse {
+  left: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
 .Projects--arrow-btn-right {
   right: 0;
+  /* right: 37%; */
   top: 50%;
   transform: translate(-30%, -50%);
 
   opacity: 0;
   pointer-events: none;
+}
+
+.Projects--arrow-btn-right-reverse {
+  right: 37%;
+  top: 50%;
+  transform: translate(-30%, -50%);
 }
 
 .Projects--arrow-btn > svg {

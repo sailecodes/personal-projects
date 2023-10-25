@@ -14,13 +14,13 @@ const Footer = () => {
             rel="noreferrer">
             <img
               className="Footer--contact-img"
-              src="/img/socials/linkedin.png"
+              src="./img/socials/linkedin.png"
               alt="Linkedin logo"
             />
           </a>
           <div>
-            <p>Email: fakeemail@gmail.com</p>
-            <p>Number: (111)-111-1111</p>
+            <p>Email: kohrussel@outlook.com</p>
+            <p>Number: (714)-244-5064</p>
           </div>
         </div>
       </footer>

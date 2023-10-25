@@ -21,7 +21,7 @@ const Btns = () => {
     });
   };
 
-  const arrowBtnClickHandler = (e) => {
+  const onClickHandler = (e) => {
     const btn = e.target.closest(".Projects--arrow-btn-left") || e.target.closest(".Projects--arrow-btn-right");
 
     if (!btn) return;
@@ -51,7 +51,7 @@ const Btns = () => {
     <>
       <button
         className="Projects--arrow-btn Projects--arrow-btn-left"
-        onClick={arrowBtnClickHandler}>
+        onClick={onClickHandler}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -67,7 +67,7 @@ const Btns = () => {
       </button>
       <button
         className="Projects--arrow-btn Projects--arrow-btn-right Projects--arrow-btn-active"
-        onClick={arrowBtnClickHandler}>
+        onClick={onClickHandler}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

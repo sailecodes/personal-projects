@@ -1,64 +1,21 @@
-import "../../../css/Projects.css";
+import "../../../css/Projects/Projects.css";
 
-import Meta from "./Meta";
+import { Routes, Route } from "react-router-dom";
+
+import Metas from "./Metas";
 
 const Projects = () => {
-  const getCurrTransformVal = (imgContainer) => {
-    const currTransformStr = imgContainer.style.transform;
-    return +currTransformStr.slice(11, currTransformStr.indexOf("%"));
-  };
-
-  const transitionSlide = (metaContainer, directionFlag) => {
-    metaContainer.querySelectorAll(".Projects--img-container").forEach((imgContainer) => {
-      const currTransformVal = getCurrTransformVal(imgContainer);
-      const newTransformVal = directionFlag ? currTransformVal - 104 : currTransformVal + 104;
-
-      if (imgContainer.classList.contains("Projects--img-container-first") && newTransformVal === 0) {
-        metaContainer.querySelector(".Projects--arrow-btn-left").classList.toggle("Projects--arrow-btn-active");
-      } else if (imgContainer.classList.contains("Projects--img-container-last") && newTransformVal === 0) {
-        metaContainer.querySelector(".Projects--arrow-btn-right").classList.toggle("Projects--arrow-btn-active");
-      }
-
-      imgContainer.style.transform = directionFlag
-        ? `translateX(${newTransformVal}%)`
-        : `translateX(${newTransformVal}%)`;
-    });
-  };
-
-  const arrowBtnClickHandler = (e) => {
-    const btn = e.target.closest(".Projects--arrow-btn-left") || e.target.closest(".Projects--arrow-btn-right");
-
-    if (!btn) return;
-
-    const metaContainer = btn.closest(".Projects--meta-container");
-
-    if (btn.classList.contains("Projects--arrow-btn-left")) {
-      // const visContainer = btn.closest(".Projects--visual-container");
-      const currTransformValFirst = getCurrTransformVal(metaContainer.querySelector(".Projects--img-container-first"));
-
-      if (currTransformValFirst === 0) return;
-
-      metaContainer.querySelector(".Projects--arrow-btn-right").classList.add("Projects--arrow-btn-active");
-      transitionSlide(metaContainer, false);
-    } else if (btn.classList.contains("Projects--arrow-btn-right")) {
-      // const visContainer = btn.closest(".Projects--visual-container");
-      const currTransformValLast = getCurrTransformVal(metaContainer.querySelector(".Projects--img-container-last"));
-
-      if (currTransformValLast === 0) return;
-
-      metaContainer.querySelector(".Projects--arrow-btn-left").classList.add("Projects--arrow-btn-active");
-      const leftBtn = btn.previousElementSibling;
-      leftBtn.classList.add("Projects--arrow-btn-active");
-      transitionSlide(metaContainer, true);
-    }
-  };
-
   return (
     <div className="Projects--container">
       <main
         className="Projects"
         id="Projects">
-        <Meta />
+        <Routes>
+          <Route
+            index
+            element={<Metas />}
+          />
+        </Routes>
       </main>
     </div>
   );

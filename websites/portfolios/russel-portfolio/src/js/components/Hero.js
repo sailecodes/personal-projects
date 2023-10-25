@@ -5,7 +5,7 @@ const Hero = () => {
     <div className="Hero--container">
       <section className="Hero">
         <img
-          src="/img/pf/tmp-pf.jpg"
+          src="./img/pf/tmp-pf.jpg"
           alt="Russel Koh headshot"
           className="Hero--pf"
         />
