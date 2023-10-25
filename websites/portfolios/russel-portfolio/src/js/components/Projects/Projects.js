@@ -1,6 +1,6 @@
-import "../../../css/Projects/ProjectItem.css";
+import "./../../../css/Projects/Projects.css";
 
-import projectData from "../../data/projectData";
+import projectData from "./../../data/projectData";
 
 import ProjectItem from "./ProjectItem";
 

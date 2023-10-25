@@ -1,7 +1,9 @@
-.horizontal-line {
-  width: 15rem;
+.utility--underline {
+  position: absolute;
 
-  border: 0.5px solid var(--color-black);
+  width: 0;
 
-  margin: 0 auto;
+  border: 0px solid var(--color-white);
+
+  transition: width 0.3s;
 }

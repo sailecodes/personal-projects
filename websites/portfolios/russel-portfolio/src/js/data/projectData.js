@@ -31,24 +31,18 @@ const projectData = [
       "./img/projects/aeyos/aeyos-5.png",
     ],
   },
-  {
-    title: "Temporary",
-    description: "Lorem ipsum dolor sit amet, consectetur.",
-    contributions: [
-      "Designed and scripted the Heroes and their abilities (80+ cards)",
-      "Scripted the enemy encounters",
-      "Collaborated with the team to make a compelling reward system",
-      "Created some of the UI elements",
-      "Published the game from Xcode into the App Store",
-    ],
-    imgPaths: [
-      "./img/projects/aeyos/aeyos-1.png",
-      "./img/projects/aeyos/aeyos-2.png",
-      "./img/projects/aeyos/aeyos-3.png",
-      "./img/projects/aeyos/aeyos-4.png",
-      "./img/projects/aeyos/aeyos-5.png",
-    ],
-  },
+  // {
+  //   title: "Temporary",
+  //   description: "Lorem ipsum dolor sit amet, consectetur.",
+  //   contributions: ["I did this", "I did that", "I also did this thing"],
+  //   imgPaths: [
+  //     "./img/projects/aeyos/aeyos-1.png",
+  //     "./img/projects/aeyos/aeyos-2.png",
+  //     "./img/projects/aeyos/aeyos-3.png",
+  //     "./img/projects/aeyos/aeyos-4.png",
+  //     "./img/projects/aeyos/aeyos-5.png",
+  //   ],
+  // },
 ];
 
 export default projectData;

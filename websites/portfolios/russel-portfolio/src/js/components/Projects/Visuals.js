@@ -1,3 +1,5 @@
+import "./../../../css/Projects/Visuals.css";
+
 const Visuals = (props) => {
   return (
     <div

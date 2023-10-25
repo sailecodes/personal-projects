@@ -17,6 +17,16 @@
   text-decoration: none;
 }
 
-.Nav a:hover,
-.Nav a:active {
+.Nav > div {
+  position: relative;
+}
+
+.Nav--underline-projects {
+  border-color: var(--color-black);
+  /* width: 5.8rem; */
+}
+
+.Nav--underline-connect {
+  border-color: var(--color-black);
+  /* width: 6rem; */
 }

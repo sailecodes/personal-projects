@@ -1,18 +1,20 @@
+import "./../../../css/Projects/Btns.css";
+
 const Btns = () => {
   const getCurrTransformVal = (imgContainer) => {
     const currTransformStr = imgContainer.style.transform;
     return +currTransformStr.slice(11, currTransformStr.indexOf("%"));
   };
 
-  const transitionSlide = (metaContainer, directionFlag) => {
-    metaContainer.querySelectorAll(".Projects--img-container").forEach((imgContainer) => {
+  const transitionSlide = (itemContainer, directionFlag) => {
+    itemContainer.querySelectorAll(".Projects--img-container").forEach((imgContainer) => {
       const currTransformVal = getCurrTransformVal(imgContainer);
       const newTransformVal = directionFlag ? currTransformVal - 104 : currTransformVal + 104;
 
       if (imgContainer.classList.contains("Projects--img-container-first") && newTransformVal === 0) {
-        metaContainer.querySelector(".Projects--arrow-btn-left").classList.toggle("Projects--arrow-btn-active");
+        itemContainer.querySelector(".Projects--arrow-btn-left").classList.toggle("Projects--arrow-btn-active");
       } else if (imgContainer.classList.contains("Projects--img-container-last") && newTransformVal === 0) {
-        metaContainer.querySelector(".Projects--arrow-btn-right").classList.toggle("Projects--arrow-btn-active");
+        itemContainer.querySelector(".Projects--arrow-btn-right").classList.toggle("Projects--arrow-btn-active");
       }
 
       imgContainer.style.transform = directionFlag
@@ -26,24 +28,24 @@ const Btns = () => {
 
     if (!btn) return;
 
-    const metaContainer = btn.closest(".Projects--meta-container");
+    const itemContainer = btn.closest(".Projects--item-container");
 
     if (btn.classList.contains("Projects--arrow-btn-left")) {
-      const currTransformValFirst = getCurrTransformVal(metaContainer.querySelector(".Projects--img-container-first"));
+      const currTransformValFirst = getCurrTransformVal(itemContainer.querySelector(".Projects--img-container-first"));
 
       if (currTransformValFirst === 0) return;
 
-      metaContainer.querySelector(".Projects--arrow-btn-right").classList.add("Projects--arrow-btn-active");
-      transitionSlide(metaContainer, false);
+      itemContainer.querySelector(".Projects--arrow-btn-right").classList.add("Projects--arrow-btn-active");
+      transitionSlide(itemContainer, false);
     } else if (btn.classList.contains("Projects--arrow-btn-right")) {
-      const currTransformValLast = getCurrTransformVal(metaContainer.querySelector(".Projects--img-container-last"));
+      const currTransformValLast = getCurrTransformVal(itemContainer.querySelector(".Projects--img-container-last"));
 
       if (currTransformValLast === 0) return;
 
-      metaContainer.querySelector(".Projects--arrow-btn-left").classList.add("Projects--arrow-btn-active");
+      itemContainer.querySelector(".Projects--arrow-btn-left").classList.add("Projects--arrow-btn-active");
       const leftBtn = btn.previousElementSibling;
       leftBtn.classList.add("Projects--arrow-btn-active");
-      transitionSlide(metaContainer, true);
+      transitionSlide(itemContainer, true);
     }
   };
 

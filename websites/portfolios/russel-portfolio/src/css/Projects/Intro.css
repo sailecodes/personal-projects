@@ -1,14 +1,5 @@
-.Projects--details-container {
-  overflow: hidden;
-
-  min-width: 45rem;
-  max-width: 45rem;
-  min-height: 30rem;
-  max-height: 30rem;
-}
-
 .Projects--intro-container {
-  background-color: gray;
+  /* background-color: gray; */
 
   display: flex;
   flex-direction: column;
@@ -44,7 +35,7 @@
   align-items: center;
   gap: 0.3rem;
 
-  margin-top: auto;
+  margin-top: 3.4rem;
 }
 
 .Projects--intro-container button {
@@ -61,14 +52,11 @@
   cursor: pointer;
 }
 
-.Projects--underline {
-  position: absolute;
+.Projects--intro-container > div {
+  position: relative;
+}
+
+.Projects--underline-intro {
   top: 80%;
   left: 5.3%;
-
-  width: 0;
-
-  border: 0px solid var(--color-white);
-
-  transition: width 0.3s;
 }

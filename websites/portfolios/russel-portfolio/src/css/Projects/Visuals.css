@@ -1,0 +1,28 @@
+.Projects--visual-container {
+  position: relative;
+
+  min-width: 66.985rem;
+  height: 35rem;
+
+  overflow: hidden;
+}
+
+.Projects--img-container {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 66.985rem;
+  height: 35rem;
+
+  overflow: hidden;
+
+  transition: transform 0.6s;
+}
+
+.Projects--img {
+  width: auto;
+  height: 35rem;
+}

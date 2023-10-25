@@ -1,9 +1,8 @@
 .Projects--roles-container {
-  background-color: royalblue;
+  /* background-color: royalblue; */
 
   display: flex;
   flex-direction: column;
-  gap: 3rem;
 
   min-width: 45rem;
   max-width: 45rem;
@@ -21,9 +20,13 @@
 }
 
 .Projects--roles-container > div:nth-child(1) {
+  position: relative;
+
   display: flex;
   align-items: center;
   gap: 0.3rem;
+
+  margin-bottom: 3.4rem;
 }
 
 .Projects--roles-container button {
@@ -63,4 +66,9 @@
   list-style-position: outside;
 
   margin-left: 3.5rem;
+}
+
+.Projects--underline-roles {
+  top: 80%;
+  left: 5.3%;
 }

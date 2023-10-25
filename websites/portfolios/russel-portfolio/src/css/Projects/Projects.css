@@ -1,0 +1,18 @@
+.Projects--container {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.Projects {
+  /* background-color: darkgrey; */
+
+  display: flex;
+  flex-direction: column;
+  gap: 25rem;
+
+  max-width: 120rem;
+  min-width: 120rem;
+
+  margin: 0 auto;
+  padding: 15rem 0;
+}
