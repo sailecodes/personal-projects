@@ -7,15 +7,15 @@ const Projects = () => {
     return +currTransformStr.slice(11, currTransformStr.indexOf("%"));
   };
 
-  const transitionSlide = (visContainer, directionFlag) => {
-    visContainer.querySelectorAll(".Projects--img-container").forEach((imgContainer) => {
+  const transitionSlide = (metaContainer, directionFlag) => {
+    metaContainer.querySelectorAll(".Projects--img-container").forEach((imgContainer) => {
       const currTransformVal = getCurrTransformVal(imgContainer);
       const newTransformVal = directionFlag ? currTransformVal - 104 : currTransformVal + 104;
 
       if (imgContainer.classList.contains("Projects--img-container-first") && newTransformVal === 0) {
-        visContainer.querySelector(".Projects--arrow-btn-left").classList.toggle("Projects--arrow-btn-active");
+        metaContainer.querySelector(".Projects--arrow-btn-left").classList.toggle("Projects--arrow-btn-active");
       } else if (imgContainer.classList.contains("Projects--img-container-last") && newTransformVal === 0) {
-        visContainer.querySelector(".Projects--arrow-btn-right").classList.toggle("Projects--arrow-btn-active");
+        metaContainer.querySelector(".Projects--arrow-btn-right").classList.toggle("Projects--arrow-btn-active");
       }
 
       imgContainer.style.transform = directionFlag
@@ -27,24 +27,28 @@ const Projects = () => {
   const arrowBtnClickHandler = (e) => {
     const btn = e.target.closest(".Projects--arrow-btn-left") || e.target.closest(".Projects--arrow-btn-right");
 
+    if (!btn) return;
+
+    const metaContainer = btn.closest(".Projects--meta-container");
+
     if (btn.classList.contains("Projects--arrow-btn-left")) {
-      const visContainer = btn.closest(".Projects--visual-container");
-      const currTransformValFirst = getCurrTransformVal(visContainer.querySelector(".Projects--img-container-first"));
+      // const visContainer = btn.closest(".Projects--visual-container");
+      const currTransformValFirst = getCurrTransformVal(metaContainer.querySelector(".Projects--img-container-first"));
 
       if (currTransformValFirst === 0) return;
 
-      visContainer.querySelector(".Projects--arrow-btn-right").classList.add("Projects--arrow-btn-active");
-      transitionSlide(visContainer, false);
+      metaContainer.querySelector(".Projects--arrow-btn-right").classList.add("Projects--arrow-btn-active");
+      transitionSlide(metaContainer, false);
     } else if (btn.classList.contains("Projects--arrow-btn-right")) {
-      const visContainer = btn.closest(".Projects--visual-container");
-      const currTransformValLast = getCurrTransformVal(visContainer.querySelector(".Projects--img-container-last"));
+      // const visContainer = btn.closest(".Projects--visual-container");
+      const currTransformValLast = getCurrTransformVal(metaContainer.querySelector(".Projects--img-container-last"));
 
       if (currTransformValLast === 0) return;
 
-      visContainer.querySelector(".Projects--arrow-btn-left").classList.add("Projects--arrow-btn-active");
+      metaContainer.querySelector(".Projects--arrow-btn-left").classList.add("Projects--arrow-btn-active");
       const leftBtn = btn.previousElementSibling;
       leftBtn.classList.add("Projects--arrow-btn-active");
-      transitionSlide(visContainer, true);
+      transitionSlide(metaContainer, true);
     }
   };
 
@@ -63,38 +67,6 @@ const Projects = () => {
               className="Projects--visual-container"
               data-lowest-pos={(data.imgPaths.length - 1) * -104}
               data-highest-pos={(data.imgPaths.length - 1) * 104}>
-              <button
-                className="Projects--arrow-btn Projects--arrow-btn-left"
-                onClick={arrowBtnClickHandler}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
-              </button>
-              <button
-                className="Projects--arrow-btn Projects--arrow-btn-right Projects--arrow-btn-active"
-                onClick={arrowBtnClickHandler}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </button>
               {data.imgPaths.map((path, index) => (
                 <div
                   key={path}
@@ -115,6 +87,38 @@ const Projects = () => {
                 </div>
               ))}
             </div>
+            <button
+              className="Projects--arrow-btn Projects--arrow-btn-left"
+              onClick={arrowBtnClickHandler}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
+            <button
+              className="Projects--arrow-btn Projects--arrow-btn-right Projects--arrow-btn-active"
+              onClick={arrowBtnClickHandler}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
           </div>
         ))}
       </main>

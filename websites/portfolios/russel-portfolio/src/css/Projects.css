@@ -20,8 +20,11 @@
 .Projects--meta-container {
   /* background-color: darkcyan; */
 
+  position: relative;
+
   display: flex;
   align-items: center;
+  /* justify-content: space-between; */
   gap: 3rem;
 
   /* TODO: Utility property */
@@ -39,6 +42,8 @@
 
   /* min-width: 57.5rem; */
   /* max-width: 57.5rem; */
+  min-width: 45rem;
+  max-width: 45rem;
 
   padding: 1rem;
   padding-left: 0;
@@ -105,11 +110,10 @@
   align-items: center;
   justify-content: center;
 
-  background-color: rgba(0, 0, 0, 0.2);
-
   width: 3rem;
   height: 3rem;
 
+  background: none;
   border: none;
   border-radius: 1000px;
 
@@ -121,9 +125,9 @@
 }
 
 .Projects--arrow-btn-left {
-  left: 0;
+  left: 37%;
   top: 50%;
-  transform: translate(30%, -50%);
+  transform: translate(50%, -50%);
 
   opacity: 0;
   pointer-events: none;
