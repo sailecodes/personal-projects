@@ -1,8 +1,8 @@
-import "../../../css/Projects/Projects.css";
+import "../../../css/Projects/ProjectItem.css";
 
 import projectData from "../../data/projectData";
 
-import Meta from "./Meta";
+import ProjectItem from "./ProjectItem";
 
 const Projects = () => {
   return (
@@ -11,7 +11,7 @@ const Projects = () => {
         className="Projects"
         id="Projects">
         {projectData.map((data) => (
-          <Meta
+          <ProjectItem
             key={data.title}
             data={data}
           />

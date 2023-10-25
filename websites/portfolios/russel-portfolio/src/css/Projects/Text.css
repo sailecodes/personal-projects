@@ -1,4 +1,13 @@
-.Projects--text-container {
+.Projects--details-container {
+  overflow: hidden;
+
+  min-width: 45rem;
+  max-width: 45rem;
+  min-height: 30rem;
+  max-height: 30rem;
+}
+
+.Projects--intro-container {
   background-color: gray;
 
   display: flex;
@@ -7,10 +16,13 @@
 
   min-width: 45rem;
   max-width: 45rem;
-  height: 30rem;
+  min-height: 30rem;
+  max-height: 30rem;
 
   padding: 1rem;
   padding-left: 0;
+
+  transition: transform 0.4s;
 }
 
 .Projects--name {
@@ -19,9 +31,13 @@
 
 .Projects--description {
   font-size: 1.8rem;
+
+  height: 15.2rem;
+
+  overflow-y: auto;
 }
 
-.Projects--text-container > div {
+.Projects--intro-container > div {
   position: relative;
 
   display: flex;
@@ -31,7 +47,7 @@
   margin-top: auto;
 }
 
-.Projects--text-container button {
+.Projects--intro-container button {
   color: var(--color-white);
 
   width: 2rem;
@@ -41,18 +57,8 @@
   border: none;
 }
 
-.Projects--text-container button:hover {
+.Projects--intro-container button:hover {
   cursor: pointer;
-}
-
-.Projects--text-container button {
-  color: var(--color-white);
-
-  width: 2rem;
-  height: 2rem;
-  background: none;
-
-  border: none;
 }
 
 .Projects--underline {
