@@ -133,6 +133,9 @@
   right: 0;
   top: 50%;
   transform: translate(-30%, -50%);
+
+  opacity: 0;
+  pointer-events: none;
 }
 
 .Projects--arrow-btn > svg {
