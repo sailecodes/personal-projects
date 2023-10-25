@@ -9,7 +9,7 @@
 }
 
 .Hero {
-  background-color: azure;
+  /* background-color: azure; */
 
   display: flex;
   align-items: center;
@@ -31,7 +31,7 @@
 }
 
 .Hero--meta-container {
-  background-color: bisque;
+  /* background-color: bisque; */
   color: var(--color-black);
 
   text-align: left;
