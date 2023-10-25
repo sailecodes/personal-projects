@@ -54,7 +54,9 @@ const Projects = () => {
 
   return (
     <div className="Projects--container">
-      <main className="Projects">
+      <main
+        className="Projects"
+        id="Projects">
         {projectData.map((data) => (
           <div
             key={data.title}

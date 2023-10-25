@@ -3,7 +3,9 @@ import "../../css/Footer.css";
 const Footer = () => {
   return (
     <div className="Footer--container">
-      <footer className="Footer">
+      <footer
+        className="Footer"
+        id="Footer">
         <p className="Footer--tagline">Want to connect?</p>
         <div className="Footer--contact-container">
           <a

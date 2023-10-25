@@ -1,0 +1,22 @@
+.Nav {
+  background-color: var(--color-white);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  padding: 1rem;
+}
+
+.Nav a:link,
+.Nav a:visited {
+  color: var(--color-black);
+
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.Nav a:hover,
+.Nav a:visited {
+}
