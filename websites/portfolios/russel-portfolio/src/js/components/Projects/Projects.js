@@ -1,8 +1,8 @@
 import "../../../css/Projects/Projects.css";
 
-import { Routes, Route } from "react-router-dom";
+import projectData from "../../data/projectData";
 
-import Metas from "./Metas";
+import Meta from "./Meta";
 
 const Projects = () => {
   return (
@@ -10,12 +10,12 @@ const Projects = () => {
       <main
         className="Projects"
         id="Projects">
-        <Routes>
-          <Route
-            index
-            element={<Metas />}
+        {projectData.map((data) => (
+          <Meta
+            key={data.title}
+            data={data}
           />
-        </Routes>
+        ))}
       </main>
     </div>
   );

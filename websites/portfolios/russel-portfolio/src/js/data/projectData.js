@@ -15,7 +15,7 @@ const projectData = [
   {
     title: "Aeyos",
     description:
-      "An exciting deck-building adventure that focuses on four unique heroes with different cards and relics.",
+      "Aeyos is a roguelite deckbuilding game set in a mythical world. With each adventure, players can customize their decks to fit their style of play. Within the adventure, players will have opportunities after each encounter to power up their cards and gain powerful relics to enhance and even modify their gameplay.",
     imgPaths: [
       "./img/projects/aeyos/aeyos-1.png",
       "./img/projects/aeyos/aeyos-2.png",
@@ -25,9 +25,8 @@ const projectData = [
     ],
   },
   {
-    title: "Aeyos",
-    description:
-      "An exciting deck-building adventure that focuses on four unique heroes with different cards and relics.",
+    title: "Temporary",
+    description: "Lorem ipsum dolor sit amet, consectetur.",
     imgPaths: [
       "./img/projects/aeyos/aeyos-1.png",
       "./img/projects/aeyos/aeyos-2.png",

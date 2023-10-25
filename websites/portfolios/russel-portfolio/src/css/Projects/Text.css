@@ -1,5 +1,5 @@
 .Projects--text-container {
-  /* background-color: gray; */
+  background-color: gray;
 
   display: flex;
   flex-direction: column;
@@ -7,6 +7,7 @@
 
   min-width: 45rem;
   max-width: 45rem;
+  height: 30rem;
 
   padding: 1rem;
   padding-left: 0;
@@ -22,27 +23,46 @@
 
 .Projects--text-container > div {
   position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  margin-top: auto;
 }
 
-.Projects--text-container a:link,
-.Projects--text-container a:visited {
+.Projects--text-container button {
   color: var(--color-white);
 
-  max-width: fit-content;
+  width: 2rem;
+  height: 2rem;
 
-  font-size: 1.2rem;
-  text-decoration: none;
+  background: none;
+  border: none;
+}
+
+.Projects--text-container button:hover {
+  cursor: pointer;
+}
+
+.Projects--text-container button {
+  color: var(--color-white);
+
+  width: 2rem;
+  height: 2rem;
+  background: none;
+
+  border: none;
 }
 
 .Projects--underline {
   position: absolute;
-  left: 0.2%;
+  top: 80%;
+  left: 5.3%;
 
   width: 0;
-  /* width: 6.229rem; */
 
   border: 0px solid var(--color-white);
-  /* border-width: 0.1px; */
 
   transition: width 0.3s;
 }

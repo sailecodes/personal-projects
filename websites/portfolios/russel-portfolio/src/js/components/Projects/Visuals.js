@@ -6,6 +6,7 @@ const Visuals = (props) => {
       data-highest-pos={props.numImgs * 104}>
       {props.imgPaths.map((path, index) => (
         <div
+          key={path}
           className={
             "Projects--img-container" +
             (index === 0

@@ -29,6 +29,9 @@
   /* TODO: Utility property */
   /* flex-direction: row-reverse; */
 
+  min-height: 35rem;
+  min-width: 120rem;
+
   padding: 0 1rem;
 }
 
