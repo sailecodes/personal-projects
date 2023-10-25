@@ -40,8 +40,6 @@
   flex-direction: column;
   gap: 1rem;
 
-  /* min-width: 57.5rem; */
-  /* max-width: 57.5rem; */
   min-width: 45rem;
   max-width: 45rem;
 
@@ -55,6 +53,18 @@
 
 .Projects--description {
   font-size: 1.8rem;
+}
+
+.Projects--text-container > a:link,
+.Projects--text-container > a:visited {
+  color: var(--color-white);
+
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.Projects--text-container > a:hover,
+.Projects--text-container > a:active {
 }
 
 .Projects--roles-container {

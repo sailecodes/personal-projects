@@ -1,5 +1,4 @@
 import "../../css/Hero.css";
-// import pf from "../../img//pf/tmp-pf.jpg";
 
 const Hero = () => {
   return (
