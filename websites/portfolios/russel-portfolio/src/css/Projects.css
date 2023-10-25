@@ -38,8 +38,10 @@
   gap: 1rem;
 
   min-width: 57.5rem;
+  max-width: 57.5rem;
 
   padding: 1rem;
+  padding-left: 0;
 }
 
 .Projects--name {
@@ -71,6 +73,25 @@
 
   /* FIXME: For now */
   display: flex;
+  gap: 1rem;
+
+  min-width: 57.416rem;
+  height: 30rem;
+}
+
+.Projects--img-container {
+  background-color: red;
+
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 57.416rem;
+  height: 30rem;
+
+  overflow: hidden;
 }
 
 .Projects--img {
@@ -80,12 +101,13 @@
 
 .Projects--arrow-btn {
   position: absolute;
+  z-index: 10;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.2);
 
   width: 3rem;
   height: 3rem;
@@ -116,7 +138,7 @@
 }
 
 .Projects--arrow-btn > svg {
-  color: var(--color-black);
+  color: var(--color-white);
 
   width: 2.5rem;
   height: 2.5rem;
