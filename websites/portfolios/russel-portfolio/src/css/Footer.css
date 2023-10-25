@@ -1,0 +1,36 @@
+.Footer--container {
+  background-color: var(--color-white);
+
+  height: 30rem;
+}
+
+.Footer {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 120rem;
+  max-width: 120rem;
+  height: 30rem;
+
+  margin: 0 auto;
+}
+
+.Footer--tagline {
+  position: absolute;
+  top: 15%;
+  left: 1rem;
+
+  font-size: 4.8rem;
+}
+
+.Footer--social-container {
+  margin-top: 9rem;
+}
+
+.Footer--social-img {
+  width: 4rem;
+  height: 4rem;
+}
