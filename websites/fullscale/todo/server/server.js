@@ -1,3 +1,4 @@
+import "express-async-errors";
 import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
@@ -31,7 +32,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authRouter);
 
 app.use("*", (req, res) => {
-  res.status(StatusCodes.NOT_FOUND).json({ msg: "Route not found" });
+  res.status(StatusCodes.NOT_FOUND).json({ msg: "Route not found." });
 });
 
 app.use(errorMiddleware);
