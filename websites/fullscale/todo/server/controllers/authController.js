@@ -45,4 +45,5 @@ export const logout = async (req, res) => {
     expires: new Date(Date.now()),
   });
 
-  res.status(StatusCodes.OK).json({ ms
+  res.status(StatusCodes.OK).json({ msg: "Server message: logged out user." });
+};

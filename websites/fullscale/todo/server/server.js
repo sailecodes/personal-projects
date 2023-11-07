@@ -7,6 +7,7 @@ import { StatusCodes } from "http-status-codes";
 import * as dotenv from "dotenv";
 
 import authRouter from "./routers/authRouter.js";
+import todoRouter from "./routers/todoRouter.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 
 // ----- INIT
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/todos", todoRouter);
 
 app.use("*", (req, res) => {
   res.status(StatusCodes.NOT_FOUND).json({ msg: "Route not found." });
