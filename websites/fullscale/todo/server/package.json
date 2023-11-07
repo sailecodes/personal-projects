@@ -1,13 +1,13 @@
 {
-  "name": "saile-commerce",
+  "name": "todo",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "nodemon": "nodemon server.js",
-    "setup-project": "npm i && cd client && npm i"
+    "server": "nodemon server.js",
+    "install-dep": "npm i && cd ../client && npm i"
   },
   "keywords": [],
   "author": "",
