@@ -9,13 +9,17 @@
           - i.e. first & last name, email, and password
             - Check if email already exists in the database
           - Use `express-validator` package for validation
-        - Store the password as a hashed string
-          - Use `bcryptjs` package for hashing
+        - Controller
+          - Store the password as a hashed string
+            - Use `bcryptjs` package for hashing
       - Login
         - Must validate login values
           - i.e. email and password
-            - Check password against database
           - Use `express-validator` package for validation
-        - Must return JWT in a cookie for authentication
+        - Controller
+          - Check if user with email exists
+          - Check password against user's password in db
+          - Create a JWT and embed it in a http-cookie for authentication
       - Logout
-        - Reset cookie to remove JWT
+        - Controller
+          - Reset the http-cookie to clear the JWT

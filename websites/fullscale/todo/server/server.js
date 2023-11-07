@@ -21,9 +21,7 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 
-// ----- R0UTES
-// Note(s):
-//  - BASE URL: domain/api/v1
+// ----- ROUTES
 
 app.get("/", (req, res) => {
   res.status(StatusCodes.OK).send("Home route");

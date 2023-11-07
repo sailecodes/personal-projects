@@ -39,5 +39,10 @@ export const login = async (req, res) => {
 };
 
 export const logout = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: "Server message: logged out user." });
-};
+  // Clears the cookie (i.e. removes the JWT)
+  res.cookie("token", "", {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  });
+
+  res.status(StatusCodes.OK).json({ ms
