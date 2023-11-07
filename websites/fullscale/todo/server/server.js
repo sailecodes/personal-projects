@@ -1,10 +1,12 @@
 import express from "express";
+import mongoose from "mongoose";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import { StatusCodes } from "http-status-codes";
 import * as dotenv from "dotenv";
 
 import authRouter from "./routers/authRouter.js";
+import errorMiddleware from "./middleware/errorMiddleware.js";
 
 // ----- INIT
 
@@ -32,10 +34,18 @@ app.use("*", (req, res) => {
   res.status(StatusCodes.NOT_FOUND).json({ msg: "Route not found" });
 });
 
+app.use(errorMiddleware);
+
 // TODO: add error handler middleware
 
 // ----- SERVER INIT
 
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
+try {
+  await mongoose.connect(process.env.MONGO_CONNECTION_STRING);
+  app.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
+  });
+} catch (error) {
+  console.log(error);
+  process.exit(1);
+}
