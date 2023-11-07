@@ -3,6 +3,8 @@ import morgan from "morgan";
 import * as dotenv from "dotenv";
 import { StatusCodes } from "http-status-codes";
 
+import userRouter from "./routers/userRouter.js";
+
 // ----- INIT
 
 dotenv.config();
@@ -19,8 +21,10 @@ app.use(express.json());
 //  - BASE URL: domain/api/v1
 
 app.get("/", (req, res) => {
-  res.status(StatusCodes.OK).send("Home route");
+  res.status(StatusCodes.OK).send("Hi clarisse");
 });
+
+app.use("/api/v1/user", userRouter);
 
 // ----- SERVER INIT
 
