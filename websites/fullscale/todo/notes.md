@@ -7,6 +7,7 @@
       - Register
         - Must validate input values
           - i.e. first & last name, email, and password
+            - Check if email already exists in the database
           - Use `express-validator` package for validation
         - Must return JWT in a cookie for authentication
       - Login
