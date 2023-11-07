@@ -9,7 +9,8 @@
           - i.e. first & last name, email, and password
             - Check if email already exists in the database
           - Use `express-validator` package for validation
-        - Must return JWT in a cookie for authentication
+        - Store the password as a hashed string
+          - Use `bcryptjs` package for hashing
       - Login
         - Must validate login values
           - i.e. email and password

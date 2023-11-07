@@ -2,6 +2,8 @@ import { body, param, validationResult } from "express-validator";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError } from "../custom-errors/customErrors.js";
 
+import userModel from "../models/userModel.js";
+
 const validate = (validationValues) => {
   return [
     validationValues,
@@ -23,11 +25,13 @@ export const validateRegisterInput = validate([
     .notEmpty()
     .withMessage("Please provide an email.")
     .isEmail()
-    .withMessage("Please provide a valid email."),
-  // .custom(async (email) => {
-  //   // TODO: add in `check if email exists in database logic here`
-
-  // }),
+    .withMessage("Please provide a valid email.")
+    .custom(async (email) => {
+      // TODO: add in `check if email exists in database logic here`
+      const isEmailUsed = await userModel.findOne({ email });
+      console.log(isEmailUsed);
+      if (isEmailUsed) throw new BadRequestError("Email already exists. Please choose another email.");
+    }),
   body("password")
     .notEmpty()
     .withMessage("Please provide a password.")
